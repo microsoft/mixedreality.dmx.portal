@@ -23,8 +23,7 @@ namespace DMX.Portal.web
             services.AddServerSideBlazor();
 
             services.AddRazorPages(options =>
-                options.RootDirectory = "/Views/Pages"
-            );
+                options.RootDirectory = "/Views/Pages");
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
