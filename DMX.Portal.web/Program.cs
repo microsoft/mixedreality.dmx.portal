@@ -5,7 +5,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace DMX.Portal.web
+namespace DMX.Portal.Web
 {
     public class Program
     {
