@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using DMX.Portal.Web.Brokers.DmxApis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,8 @@ namespace DMX.Portal.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient();
+            services.AddTransient<IDmxApiBroker, DmxApiBroker>();
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
@@ -40,7 +43,6 @@ namespace DMX.Portal.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
