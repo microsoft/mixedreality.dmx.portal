@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace DMX.Portal.Web.Pages
 {
@@ -8,7 +9,7 @@ namespace DMX.Portal.Web.Pages
     [IgnoreAntiforgeryToken]
     public class ErrorModel : PageModel
     {
-        public string? RequestId { get; set; }
+        public string RequestId { get; set; }
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
@@ -16,7 +17,7 @@ namespace DMX.Portal.Web.Pages
 
         public ErrorModel(ILogger<ErrorModel> logger)
         {
-            _logger = logger;
+            this._logger = logger;
         }
 
         public void OnGet()

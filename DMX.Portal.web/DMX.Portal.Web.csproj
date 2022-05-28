@@ -6,4 +6,8 @@
 	<ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="RESTFulSense" Version="2.4.0" />
+  </ItemGroup>
+
 </Project>
