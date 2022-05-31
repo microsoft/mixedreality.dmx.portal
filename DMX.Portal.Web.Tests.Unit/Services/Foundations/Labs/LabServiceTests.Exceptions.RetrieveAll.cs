@@ -3,10 +3,12 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Labs.Exceptions;
 using Moq;
+using RESTFulSense.Exceptions;
 using Xeptions;
 using Xunit;
 
@@ -40,6 +42,41 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogCritical(It.Is(SameExceptionAs(
+                    expectedLabDependencyException))),
+                        Times.Once);
+
+            this.dmxApiBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public async Task ShouldThrowDependencyExceptionOnRetrievalIfErrorOccursAndLogItAsync()
+        {
+            string someMessage = GetRandomString();
+            var someResponseMessage = new HttpResponseMessage();
+            HttpResponseException httpResponseException = new HttpResponseException(someResponseMessage, someMessage);
+
+            // given
+            var failedExternalLabDependencyException = new FailedLabDependencyException(httpResponseException);
+            var expectedLabDependencyException = new LabDependencyException(failedExternalLabDependencyException);
+
+            this.dmxApiBrokerMock.Setup(broker =>
+                broker.GetAllLabsAsync())
+                    .ThrowsAsync(httpResponseException);
+
+            // when
+            ValueTask<List<Lab>> getAllLabsTask = this.labService.RetrieveAllLabsAsync();
+
+            // then
+            await Assert.ThrowsAsync<LabDependencyException>(() =>
+                getAllLabsTask.AsTask());
+
+            this.dmxApiBrokerMock.Verify(broker =>
+                broker.GetAllLabsAsync(),
+                    Times.Once);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
                     expectedLabDependencyException))),
                         Times.Once);
 
