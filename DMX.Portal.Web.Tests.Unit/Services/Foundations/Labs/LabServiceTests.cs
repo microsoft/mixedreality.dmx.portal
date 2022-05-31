@@ -2,14 +2,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net.Http;
+using Bunit.Asserting;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using Moq;
+using RESTFulSense.Exceptions;
 using Tynamix.ObjectFiller;
+using Xeptions;
+using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
 {
@@ -29,6 +36,22 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                 loggingBroker: this.loggingBrokerMock.Object);
         }
 
+        public static TheoryData CriticalDependencyException()
+        {
+            string someMessage = GetRandomString();
+            var someResponseMessage = new HttpResponseMessage();
+
+            return new TheoryData<Xeption>()
+            {
+                new HttpResponseUrlNotFoundException(someResponseMessage, someMessage),
+                new HttpResponseUnauthorizedException(someResponseMessage, someMessage),
+                new HttpResponseForbiddenException(someResponseMessage, someMessage),
+            };
+        }
+
+        private static string GetRandomString() =>
+            new MnemonicString().GetValue();
+
         private static List<Lab> CreateRandomLabs() =>
             CreateLabFiller().Create(count: GetRandomNumber()).ToList();
 
@@ -40,6 +63,14 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             var filler = new Filler<Lab>();
 
             return filler;
+        }
+
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
+        {
+            return actualExpectedAssertException =>
+                actualExpectedAssertException.Message == expectedException.Message &&
+                actualExpectedAssertException.InnerException.Message == expectedException.InnerException.Message &&
+                (actualExpectedAssertException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
         }
     }
 }
