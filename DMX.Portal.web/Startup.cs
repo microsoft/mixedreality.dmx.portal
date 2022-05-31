@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using DMX.Portal.Web.Brokers.DmxApis;
+using DMX.Portal.Web.Services.Foundations.Labs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +24,7 @@ namespace DMX.Portal.Web
             services.AddServerSideBlazor();
             services.AddHttpClient();
             services.AddTransient<IDmxApiBroker, DmxApiBroker>();
+            services.AddTransient<ILabService, LabService>();
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
