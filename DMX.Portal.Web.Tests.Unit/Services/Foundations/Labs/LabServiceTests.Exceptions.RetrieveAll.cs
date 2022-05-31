@@ -85,7 +85,6 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             this.loggingBrokerMock.VerifyNoOtherCalls();
         }
 
-
         [Fact]
         public async Task ShouldThrowServiceExceptionOnRetrievalIfErrorOccursAndLogItAsync()
         {
