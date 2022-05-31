@@ -24,7 +24,7 @@ namespace DMX.Portal.Web
             services.AddServerSideBlazor();
             services.AddHttpClient();
             AddBrokers(services);
-            AddServicess(services);
+            AddServices(services);
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
@@ -59,7 +59,7 @@ namespace DMX.Portal.Web
             services.AddTransient<IDmxApiBroker, DmxApiBroker>();
         }
 
-        private static void AddServicess(IServiceCollection services)
+        private static void AddServices(IServiceCollection services)
         {
             services.AddTransient<ILabService, LabService>();
         }
