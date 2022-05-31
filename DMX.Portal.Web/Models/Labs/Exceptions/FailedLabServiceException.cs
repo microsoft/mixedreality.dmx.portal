@@ -1,4 +1,8 @@
-﻿using System;
+﻿// --------------------------------------------------------------- 
+// Copyright (c) Microsoft Corporation. All rights reserved. 
+// ---------------------------------------------------------------
+
+using System;
 using Xeptions;
 
 namespace DMX.Portal.Web.Models.Labs.Exceptions
