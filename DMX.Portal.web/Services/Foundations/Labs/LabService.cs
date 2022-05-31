@@ -23,8 +23,8 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<List<Lab>> RetrieveAllLabsAsync() =>
-             await this.dmxApiBroker.GetAllLabsAsync();
+        public ValueTask<List<Lab>> RetrieveAllLabsAsync() =>
+        TryCatch(async () => await this.dmxApiBroker.GetAllLabsAsync());
 
     }
 }
