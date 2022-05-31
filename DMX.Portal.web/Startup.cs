@@ -2,12 +2,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using DMX.Portal.Web.Brokers.DmxApis;
+using DMX.Portal.Web.Services.Foundations.Labs;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 namespace DMX.Portal.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) =>
-            Configuration = configuration;
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -15,6 +22,9 @@ namespace DMX.Portal.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddHttpClient();
+            services.AddTransient<IDmxApiBroker, DmxApiBroker>();
+            services.AddTransient<ILabService, LabService>();
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
@@ -35,7 +45,6 @@ namespace DMX.Portal.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
