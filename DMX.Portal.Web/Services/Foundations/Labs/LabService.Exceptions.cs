@@ -40,7 +40,13 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
                 var failedLabDependencyException = new FailedLabDependencyException(httpResponseForbiddenException);
 
                 throw this.CreateAndLogCriticalDependencyException(failedLabDependencyException);
-            } 
+            }
+            catch (HttpResponseException httpResponseException)
+            {
+                var failedLabDependencyException = new FailedLabDependencyException(httpResponseException);
+
+                throw this.CreateAndLogDependencyException(failedLabDependencyException);
+            }
         }
 
 
@@ -48,6 +54,14 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
         {
             var labDependencyException = new LabDependencyException(xeption);
             this.loggingBroker.LogCritical(labDependencyException);
+
+            return labDependencyException;
+        }
+
+        private LabDependencyException CreateAndLogDependencyException(Xeption xeption)
+        {
+            var labDependencyException = new LabDependencyException(xeption);
+            this.loggingBroker.LogError(labDependencyException);
 
             return labDependencyException;
         }
