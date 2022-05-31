@@ -17,6 +17,7 @@ var githubPipeline = new GithubPipeline
         {
             Branches = new string[] { "main" }
         },
+
         PullRequest = new PullRequestEvent
         {
             Branches = new string[] { "main" }
@@ -28,6 +29,7 @@ var githubPipeline = new GithubPipeline
         Build = new BuildJob
         {
             RunsOn = BuildMachines.Windows2022,
+            
             Steps = new List<GithubTask>
             {
                 new CheckoutTaskV2
@@ -66,6 +68,7 @@ var githubPipeline = new GithubPipeline
 };
 
 var aDotNetClient = new ADotNetClient();
+
 aDotNetClient.SerializeAndWriteToFile(
     githubPipeline,
     path: "../../../../.github/workflows/dotnet.yml");
