@@ -89,19 +89,22 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         [Fact]
         public async Task ShouldThrowServiceExceptionOnRetrievalIfErrorOccursAndLogItAsync()
         {
-            string someMessage = GetRandomString();
-            var serviceException = new Exception(someMessage);
-
             // given
-            var failedExternalLabServiceException = new FailedLabServiceException(serviceException);
-            var expectedLabServiceException = new LabServiceException(failedExternalLabServiceException);
+            var serviceException = new Exception();
+
+            var failedExternalLabServiceException = 
+                new FailedLabServiceException(serviceException);
+            
+            var expectedLabServiceException = 
+                new LabServiceException(failedExternalLabServiceException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
                     .ThrowsAsync(serviceException);
 
             // when
-            ValueTask<List<Lab>> getAllLabsTask = this.labService.RetrieveAllLabsAsync();
+            ValueTask<List<Lab>> getAllLabsTask =
+                this.labService.RetrieveAllLabsAsync();
 
             // then
             await Assert.ThrowsAsync<LabServiceException>(() =>
