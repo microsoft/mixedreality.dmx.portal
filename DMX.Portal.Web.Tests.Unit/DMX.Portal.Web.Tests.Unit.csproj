@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="bunit" Version="1.7.7" />
+    <PackageReference Include="DeepCloner" Version="0.10.4" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
     <PackageReference Include="Moq" Version="4.18.1" />
@@ -27,6 +28,10 @@
 
   <ItemGroup>
     <Folder Include="Components\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DMX.Portal.Web\DMX.Portal.Web.csproj" />
   </ItemGroup>
 
 </Project>
