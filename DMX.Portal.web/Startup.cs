@@ -54,14 +54,10 @@ namespace DMX.Portal.Web
             });
         }
 
-        private static void AddBrokers(IServiceCollection services)
-        {
+        private static void AddBrokers(IServiceCollection services) =>
             services.AddTransient<IDmxApiBroker, DmxApiBroker>();
-        }
 
-        private static void AddServices(IServiceCollection services)
-        {
+        private static void AddServices(IServiceCollection services) =>
             services.AddTransient<ILabService, LabService>();
-        }
     }
 }
