@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32505.426
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMX.Portal.Web", "DMX.Portal.Web\DMX.Portal.Web.csproj", "{24EE4E04-10A9-4929-8490-A0EA49CB7235}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMX.Portal.Web", "DMX.Portal.Web\DMX.Portal.Web.csproj", "{24EE4E04-10A9-4929-8490-A0EA49CB7235}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMX.Portal.Web.Infrastructure.Build", "DMX.Portal.Web.Infrastructure.Build\DMX.Portal.Web.Infrastructure.Build.csproj", "{BB2353FB-9273-4832-99C7-8C1BED71560F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMX.Portal.Web.Tests.Unit", "DMX.Portal.Web.Tests.Unit\DMX.Portal.Web.Tests.Unit.csproj", "{50E4BFA2-2454-49A4-97BC-F6C2A5024AF0}"
 EndProject
@@ -21,6 +23,10 @@ Global
 		{24EE4E04-10A9-4929-8490-A0EA49CB7235}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24EE4E04-10A9-4929-8490-A0EA49CB7235}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24EE4E04-10A9-4929-8490-A0EA49CB7235}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
