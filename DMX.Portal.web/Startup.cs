@@ -23,8 +23,8 @@ namespace DMX.Portal.Web
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpClient();
-            services.AddTransient<IDmxApiBroker, DmxApiBroker>();
-            services.AddTransient<ILabService, LabService>();
+            AddBrokers(services);
+            AddServices(services);
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
@@ -53,5 +53,11 @@ namespace DMX.Portal.Web
                 endpoints.MapFallbackToPage("/_Host");
             });
         }
+
+        private static void AddBrokers(IServiceCollection services) =>
+            services.AddTransient<IDmxApiBroker, DmxApiBroker>();
+
+        private static void AddServices(IServiceCollection services) =>
+            services.AddTransient<ILabService, LabService>();
     }
 }
