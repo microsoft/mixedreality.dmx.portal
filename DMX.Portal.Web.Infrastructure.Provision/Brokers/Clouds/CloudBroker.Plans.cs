@@ -14,12 +14,12 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         public async ValueTask<IAppServicePlan> CreatePlanAsync(string planName, IResourceGroup resourceGroup)
         {
             return await azure.AppServices.AppServicePlans
-            .Define(planName)
-            .WithRegion(Region.USCentral)
-            .WithExistingResourceGroup(resourceGroup)
-            .WithPricingTier(PricingTier.StandardS1)
-            .WithOperatingSystem(OperatingSystem.Windows)
-            .CreateAsync();
+                .Define(name: planName)
+                .WithRegion(region: Region.USCentral)
+                .WithExistingResourceGroup(group: resourceGroup)
+                .WithPricingTier(pricingTier: PricingTier.StandardS1)
+                .WithOperatingSystem(operatingSystem: OperatingSystem.Windows)
+                .CreateAsync();
         }
     }
 }

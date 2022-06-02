@@ -17,10 +17,10 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
             IResourceGroup resourceGroup)
         {
             return await azure.AppServices.WebApps
-                .Define(webAppName)
-                .WithExistingWindowsPlan(appServicePlan)
-                .WithExistingResourceGroup(resourceGroup)
-                .WithNetFrameworkVersion(NetFrameworkVersion.Parse("v7.0"))
+                .Define(name: webAppName)
+                .WithExistingWindowsPlan(appServicePlan: appServicePlan)
+                .WithExistingResourceGroup(group: resourceGroup)
+                .WithNetFrameworkVersion(version: NetFrameworkVersion.Parse("v7.0"))
                 .CreateAsync();
         }
     }

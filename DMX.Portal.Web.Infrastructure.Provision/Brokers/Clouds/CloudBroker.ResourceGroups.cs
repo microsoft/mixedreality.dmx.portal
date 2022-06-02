@@ -13,13 +13,13 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         public async ValueTask<IResourceGroup> CreateResourceGroupAsync(string resourceGroupName)
         {
             return await this.azure.ResourceGroups
-                .Define(resourceGroupName)
+                .Define(name: resourceGroupName)
                 .WithRegion(region: Region.USCentral)
                 .CreateAsync();
         }
 
         public async ValueTask<bool> CheckResourceGroupExistsAsync(string resourceGroupName) =>
-            await this.azure.ResourceGroups.ContainAsync(resourceGroupName);
+            await this.azure.ResourceGroups.ContainAsync(name: resourceGroupName);
 
     }
 }

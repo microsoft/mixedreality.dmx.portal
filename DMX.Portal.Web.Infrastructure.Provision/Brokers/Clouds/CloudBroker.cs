@@ -34,7 +34,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
                 environment: AzureEnvironment.AzureGlobalCloud);
 
             return Azure.Configure().WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
-                .Authenticate(credentials)
+                .Authenticate(azureCredentials: credentials)
                 .WithDefaultSubscription();
         }
     }
