@@ -1,4 +1,8 @@
-﻿using System;
+﻿// --------------------------------------------------------------- 
+// Copyright (c) Microsoft Corporation. All rights reserved. 
+// ---------------------------------------------------------------
+
+using System;
 
 namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Loggings
 {

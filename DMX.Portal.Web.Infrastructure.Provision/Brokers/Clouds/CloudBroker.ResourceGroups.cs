@@ -21,6 +21,5 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         public async ValueTask<bool> CheckResourceGroupExistsAsync(string resourceGroupName) =>
             await this.azure.ResourceGroups.ContainAsync(resourceGroupName);
 
-
     }
 }

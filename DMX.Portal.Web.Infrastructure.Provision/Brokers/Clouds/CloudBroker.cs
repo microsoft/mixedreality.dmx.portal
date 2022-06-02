@@ -15,8 +15,6 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         private readonly string clientId;
         private readonly string clientSecret;
         private readonly string tenantId;
-        private readonly string adminName;
-        private readonly string adminAccess;
         private readonly IAzure azure;
 
         public CloudBroker()
@@ -24,8 +22,6 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
             this.clientId = Environment.GetEnvironmentVariable("AzureClientId");
             this.clientSecret = Environment.GetEnvironmentVariable("AzureClientSecret");
             this.tenantId = Environment.GetEnvironmentVariable("AzureTenantId");
-            this.adminName = Environment.GetEnvironmentVariable("AzureAdminName");
-            this.adminAccess = Environment.GetEnvironmentVariable("AzureAdminAccess");
             this.azure = AuthenticateAzure();
         }
 
@@ -36,8 +32,10 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
                 clientSecret: this.clientSecret,
                 tenantId: this.tenantId,
                 environment: AzureEnvironment.AzureGlobalCloud);
-            return Azure.Configure().WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic).
-                Authenticate(credentials).WithDefaultSubscription();
+
+            return Azure.Configure().WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
+                .Authenticate(credentials)
+                .WithDefaultSubscription();
         }
     }
 }

@@ -12,7 +12,6 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
     {
         ValueTask<IWebApp> CreateWebAppAsync(
             string webAppName,
-            string connectionString,
             IAppServicePlan servicePlan,
             IResourceGroup resourceGroup);
     }

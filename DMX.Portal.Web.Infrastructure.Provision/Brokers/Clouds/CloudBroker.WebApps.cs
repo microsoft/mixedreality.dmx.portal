@@ -13,7 +13,6 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
     {
         public async ValueTask<IWebApp> CreateWebAppAsync(
             string webAppName,
-            string connectionString,
             IAppServicePlan appServicePlan,
             IResourceGroup resourceGroup)
         {
@@ -22,10 +21,6 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
                 .WithExistingWindowsPlan(appServicePlan)
                 .WithExistingResourceGroup(resourceGroup)
                 .WithNetFrameworkVersion(NetFrameworkVersion.Parse("v7.0"))
-                .WithConnectionString(
-                    name: "DefaultConnection",
-                    value: connectionString,
-                    type: ConnectionStringType.SQLServer)
                 .CreateAsync();
         }
     }
