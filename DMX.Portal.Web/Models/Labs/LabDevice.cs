@@ -10,6 +10,7 @@ namespace DMX.Portal.Web.Models.Labs
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public int? PowerLevel { get; set; }
         public LabDeviceType Type { get; set; }
         public LabDeviceStatus Status { get; set; }
         public LabDeviceCategory Category { get; set; }

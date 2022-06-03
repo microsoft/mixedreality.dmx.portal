@@ -27,10 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DMX.Portal.Web\DMX.Portal.Web.csproj" />
   </ItemGroup>
 
