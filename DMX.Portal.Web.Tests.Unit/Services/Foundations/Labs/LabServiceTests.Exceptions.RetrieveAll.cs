@@ -18,20 +18,24 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
     public partial class LabServiceTests
     {
         [Theory]
-        [MemberData(nameof(CriticalDependencyException))]
+        [MemberData(nameof(CriticalDependencyExceptions))]
         public async Task ShouldThrowCriticalDependencyExceptionOnRetrievalIfCriticalErrorOccursAndLogItAsync(
             Xeption criticalDependencyException)
         {
             // given
-            var failedExternalLabDependencyException = new FailedLabDependencyException(criticalDependencyException);
-            var expectedLabDependencyException = new LabDependencyException(failedExternalLabDependencyException);
+            var failedExternalLabDependencyException = 
+                new FailedLabDependencyException(criticalDependencyException);
+            
+            var expectedLabDependencyException =
+                new LabDependencyException(failedExternalLabDependencyException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
                     .ThrowsAsync(criticalDependencyException);
 
             // when
-            ValueTask<List<Lab>> getAllLabsTask = this.labService.RetrieveAllLabsAsync();
+            ValueTask<List<Lab>> getAllLabsTask = 
+                this.labService.RetrieveAllLabsAsync();
 
             // then
             await Assert.ThrowsAsync<LabDependencyException>(() =>
@@ -56,17 +60,23 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             string someMessage = GetRandomString();
             var someResponseMessage = new HttpResponseMessage();
-            HttpResponseException httpResponseException = new HttpResponseException(someResponseMessage, someMessage);
             
-            var failedExternalLabDependencyException = new FailedLabDependencyException(httpResponseException);
-            var expectedLabDependencyException = new LabDependencyException(failedExternalLabDependencyException);
+            var httpResponseException =
+                new HttpResponseException(someResponseMessage, someMessage);
+
+            var failedExternalLabDependencyException =
+                new FailedLabDependencyException(httpResponseException);
+            
+            var expectedLabDependencyException = new
+                LabDependencyException(failedExternalLabDependencyException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
                     .ThrowsAsync(httpResponseException);
 
             // when
-            ValueTask<List<Lab>> getAllLabsTask = this.labService.RetrieveAllLabsAsync();
+            ValueTask<List<Lab>> getAllLabsTask =
+                this.labService.RetrieveAllLabsAsync();
 
             // then
             await Assert.ThrowsAsync<LabDependencyException>(() =>
@@ -91,10 +101,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             var serviceException = new Exception();
 
-            var failedExternalLabServiceException = 
+            var failedExternalLabServiceException =
                 new FailedLabServiceException(serviceException);
-            
-            var expectedLabServiceException = 
+
+            var expectedLabServiceException =
                 new LabServiceException(failedExternalLabServiceException);
 
             this.dmxApiBrokerMock.Setup(broker =>

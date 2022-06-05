@@ -16,8 +16,7 @@ namespace DMX.Portal.Web
         {
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
-                    webBuilder.UseStartup<Startup>()
-                );
+                    webBuilder.UseStartup<Startup>());
         }
     }
 }
