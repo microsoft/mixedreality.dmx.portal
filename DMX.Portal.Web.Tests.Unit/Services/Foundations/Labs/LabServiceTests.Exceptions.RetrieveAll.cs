@@ -23,11 +23,11 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             Xeption criticalDependencyException)
         {
             // given
-            var failedExternalLabDependencyException = 
+            var failedLabDependencyException = 
                 new FailedLabDependencyException(criticalDependencyException);
             
             var expectedLabDependencyException =
-                new LabDependencyException(failedExternalLabDependencyException);
+                new LabDependencyException(failedLabDependencyException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
@@ -64,11 +64,11 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             var httpResponseException =
                 new HttpResponseException(someResponseMessage, someMessage);
 
-            var failedExternalLabDependencyException =
+            var failedLabDependencyException =
                 new FailedLabDependencyException(httpResponseException);
             
             var expectedLabDependencyException = new
-                LabDependencyException(failedExternalLabDependencyException);
+                LabDependencyException(failedLabDependencyException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
@@ -101,11 +101,11 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             var serviceException = new Exception();
 
-            var failedExternalLabServiceException =
+            var failedLabServiceException =
                 new FailedLabServiceException(serviceException);
 
             var expectedLabServiceException =
-                new LabServiceException(failedExternalLabServiceException);
+                new LabServiceException(failedLabServiceException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
