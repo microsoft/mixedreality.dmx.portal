@@ -49,7 +49,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabViewStatus,
-
+                    DmxVersion = item.DmxVersion,
                     Devices = ((List<dynamic>)item.Devices).Select(item =>
                     new LabDeviceView
                     {
