@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Models.Views.LabViews;
@@ -23,9 +24,39 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<List<LabView>> RetrieveAllLabViewsAsync()
+        public async ValueTask<List<LabView>> RetrieveAllLabViewsAsync()
         {
-            throw new System.NotImplementedException();
+            var labs = await this.labService.RetrieveAllLabsAsync();
+
+            var labViews = labs.Select(lab =>
+                new LabView
+                {
+                    Id = lab.Id,
+                    Name = lab.Name,
+                    Description = lab.Description,
+                    DmxVersion = "1.0",
+                    Status = (LabViewStatus)lab.Status,
+                    Devices = lab.Devices.Select(device =>
+                        new LabDeviceView
+                        {
+                            Name = device.Name,
+                            Type = (LabDeviceTypeView)device.Type,
+                            PowerLevel = ConvertIntToPowerLevelView(device.PowerLevel)
+                        }).ToList<LabDeviceView>()
+                }).ToList<LabView>();
+
+            return labViews;
+        }
+
+        private PowerLevelView ConvertIntToPowerLevelView(int? powerLevelInt)
+        {
+            return powerLevelInt switch
+            {
+                int i when i >= 0 && i < 33 => PowerLevelView.Low,
+                int i when i >= 33 && i < 66 => PowerLevelView.Medium,
+                int i when i >= 66 && i < 101 => PowerLevelView.High,
+                _ => PowerLevelView.Unknown,
+            };
         }
     }
 }
