@@ -5,13 +5,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Models.Labs;
+using DMX.Portal.Web.Models.Labs.Exceptions;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using DMX.Portal.Web.Services.Views.LabViews;
 using Moq;
 using Tynamix.ObjectFiller;
+using Xeptions;
+using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 {
@@ -30,6 +34,20 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 labService: this.labServiceMock.Object,
                 loggingBroker: this.loggingBrokerMock.Object);
         }
+
+        public static TheoryData DependencyExceptions()
+        {
+            var innerException = new Xeption();
+
+            return new TheoryData<Xeption>()
+            {
+                new LabDependencyException(innerException),
+                new LabServiceException(innerException),
+            };
+        }
+
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
+            actualException => actualException.SameExceptionAs(expectedException);
 
         private static List<dynamic> CreateRandomLabViewProperties()
         {
