@@ -6,9 +6,9 @@ namespace DMX.Portal.Web.Models.Views.LabViews
 {
     public enum LabDeviceTypeView
     {
-        HMD,
-        Phone,
         PC,
+        HeadMountedDisplay,
+        Phone,
         Other
     }
 }
