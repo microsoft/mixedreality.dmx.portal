@@ -8,6 +8,7 @@ namespace DMX.Portal.Web.Models.Views.LabViews
     {
         Low,
         Medium,
-        High
+        High,
+        Unknown
     }
 }

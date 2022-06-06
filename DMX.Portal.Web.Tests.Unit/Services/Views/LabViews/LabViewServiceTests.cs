@@ -60,13 +60,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 {
                     string randomDeviceName = GetRandomString();
 
-                    LabDeviceType randomLabDeviceType =
-                        GetRandomEnum<LabDeviceType>();
+                    (LabDeviceType randomLabDeviceType, LabDeviceTypeView randomLabDeviceTypeView) =
+                        GetRandomLabDeviceTypeEnum();
 
-                    LabDeviceTypeView randomLabDeviceTypeView =
-                        (LabDeviceTypeView)randomLabDeviceType;
-
-                    (PowerLevelView powerLevelView, int powerLevel) =
+                    (PowerLevelView powerLevelView, int? powerLevel) =
                         GetRandomPowerLevelRange();
 
                     return new
@@ -80,24 +77,35 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 }).ToList<dynamic>();
         }
 
-        private static (PowerLevelView, int) GetRandomPowerLevelRange()
+        private static (LabDeviceType, LabDeviceTypeView) GetRandomLabDeviceTypeEnum()
+        {
+            int max = Enum.GetValues(typeof(LabDeviceType)).Length;
+            int randomInt = new IntRange(min: 0, max).GetValue();
+            var labDeviceType = (LabDeviceType)(object)randomInt;
+            var labDeviceTypeView = (LabDeviceTypeView)(object)randomInt;
+
+            return (labDeviceType, labDeviceTypeView);
+        }
+
+        private static (PowerLevelView, int?) GetRandomPowerLevelRange()
         {
             int lowRange = GetRandomNumber(0, 33);
             int midRange = GetRandomNumber(33, 66);
             int highRange = GetRandomNumber(66, 101);
 
-            var allPowerLevelViews = new List<(PowerLevelView, int)>
+            var allPowerLevelViews = new List<(PowerLevelView, int?)>
             {
                 new (PowerLevelView.Low, lowRange),
                 new (PowerLevelView.Medium, midRange),
-                new (PowerLevelView.High, highRange)
+                new (PowerLevelView.High, highRange),
+                new (PowerLevelView.Unknown, null)
             };
 
             return GetRandomPowerLevel(allPowerLevelViews);
         }
 
-        private static (PowerLevelView, int) GetRandomPowerLevel(
-            List<(PowerLevelView, int)> allPowerLevelViews)
+        private static (PowerLevelView, int?) GetRandomPowerLevel(
+            List<(PowerLevelView, int?)> allPowerLevelViews)
         {
             return allPowerLevelViews
                 .OrderBy(view => new Random().Next())
