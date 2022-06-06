@@ -16,7 +16,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
     {
         [Theory]
         [MemberData(nameof(DependencyExceptions))]
-        public async Task ShouldThrowCriticalDependencyExceptionOnRetrievalIfCriticalErrorOccursAndLogItAsync(
+        public async Task ShouldThrowDependencyExceptionOnRetrievalIfCriticalErrorOccursAndLogItAsync(
             Xeption dependencyException)
         {
             // given            

@@ -24,7 +24,8 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<List<LabView>> RetrieveAllLabViewsAsync()
+        public ValueTask<List<LabView>> RetrieveAllLabViewsAsync() =>
+        TryCatch(async () =>
         {
             var labs = await this.labService.RetrieveAllLabsAsync();
 
@@ -46,7 +47,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
                 }).ToList<LabView>();
 
             return labViews;
-        }
+        });
 
         private PowerLevelView ConvertIntToPowerLevelView(int? powerLevelInt)
         {
