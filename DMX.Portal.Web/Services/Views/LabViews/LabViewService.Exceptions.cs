@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs.Exceptions;
 using DMX.Portal.Web.Models.Views.LabViews;
@@ -30,6 +31,15 @@ namespace DMX.Portal.Web.Services.Views.LabViews
                 this.loggingBroker.LogError(labViewDependencyException);
 
                 throw labViewDependencyException;
+            }
+            catch (Exception exception)
+            {
+                var failedLabViewServiceException = new FailedLabViewServiceException(exception);
+                var labViewServiceException = new LabViewServiceException(failedLabViewServiceException);
+
+                this.loggingBroker.LogError(labViewServiceException);
+
+                throw labViewServiceException;
             }
         }
     }

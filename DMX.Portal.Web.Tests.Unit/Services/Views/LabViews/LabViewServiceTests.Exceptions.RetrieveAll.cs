@@ -17,10 +17,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
     {
         [Theory]
         [MemberData(nameof(DependencyExceptions))]
-        public async Task ShouldThrowDependencyExceptionOnRetrievalIfCriticalErrorOccursAndLogItAsync(
+        public async Task ShouldThrowDependencyExceptionOnRetrievalIfDependencyErrorOccursAndLogItAsync(
             Xeption dependencyException)
         {
-            // given            
+            // given
             var expectedLabDependencyException =
                 new LabViewDependencyException(
                     dependencyException.InnerException as Xeption);
@@ -53,7 +53,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
         [Fact]
         public async Task ShouldThrowServiceExceptionOnRetrieveAllIfServiceErrorOccurrsAndLogItAsync()
         {
-            // given            
+            // given
             var serviceException = new Exception();
 
             var failedLabViewServiceException =
