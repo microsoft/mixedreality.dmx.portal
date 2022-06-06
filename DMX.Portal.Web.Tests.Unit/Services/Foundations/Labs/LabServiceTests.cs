@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Http;
-using Bunit.Asserting;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Models.Labs;
@@ -36,7 +35,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                 loggingBroker: this.loggingBrokerMock.Object);
         }
 
-        public static TheoryData CriticalDependencyException()
+        public static TheoryData CriticalDependencyExceptions()
         {
             string someMessage = GetRandomString();
             var someResponseMessage = new HttpResponseMessage();
@@ -49,6 +48,14 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             };
         }
 
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
+        {
+            return actualExpectedAssertException =>
+                actualExpectedAssertException.Message == expectedException.Message &&
+                actualExpectedAssertException.InnerException.Message == expectedException.InnerException.Message &&
+                (actualExpectedAssertException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
+        }
+
         private static string GetRandomString() =>
             new MnemonicString().GetValue();
 
@@ -58,19 +65,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         private static int GetRandomNumber() =>
             new IntRange(min: 2, max: 10).GetValue();
 
-        private static Filler<Lab> CreateLabFiller()
-        {
-            var filler = new Filler<Lab>();
-
-            return filler;
-        }
-
-        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException)
-        {
-            return actualExpectedAssertException =>
-                actualExpectedAssertException.Message == expectedException.Message &&
-                actualExpectedAssertException.InnerException.Message == expectedException.InnerException.Message &&
-                (actualExpectedAssertException.InnerException as Xeption).DataEquals(expectedException.InnerException.Data);
-        }
+        private static Filler<Lab> CreateLabFiller() =>
+            new Filler<Lab>();
     }
 }

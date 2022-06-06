@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using DMX.Portal.Web.Brokers.DmxApis;
+using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -54,8 +55,11 @@ namespace DMX.Portal.Web
             });
         }
 
-        private static void AddBrokers(IServiceCollection services) =>
+        private static void AddBrokers(IServiceCollection services)
+        {
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
             services.AddTransient<IDmxApiBroker, DmxApiBroker>();
+        }
 
         private static void AddServices(IServiceCollection services) =>
             services.AddTransient<ILabService, LabService>();
