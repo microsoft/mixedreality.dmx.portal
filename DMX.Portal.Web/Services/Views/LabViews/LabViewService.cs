@@ -2,10 +2,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Brokers.Loggings;
+using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Services.Foundations.Labs;
 
@@ -27,36 +29,38 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         public ValueTask<List<LabView>> RetrieveAllLabViewsAsync() =>
         TryCatch(async () =>
         {
-            var labs = await this.labService.RetrieveAllLabsAsync();
+            List<Lab> labs = await this.labService.RetrieveAllLabsAsync();
 
-            var labViews = labs.Select(lab =>
-                new LabView
-                {
-                    Id = lab.Id,
-                    Name = lab.Name,
-                    Description = lab.Description,
-                    DmxVersion = "1.0",
-                    Status = (LabViewStatus)lab.Status,
-                    Devices = lab.Devices.Select(device =>
-                        new LabDeviceView
-                        {
-                            Name = device.Name,
-                            Type = (LabDeviceTypeView)device.Type,
-                            PowerLevel = ConvertIntToPowerLevelView(device.PowerLevel)
-                        }).ToList<LabDeviceView>()
-                }).ToList<LabView>();
-
-            return labViews;
+            return labs.Select(AsLabView).ToList();
         });
 
-        private PowerLevelView ConvertIntToPowerLevelView(int? powerLevelInt)
+        private static Func<Lab, LabView> AsLabView =>
+        lab => new LabView
+        {
+            Id = lab.Id,
+            Name = lab.Name,
+            Description = lab.Description,
+            DmxVersion = "1.0",
+            Status = (LabViewStatus)lab.Status,
+            Devices = lab.Devices.Select(AsLabDeviceView).ToList()
+        };
+
+        private static Func<LabDevice, LabDeviceView> AsLabDeviceView =
+        device => new LabDeviceView
+        {
+            Name = device.Name,
+            Type = (LabDeviceTypeView)device.Type,
+            PowerLevel = ConvertIntToPowerLevelView(device.PowerLevel)
+        };
+
+        private static PowerLevelView ConvertIntToPowerLevelView(int? powerLevelInt)
         {
             return powerLevelInt switch
             {
-                int i when i >= 0 && i < 33 => PowerLevelView.Low,
-                int i when i >= 33 && i < 66 => PowerLevelView.Medium,
-                int i when i >= 66 && i < 101 => PowerLevelView.High,
-                _ => PowerLevelView.Unknown,
+                >= 0 and < 33 => PowerLevelView.Low,
+                >= 33 and < 66 => PowerLevelView.Medium,
+                >= 66 and < 101 => PowerLevelView.High,
+                _ => PowerLevelView.Unknown
             };
         }
     }

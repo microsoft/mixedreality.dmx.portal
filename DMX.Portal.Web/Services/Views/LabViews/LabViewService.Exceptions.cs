@@ -20,27 +20,38 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             }
             catch (LabDependencyException labDependencyException)
             {
-                var labViewDependencyException = new LabViewDependencyException(labDependencyException.InnerException as Xeption);
-                this.loggingBroker.LogError(labViewDependencyException);
-
-                throw labViewDependencyException;
+                throw CreateAndLogDependencyException(labDependencyException);
             }
             catch (LabServiceException labServiceException)
             {
-                var labViewDependencyException = new LabViewDependencyException(labServiceException.InnerException as Xeption);
-                this.loggingBroker.LogError(labViewDependencyException);
-
-                throw labViewDependencyException;
+                throw CreateAndLogDependencyException(labServiceException);
             }
             catch (Exception exception)
             {
                 var failedLabViewServiceException = new FailedLabViewServiceException(exception);
-                var labViewServiceException = new LabViewServiceException(failedLabViewServiceException);
-
-                this.loggingBroker.LogError(labViewServiceException);
-
-                throw labViewServiceException;
+                throw CreateAndLogServiceException(failedLabViewServiceException);
             }
+        }
+
+        private LabViewDependencyException CreateAndLogDependencyException(Xeption exception)
+        {
+            var labViewDependencyException =
+                new LabViewDependencyException(
+                    exception.InnerException as Xeption);
+
+            this.loggingBroker.LogError(labViewDependencyException);
+
+            return labViewDependencyException;
+        }
+
+        private LabViewServiceException CreateAndLogServiceException(Xeption exception)
+        {
+            var labViewServiceException =
+                new LabViewServiceException(exception);
+
+            this.loggingBroker.LogError(labViewServiceException);
+
+            return labViewServiceException;
         }
     }
 }

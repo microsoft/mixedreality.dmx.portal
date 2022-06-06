@@ -5,6 +5,7 @@
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Services.Foundations.Labs;
+using DMX.Portal.Web.Services.Views.LabViews;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -61,7 +62,10 @@ namespace DMX.Portal.Web
             services.AddTransient<IDmxApiBroker, DmxApiBroker>();
         }
 
-        private static void AddServices(IServiceCollection services) =>
+        private static void AddServices(IServiceCollection services)
+        {
             services.AddTransient<ILabService, LabService>();
+            services.AddTransient<ILabViewService, LabViewService>();
+        }
     }
 }
