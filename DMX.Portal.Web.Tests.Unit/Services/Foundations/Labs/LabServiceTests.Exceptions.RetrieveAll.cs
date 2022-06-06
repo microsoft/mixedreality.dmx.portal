@@ -23,9 +23,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             Xeption criticalDependencyException)
         {
             // given
-            var failedLabDependencyException = 
+            var failedLabDependencyException =
                 new FailedLabDependencyException(criticalDependencyException);
-            
+
             var expectedLabDependencyException =
                 new LabDependencyException(failedLabDependencyException);
 
@@ -34,7 +34,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                     .ThrowsAsync(criticalDependencyException);
 
             // when
-            ValueTask<List<Lab>> getAllLabsTask = 
+            ValueTask<List<Lab>> getAllLabsTask =
                 this.labService.RetrieveAllLabsAsync();
 
             // then
@@ -60,13 +60,13 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             string someMessage = GetRandomString();
             var someResponseMessage = new HttpResponseMessage();
-            
+
             var httpResponseException =
                 new HttpResponseException(someResponseMessage, someMessage);
 
             var failedLabDependencyException =
                 new FailedLabDependencyException(httpResponseException);
-            
+
             var expectedLabDependencyException = new
                 LabDependencyException(failedLabDependencyException);
 
