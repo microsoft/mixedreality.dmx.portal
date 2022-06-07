@@ -4,12 +4,12 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Labs;
+using DMX.Portal.Web.Models.Views.LabViews;
 
-namespace DMX.Portal.Web.Brokers.DmxApis
+namespace DMX.Portal.Web.Services.Views.LabViews
 {
-    public partial interface IDmxApiBroker
+    public interface ILabViewService
     {
-        ValueTask<List<Lab>> GetAllLabsAsync();
+        ValueTask<List<LabView>> RetrieveAllLabViewsAsync();
     }
 }
