@@ -18,6 +18,9 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
                 .CreateAsync();
         }
 
+        public async ValueTask DeleteResourceGroupAsync(string resourceGroupName) =>
+            await azure.ResourceGroups.DeleteByNameAsync(resourceGroupName);
+
         public async ValueTask<bool> CheckResourceGroupExistsAsync(string resourceGroupName) =>
             await this.azure.ResourceGroups.ContainAsync(name: resourceGroupName);
 

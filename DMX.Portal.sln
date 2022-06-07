@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMX.Portal.Web.Infrastructu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMX.Portal.Web.Tests.Unit", "DMX.Portal.Web.Tests.Unit\DMX.Portal.Web.Tests.Unit.csproj", "{50E4BFA2-2454-49A4-97BC-F6C2A5024AF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMX.Portal.Web.Infrastructure.Provision", "DMX.Portal.Web.Infrastructure.Provision\DMX.Portal.Web.Infrastructure.Provision.csproj", "{04946DD5-E818-4010-9382-1BED56D47E8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2353FB-9273-4832-99C7-8C1BED71560F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04946DD5-E818-4010-9382-1BED56D47E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04946DD5-E818-4010-9382-1BED56D47E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04946DD5-E818-4010-9382-1BED56D47E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04946DD5-E818-4010-9382-1BED56D47E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
