@@ -48,7 +48,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                     Id = item.Id,
                     Name = item.LabName,
                     Description = item.LabDescription,
-                    Status = item.LabViewStatus,
+                    Status = item.LabStatusView,
                     DmxVersion = item.DmxVersion,
                     Devices = ((List<dynamic>)item.Devices).Select(item =>
                     new LabDeviceView

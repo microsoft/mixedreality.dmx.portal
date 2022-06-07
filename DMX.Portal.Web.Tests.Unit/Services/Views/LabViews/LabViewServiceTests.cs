@@ -54,9 +54,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             return Enumerable.Range(start: 0, count: GetRandomNumber())
                 .Select(item =>
                 {
-                    LabViewStatus labViewStatus = GetRandomEnum<LabViewStatus>();
-                    LabStatus labStatus = (LabStatus)labViewStatus;
                     Guid randomId = Guid.NewGuid();
+
+                    (LabStatus labStatus, LabStatusView labStatusView) =
+                        GetRandomCorrespondingEnums<LabStatus, LabStatusView>();
 
                     return new
                     {
@@ -64,7 +65,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                         LabName = GetRandomString(),
                         LabDescription = GetRandomString(),
                         DmxVersion = "1.0",
-                        LabViewStatus = labViewStatus,
+                        LabStatusView = labStatusView,
                         LabStatus = labStatus,
                         Devices = CreateRandomLabDevices()
                     };
@@ -78,31 +79,31 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 {
                     string randomDeviceName = GetRandomString();
 
-                    (LabDeviceType randomLabDeviceType, LabDeviceTypeView randomLabDeviceTypeView) =
-                        GetRandomLabDeviceTypeEnum();
-
                     (PowerLevelView powerLevelView, int? powerLevel) =
                         GetRandomPowerLevelRange();
 
+                    (LabDeviceType randomLabDeviceType, LabDeviceTypeView randomLabDeviceTypeView) =
+                        GetRandomCorrespondingEnums<LabDeviceType, LabDeviceTypeView>();
+                    
                     return new
                     {
                         DeviceName = randomDeviceName,
                         PowerLevelView = powerLevelView,
                         PowerLevel = powerLevel,
                         LabDeviceTypeView = randomLabDeviceTypeView,
-                        LabDeviceType = (LabDeviceType)randomLabDeviceTypeView
+                        LabDeviceType = randomLabDeviceType
                     };
                 }).ToList<dynamic>();
         }
 
-        private static (LabDeviceType, LabDeviceTypeView) GetRandomLabDeviceTypeEnum()
+        private static (T, U) GetRandomCorrespondingEnums<T, U>()
         {
-            int max = Enum.GetValues(typeof(LabDeviceType)).Length;
+            int max = Enum.GetValues(typeof(T)).Length;
             int randomInt = new IntRange(min: 0, max).GetValue();
-            var labDeviceType = (LabDeviceType)(object)randomInt;
-            var labDeviceTypeView = (LabDeviceTypeView)(object)randomInt;
+            var firstEnum = (T)(object)randomInt;
+            var secondEnum = (U)(object)randomInt;
 
-            return (labDeviceType, labDeviceTypeView);
+            return (firstEnum, secondEnum);
         }
 
         private static (PowerLevelView, int?) GetRandomPowerLevelRange()
@@ -138,13 +139,5 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
         private static string GetRandomString() =>
             new MnemonicString(wordCount: GetRandomNumber()).GetValue();
-
-        private static T GetRandomEnum<T>()
-        {
-            int maxEnum = Enum.GetValues(typeof(T)).Length;
-            int randomEnum = new IntRange(min: 0, max: maxEnum).GetValue();
-
-            return (T)(object)randomEnum;
-        }
     }
 }

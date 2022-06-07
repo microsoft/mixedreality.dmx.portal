@@ -13,7 +13,7 @@ namespace DMX.Portal.Web.Models.Views.LabViews
         public string Name { get; set; }
         public string Description { get; set; }
         public string DmxVersion { get; set; }
-        public LabViewStatus Status { get; set; }
+        public LabStatusView Status { get; set; }
         public List<LabDeviceView> Devices { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             Name = lab.Name,
             Description = lab.Description,
             DmxVersion = "1.0",
-            Status = (LabViewStatus)lab.Status,
+            Status = (LabStatusView)lab.Status,
             Devices = lab.Devices.Select(AsLabDeviceView).ToList()
         };
 

@@ -4,7 +4,7 @@
 
 namespace DMX.Portal.Web.Models.Views.LabViews
 {
-    public enum LabViewStatus
+    public enum LabStatusView
     {
         Available,
         Reserved,
