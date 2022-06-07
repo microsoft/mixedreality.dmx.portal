@@ -64,5 +64,23 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Services.Foundations.CloudMana
 
             return webapp;
         }
+
+        public async ValueTask DeprovisionResourceGroupAsync(string projectName, string environment)
+        {
+            string resourceGroupName = $"{projectName}-RESOURCES-{environment}".ToUpper();
+            this.loggingBroker.LogActivity(message: $"Checking for {resourceGroupName} ...");
+            bool isResourceGroupExists = await this.cloudBroker.CheckResourceGroupExistsAsync(resourceGroupName);
+
+            if (isResourceGroupExists)
+            {
+                this.loggingBroker.LogActivity(message: $"Deprovisioning {resourceGroupName}...");
+                await this.cloudBroker.DeleteResourceGroupAsync(resourceGroupName);
+                this.loggingBroker.LogActivity(message: $"Deprovisioning {resourceGroupName} completed.");
+            }
+            else
+            {
+                this.loggingBroker.LogActivity(message: $"Could not find {resourceGroupName}.");
+            }
+        }
     }
 }

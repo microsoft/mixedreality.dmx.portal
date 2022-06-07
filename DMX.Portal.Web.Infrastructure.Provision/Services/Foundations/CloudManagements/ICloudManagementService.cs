@@ -22,5 +22,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Services.Foundations.CloudMana
             string environment,
             IAppServicePlan servicePlan,
             IResourceGroup resourceGroup);
+
+        ValueTask DeprovisionResourceGroupAsync(string projectName, string environment);
     }
 }
