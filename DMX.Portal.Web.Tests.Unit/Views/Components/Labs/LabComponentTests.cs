@@ -13,7 +13,7 @@ namespace DMX.Portal.Web.Tests.Unit.Views.Components.Labs
     public partial class LabComponentTests : TestContext
     {
         private readonly Mock<ILabViewService> labViewServiceMock;
-        private readonly IRenderedComponent<LabComponent> renderedLabComponent;
+        private IRenderedComponent<LabComponent> renderedLabComponent;
 
         public LabComponentTests()
         {

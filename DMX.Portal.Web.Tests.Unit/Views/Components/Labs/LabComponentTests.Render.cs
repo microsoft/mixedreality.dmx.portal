@@ -4,6 +4,7 @@
 
 using DMX.Portal.Web.Views.Components.Labs;
 using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Views.Components.Labs
@@ -18,6 +19,22 @@ namespace DMX.Portal.Web.Tests.Unit.Views.Components.Labs
 
             // then
             initialLabComponent.LabViewService.Should().BeNull();
+        }
+
+        [Fact]
+        public void ShouldCallLabViewServiceOnRender()
+        {
+            // given . when
+            this.renderedLabComponent = RenderComponent<LabComponent>();
+
+            // then
+            this.renderedLabComponent.Instance.LabViewService.Should().NotBeNull();
+
+            this.labViewServiceMock.Verify(service =>
+                service.RetrieveAllLabViewsAsync(),
+                    Times.Once());
+
+            this.labViewServiceMock.VerifyNoOtherCalls();
         }
     }
 }
