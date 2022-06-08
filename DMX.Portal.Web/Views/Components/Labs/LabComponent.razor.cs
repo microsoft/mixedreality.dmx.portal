@@ -19,7 +19,8 @@ namespace DMX.Portal.Web.Views.Components.Labs
 
         protected override async Task OnInitializedAsync()
         {
-            this.LabViews = await this.LabViewService.RetrieveAllLabViewsAsync();
+            this.LabViews = 
+                await this.LabViewService.RetrieveAllLabViewsAsync();
         }
     }
 }

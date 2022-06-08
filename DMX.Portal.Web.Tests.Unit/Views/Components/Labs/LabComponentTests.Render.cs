@@ -3,6 +3,8 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using AngleSharp.Dom;
+using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.Labs;
 using FluentAssertions;
@@ -26,7 +28,7 @@ namespace DMX.Portal.Web.Tests.Unit.Views.Components.Labs
         }
 
         [Fact]
-        public void ShouldRetrieveLabViews()
+        public void ShouldRetrieveLabViewNames()
         {
             List<LabView> randomLabViews =
                 CreateRandomLabViews();
@@ -51,6 +53,11 @@ namespace DMX.Portal.Web.Tests.Unit.Views.Components.Labs
             
             this.renderedLabComponent.Instance.LabViews
                 .Should().BeEquivalentTo(expectedLabViews);
+
+            IRefreshableElementCollection<IElement> allLabNames =
+                this.renderedLabComponent.FindAll("lab-name");
+
+            allLabNames.Count.Should().Be(expectedLabViews.Count);
 
             this.labViewServiceMock.Verify(service =>
                 service.RetrieveAllLabViewsAsync(),
