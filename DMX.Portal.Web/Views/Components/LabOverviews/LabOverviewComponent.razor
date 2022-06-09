@@ -1,7 +1,22 @@
 ﻿@using DMX.Portal.Web.Views.Bases
+@using Models.Views.LabViews
 @using PrettyBlazor
 
 <LargeTitleBase @ref=LabTitle Text="@LabView.Name" />
-<ImageBase Url="imgs/HoloLens.png" />
-<ImageBase Url="imgs/NUC.png" />
-<ImageBase Url="imgs/Phone.png" />
+<Iterations Items=@LabView.Devices Context=Device>
+    <Condition Evaluation=@(Device.Type is LabDeviceTypeView.HeadMountedDisplay)>
+        <Match>
+            <ImageBase Url="imgs/HoloLens.png" />
+        </Match>
+    </Condition>
+    <Condition Evaluation=@(Device.Type is LabDeviceTypeView.Phone)>
+        <Match>
+            <ImageBase Url="imgs/Phone.png" />
+        </Match>
+    </Condition>
+    <Condition Evaluation=@(Device.Type is LabDeviceTypeView.PC)>
+        <Match>
+            <ImageBase Url="imgs/NUC.png" />
+        </Match>
+    </Condition>
+</Iterations>

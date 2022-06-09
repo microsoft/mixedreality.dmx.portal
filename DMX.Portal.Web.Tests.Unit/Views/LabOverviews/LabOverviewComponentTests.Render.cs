@@ -36,9 +36,9 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
             var expectedDevicesUrls =
                 new List<string>
                 {
-                    "imgs/NUC.png",
+                    "imgs/Phone.png",
                     "imgs/HoloLens.png",
-                    "imgs/Phone.png"
+                    "imgs/NUC.png"
                 };
 
             LabView randomLabView = CreateRandomLabView();
@@ -91,7 +91,7 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
 
         [Theory]
         [MemberData(nameof(AllDevices))]
-        public void ShouldRenderAppropirateDeviceImage(
+        public void ShouldRenderAppropriateDeviceImage(
             (LabDeviceTypeView DeviceTypeView, string Url) deviceTypeUrl)
         {
             // given
