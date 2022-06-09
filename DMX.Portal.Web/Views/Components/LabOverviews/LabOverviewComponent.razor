@@ -1,3 +1,7 @@
 ﻿@using DMX.Portal.Web.Views.Bases
+@using PrettyBlazor
 
 <LargeTitleBase @ref=LabTitle Text="@LabView.Name" />
+<Iterations Items=@LabView.Devices Context="Device">
+    <ImageBase />
+</Iterations>
