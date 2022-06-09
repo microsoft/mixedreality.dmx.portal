@@ -26,7 +26,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
         }
 
         [Fact]
-        public void ShouldPersistDevice()
+        public void ShouldRenderDeviceImage()
         {
             // given
             LabDeviceView randomLabDeviceView =
@@ -51,6 +51,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.Device
                 .Should().BeEquivalentTo(expectedLabDeviceView);
+
+            this.renderedDeviceOverviewComponent.Instance.Image
+                .Should().NotBeNull();
         }
     }
 }
