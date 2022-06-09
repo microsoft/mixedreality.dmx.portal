@@ -2,9 +2,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Reflection.Metadata;
 using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
 using Force.DeepCloner;
@@ -27,11 +29,30 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
         }
 
         [Fact]
-        public void ShouldRenderLabViewName()
+        public void ShouldRenderLabViewNameAndDevices()
         {
             // given
             LabView randomLabView = CreateRandomLabView();
             LabView inputLabView = randomLabView;
+
+            inputLabView.Devices = new List<LabDeviceView>
+            {
+                new LabDeviceView
+                {
+                    Type = LabDeviceTypeView.HeadMountedDisplay
+                },
+
+                new LabDeviceView
+                {
+                    Type = LabDeviceTypeView.Phone
+                },
+
+                new LabDeviceView
+                {
+                    Type = LabDeviceTypeView.PC
+                }
+            };
+
             LabView expectedLabview = inputLabView.DeepClone();
 
             ComponentParameter inputComponentParameters =
@@ -50,6 +71,11 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
 
             this.renderedLabOverviewComponent.Instance.LabTitle.Text
                 .Should().BeEquivalentTo(expectedLabview.Name);
+
+            IReadOnlyList<IRenderedComponent<ImageBase>> allDeviceImages =
+                this.renderedLabOverviewComponent.FindComponents<ImageBase>();
+
+            allDeviceImages.Count.Should().Be(inputLabView.Devices.Count);
         }
     }
 }
