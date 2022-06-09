@@ -88,5 +88,48 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
             allDeviceImages.Select(deviceImage => deviceImage.Instance.Url)
                 .Should().BeEquivalentTo(expectedDevicesUrls);
         }
+
+        [Theory]
+        [MemberData(nameof(AllDevices))]
+        public void ShouldRenderAppropirateDeviceImage(
+            (LabDeviceTypeView DeviceTypeView, string Url) deviceTypeUrl)
+        {
+            // given
+            LabView randomLabView = CreateRandomLabView();
+            LabView inputLabView = randomLabView;
+
+            inputLabView.Devices = new List<LabDeviceView>
+            {
+                new LabDeviceView
+                {
+                    Type = deviceTypeUrl.DeviceTypeView
+                },
+            };
+
+            LabView expectedLabview = inputLabView.DeepClone();
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewComponent.LabView),
+                    value: inputLabView);
+
+            // when
+            this.renderedLabOverviewComponent =
+                RenderComponent<LabOverviewComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabOverviewComponent.Instance.LabView
+                .Should().BeEquivalentTo(expectedLabview);
+
+            this.renderedLabOverviewComponent.Instance.LabTitle.Text
+                .Should().BeEquivalentTo(expectedLabview.Name);
+
+            IRenderedComponent<ImageBase> deviceImageComponent =
+                this.renderedLabOverviewComponent.FindComponent<ImageBase>();
+
+            deviceImageComponent.Instance.Url.Should().BeEquivalentTo(
+                deviceTypeUrl.Url);
+        }
     }
 }
