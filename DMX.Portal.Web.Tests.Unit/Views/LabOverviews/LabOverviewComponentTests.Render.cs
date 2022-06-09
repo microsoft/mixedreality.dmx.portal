@@ -131,5 +131,42 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
             deviceImageComponent.Instance.Url.Should().BeEquivalentTo(
                 deviceTypeUrl.Url);
         }
+
+        [Fact]
+        public void ShouldRenderAppropriateDeviceName()
+        {
+            // given
+            LabView randomLabView = CreateRandomLabView();
+            LabView inputLabView = randomLabView;
+            LabView expectedLabView = inputLabView.DeepClone();
+
+            List<string> expectedDeviceNames = 
+                expectedLabView.Devices.Select(device => device.Name).ToList();
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewComponent.LabView),
+                    value: inputLabView);
+
+            // when
+            this.renderedLabOverviewComponent =
+                RenderComponent<LabOverviewComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabOverviewComponent.Instance.LabView
+                .Should().BeEquivalentTo(expectedLabView);
+
+            this.renderedLabOverviewComponent.Instance.LabTitle.Text
+                .Should().BeEquivalentTo(expectedLabView.Name);
+
+            IReadOnlyList<IRenderedComponent<LabelBase>> deviceNameComponents =
+                this.renderedLabOverviewComponent.FindComponents<LabelBase>();
+
+            deviceNameComponents.Count.Should().Be(expectedLabView.Devices.Count);
+
+            deviceNameComponents.Select(deviceComponent => deviceComponent.Instance.Text).ToList()
+                .Should().BeEquivalentTo(expectedDeviceNames);
+        }
     }
 }
