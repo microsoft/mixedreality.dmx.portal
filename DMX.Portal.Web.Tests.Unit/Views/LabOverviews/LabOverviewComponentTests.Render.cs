@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata;
 using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
@@ -32,6 +33,14 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
         public void ShouldRenderLabViewNameAndDevices()
         {
             // given
+            var expectedDevicesUrls =
+                new List<string>
+                {
+                    "imgs/NUC.png",
+                    "imgs/HoloLens.png",
+                    "imgs/Phone.png"
+                };
+
             LabView randomLabView = CreateRandomLabView();
             LabView inputLabView = randomLabView;
 
@@ -72,10 +81,12 @@ namespace DMX.Portal.Web.Tests.Unit.Views.LabOverviews
             this.renderedLabOverviewComponent.Instance.LabTitle.Text
                 .Should().BeEquivalentTo(expectedLabview.Name);
 
-            IReadOnlyList<IRenderedComponent<ImageBase>> allDeviceImages =
-                this.renderedLabOverviewComponent.FindComponents<ImageBase>();
+            List<IRenderedComponent<ImageBase>> allDeviceImages =
+                this.renderedLabOverviewComponent.FindComponents<ImageBase>()
+                    .ToList();
 
-            allDeviceImages.Count.Should().Be(inputLabView.Devices.Count);
+            allDeviceImages.Select(deviceImage => deviceImage.Instance.Url)
+                .Should().BeEquivalentTo(expectedDevicesUrls);
         }
     }
 }
