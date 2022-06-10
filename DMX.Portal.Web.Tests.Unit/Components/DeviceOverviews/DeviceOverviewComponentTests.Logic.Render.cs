@@ -59,7 +59,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
         [Theory]
         [MemberData(nameof(AllDevices))]
-        public void ShouldRenderAppropriateDeviceImage((LabDeviceTypeView LabDeviceTypeView, string Url) deviceTypeImage)
+        public void ShouldRenderAppropriateDeviceImage(
+            (LabDeviceTypeView LabDeviceTypeView, string Url) deviceTypeImage)
         {
             // given
             LabDeviceView randomLabDeviceView =
@@ -69,7 +70,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 randomLabDeviceView;
 
             inputLabDeviceView.Type = deviceTypeImage.LabDeviceTypeView;
-
             string expectedImagePath = deviceTypeImage.Url;
 
             ComponentParameter inputComponentParameter =
