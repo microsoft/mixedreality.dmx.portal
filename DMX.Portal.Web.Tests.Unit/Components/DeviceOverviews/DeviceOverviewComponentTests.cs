@@ -14,7 +14,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
     {
         private IRenderedComponent<DeviceOverviewComponent> renderedDeviceOverviewComponent;
 
-        public static TheoryData AllDevices()
+        public static TheoryData AllDeviceImages()
         {
             return new TheoryData<(LabDeviceTypeView, string)>
             {
@@ -22,6 +22,16 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 (LabDeviceTypeView.Phone, "imgs/Phone.png"),
                 (LabDeviceTypeView.PC, "imgs/NUC.png"),
                 (LabDeviceTypeView.Other, "")
+            };
+        }
+
+        public static TheoryData AllDevicePowerLevelImages()
+        {
+            return new TheoryData<(PowerLevelView, string)>
+            {
+                (PowerLevelView.Low, "imgs/LowPowerLevel.png"),
+                (PowerLevelView.Medium, "imgs/MediumPowerLevel.png"),
+                (PowerLevelView.High, "imgs/HighPowerLevel.png"),
             };
         }
 

@@ -14,6 +14,7 @@ namespace DMX.Portal.Web.Views.Components.DeviceOverviews
         public LabDeviceView Device { get; set; }
 
         public ImageBase Image { get; set; }
+        public ImageBase PowerLevelImage { get; set; }
         public string ImageUrl { get; set; }
         public LabelBase DeviceLabel { get; set; }
 

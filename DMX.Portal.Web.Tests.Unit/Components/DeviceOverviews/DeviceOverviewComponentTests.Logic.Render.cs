@@ -30,11 +30,14 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             initialDeviceOverviewComponent.DeviceLabel
                 .Should().BeNull();
+
+            initialDeviceOverviewComponent.PowerLevelImage
+                .Should().BeNull();
         }
 
         [Theory]
-        [MemberData(nameof(AllDevices))]
-        public void ShouldRenderDevice(
+        [MemberData(nameof(AllDeviceImages))]
+        public void ShouldRenderDeviceImage(
             (LabDeviceTypeView LabDeviceTypeView, string Url) deviceTypeImage)
         {
             // given
@@ -62,6 +65,36 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             this.renderedDeviceOverviewComponent.Instance.DeviceLabel.Text
                 .Should().BeEquivalentTo(inputLabDeviceView.Name);
+        }
+
+        [Theory]
+        [MemberData(nameof(AllDevicePowerLevelImages))]
+        public void ShouldRenderDevicePowerLevel(
+            (PowerLevelView Type, string Url) devicePowerLevel)
+        {
+            // given
+            LabDeviceView randomLabDeviceView =
+                CreateRandomLabDeviceView();
+
+            LabDeviceView inputLabDeviceView =
+                randomLabDeviceView;
+
+            inputLabDeviceView.PowerLevel = devicePowerLevel.Type;
+            string expectedPowerLevelImageUrl = devicePowerLevel.Url;
+
+            ComponentParameter inputComponentParameter =
+                ComponentParameter.CreateParameter(
+                    name: nameof(DeviceOverviewComponent.Device),
+                    value: inputLabDeviceView);
+
+            // when
+            this.renderedDeviceOverviewComponent =
+                RenderComponent<DeviceOverviewComponent>(inputComponentParameter);
+
+            // then
+            this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Url
+                .Should().BeEquivalentTo(expectedPowerLevelImageUrl);
+
         }
     }
 }
