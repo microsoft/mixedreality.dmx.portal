@@ -28,7 +28,13 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             initialDeviceOverviewComponent.ImageUrl
                 .Should().BeNull();
 
+            initialDeviceOverviewComponent.PowerLevelImageUrl
+                .Should().BeNull();
+
             initialDeviceOverviewComponent.DeviceLabel
+                .Should().BeNull();
+
+            initialDeviceOverviewComponent.Image
                 .Should().BeNull();
 
             initialDeviceOverviewComponent.PowerLevelImage
