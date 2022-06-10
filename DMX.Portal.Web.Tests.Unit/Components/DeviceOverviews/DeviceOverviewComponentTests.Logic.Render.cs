@@ -24,42 +24,17 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             initialDeviceOverviewComponent.Device
                 .Should().BeNull();
-        }
 
-        [Fact]
-        public void ShouldRenderDeviceImage()
-        {
-            // given
-            LabDeviceView randomLabDeviceView =
-                CreateRandomLabDeviceView();
+            initialDeviceOverviewComponent.ImageUrl
+                .Should().BeNull();
 
-            LabDeviceView inputLabDeviceView =
-                randomLabDeviceView;
-
-            LabDeviceView expectedLabDeviceView =
-                inputLabDeviceView.DeepClone();
-
-            ComponentParameter inputComponentParameter =
-                ComponentParameter.CreateParameter(
-                    name: nameof(DeviceOverviewComponent.Device),
-                    value: inputLabDeviceView);
-
-            // when
-            this.renderedDeviceOverviewComponent =
-                RenderComponent<DeviceOverviewComponent>(
-                    inputComponentParameter);
-
-            // then
-            this.renderedDeviceOverviewComponent.Instance.Device
-                .Should().BeEquivalentTo(expectedLabDeviceView);
-
-            this.renderedDeviceOverviewComponent.Instance.Image
-                .Should().NotBeNull();
+            initialDeviceOverviewComponent.DeviceLabel
+                .Should().BeNull();
         }
 
         [Theory]
         [MemberData(nameof(AllDevices))]
-        public void ShouldRenderAppropriateDeviceImage(
+        public void ShouldRenderDevice(
             (LabDeviceTypeView LabDeviceTypeView, string Url) deviceTypeImage)
         {
             // given
@@ -84,6 +59,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.Image.Url
                 .Should().BeEquivalentTo(expectedImagePath);
+
+            this.renderedDeviceOverviewComponent.Instance.DeviceLabel.Text
+                .Should().BeEquivalentTo(inputLabDeviceView.Name);
         }
     }
 }

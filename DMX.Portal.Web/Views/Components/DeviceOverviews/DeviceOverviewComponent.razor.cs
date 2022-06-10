@@ -15,6 +15,7 @@ namespace DMX.Portal.Web.Views.Components.DeviceOverviews
 
         public ImageBase Image { get; set; }
         public string ImageUrl { get; set; }
+        public LabelBase DeviceLabel { get; set; }
 
         protected override void OnInitialized() =>
             this.ImageUrl = RetrieveImageUrl(Device.Type);
