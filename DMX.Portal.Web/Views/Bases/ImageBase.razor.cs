@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-using System.IO.Pipes;
 using Microsoft.AspNetCore.Components;
 
 namespace DMX.Portal.Web.Views.Bases

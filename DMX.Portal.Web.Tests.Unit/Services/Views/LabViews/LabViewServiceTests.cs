@@ -84,7 +84,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
                     (LabDeviceType randomLabDeviceType, LabDeviceTypeView randomLabDeviceTypeView) =
                         GetRandomCorrespondingEnums<LabDeviceType, LabDeviceTypeView>();
-                    
+
                     return new
                     {
                         DeviceName = randomDeviceName,

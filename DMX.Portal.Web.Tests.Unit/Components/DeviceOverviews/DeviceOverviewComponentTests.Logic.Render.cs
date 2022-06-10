@@ -4,10 +4,8 @@
 
 using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
-using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
 using FluentAssertions;
-using Force.DeepCloner;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
@@ -41,6 +39,32 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 .Should().BeNull();
         }
 
+        [Fact]
+        public void ShouldRenderDeviceName()
+        {
+            // given
+            LabDeviceView randomLabDeviceView =
+                CreateRandomLabDeviceView();
+
+            LabDeviceView inputLabDeviceView =
+                randomLabDeviceView;
+
+            string expectedDeviceName = inputLabDeviceView.Name;
+
+            ComponentParameter inputComponentParameter =
+                ComponentParameter.CreateParameter(
+                    name: nameof(DeviceOverviewComponent.Device),
+                    value: inputLabDeviceView);
+
+            // when
+            this.renderedDeviceOverviewComponent =
+                RenderComponent<DeviceOverviewComponent>(inputComponentParameter);
+
+            // then
+            this.renderedDeviceOverviewComponent.Instance.DeviceLabel.Text
+                .Should().BeEquivalentTo(expectedDeviceName);
+        }
+
         [Theory]
         [MemberData(nameof(AllDeviceImages))]
         public void ShouldRenderDeviceImage(
@@ -68,9 +92,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.Image.Url
                 .Should().BeEquivalentTo(expectedImagePath);
-
-            this.renderedDeviceOverviewComponent.Instance.DeviceLabel.Text
-                .Should().BeEquivalentTo(inputLabDeviceView.Name);
         }
 
         [Theory]
@@ -100,7 +121,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Url
                 .Should().BeEquivalentTo(expectedPowerLevelImageUrl);
-
         }
     }
 }
