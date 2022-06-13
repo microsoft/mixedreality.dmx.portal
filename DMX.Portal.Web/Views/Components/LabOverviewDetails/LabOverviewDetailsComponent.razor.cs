@@ -22,5 +22,6 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewDetails
         public TableCellBase DmxVersionValueCell { get; set; }
         public TableCellBase StatusLabelCell { get; set; }
         public TableCellBase StatusValueCell { get; set; }
+        public ContainerBase Container { get; set; }
     }
 }

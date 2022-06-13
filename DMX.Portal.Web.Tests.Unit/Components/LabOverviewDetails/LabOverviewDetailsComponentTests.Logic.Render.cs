@@ -101,5 +101,26 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
             this.renderedLabDetailsComponent.Instance.StatusValueCell.Value
                 .Should().Be(expectedStatusValue);
         }
+
+        [Fact]
+        public void ShouldRenderContainer()
+        {
+            // given
+            LabView someLabView = CreateRandomLabView();
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewDetailsComponent.Lab),
+                    value: someLabView);
+
+            // when
+            this.renderedLabDetailsComponent =
+                RenderComponent<LabOverviewDetailsComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabDetailsComponent.Instance.Container
+                .Should().NotBeNull();
+        }
     }
 }
