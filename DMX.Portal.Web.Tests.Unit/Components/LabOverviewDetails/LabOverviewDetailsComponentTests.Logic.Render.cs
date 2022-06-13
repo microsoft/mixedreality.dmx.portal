@@ -25,13 +25,13 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
 
             initialLabOverviewDetailsComponent.NameLabelCell
                 .Should().BeNull();
-            
+
             initialLabOverviewDetailsComponent.NameValueCell
                 .Should().BeNull();
-            
+
             initialLabOverviewDetailsComponent.DescriptionLabelCell
                 .Should().BeNull();
-            
+
             initialLabOverviewDetailsComponent.DescriptionValueCell
                 .Should().BeNull();
 
@@ -40,10 +40,16 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
 
             initialLabOverviewDetailsComponent.DmxVersionValueCell
                 .Should().BeNull();
+
+            initialLabOverviewDetailsComponent.StatusLabelCell
+                .Should().BeNull();
+
+            initialLabOverviewDetailsComponent.StatusValueCell
+                .Should().BeNull();
         }
 
         [Fact]
-        public void ShouldRenderLabNameAndDescriptionAndDmxVersionDetails()
+        public void ShouldRenderLabDetails()
         {
             // given
             LabView randomLabView = CreateRandomLabView();
@@ -54,6 +60,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
             string expectedDescriptionValue = inputLabView.Description;
             string expectedDmxVersionLabel = nameof(LabView.DmxVersion);
             string expectedDmxVersionValue = inputLabView.DmxVersion;
+            string expectedStatusLabel = nameof(LabView.Status);
+            string expectedStatusValue = inputLabView.Status.ToString();
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -71,13 +79,13 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
 
             this.renderedLabDetailsComponent.Instance.NameLabelCell.Value
                 .Should().Be(expectedNameLabel);
-            
+
             this.renderedLabDetailsComponent.Instance.NameValueCell.Value
                 .Should().Be(expectedNameValue);
-            
+
             this.renderedLabDetailsComponent.Instance.DescriptionLabelCell.Value
                 .Should().Be(expectedDescriptionLabel);
-            
+
             this.renderedLabDetailsComponent.Instance.DescriptionValueCell.Value
                 .Should().Be(expectedDescriptionValue);
 
@@ -86,6 +94,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
 
             this.renderedLabDetailsComponent.Instance.DmxVersionValueCell.Value
                 .Should().Be(expectedDmxVersionValue);
+
+            this.renderedLabDetailsComponent.Instance.StatusLabelCell.Value
+                .Should().Be(expectedStatusLabel);
+
+            this.renderedLabDetailsComponent.Instance.StatusValueCell.Value
+                .Should().Be(expectedStatusValue);
         }
     }
 }
