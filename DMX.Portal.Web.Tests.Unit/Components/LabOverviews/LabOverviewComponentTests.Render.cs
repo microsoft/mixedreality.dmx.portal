@@ -79,5 +79,27 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             this.renderedLabOverviewComponent.Instance.Container.CssClass
                 .Should().Be(expectedCssClass);
         }
+
+        [Fact]
+        public void ShouldRenderDevicesContainer()
+        {
+            // given
+            string expectedCssClass = "device-overviews";
+            LabView someLabView = CreateRandomLabView();
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewComponent.Lab),
+                    value: someLabView);
+
+            // when
+            this.renderedLabOverviewComponent =
+                RenderComponent<LabOverviewComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabOverviewComponent.Instance.DevicesContainer.CssClass
+                .Should().Be(expectedCssClass);
+        }
     }
 }

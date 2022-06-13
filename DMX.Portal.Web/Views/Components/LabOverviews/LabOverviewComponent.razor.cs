@@ -15,6 +15,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public LabView Lab { get; set; }
 
         public ContainerBase Container { get; set; }
+        public ContainerBase DevicesContainer { get; set; }
         public LabOverviewDetailsComponent Details { get; set; }
     }
 }
