@@ -131,6 +131,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
         public void ShouldRenderContainer()
         {
             // given
+            string expectedCssClass = "device-overview";
+
             LabDeviceView someLabDeviceView =
                 CreateRandomLabDeviceView();
 
@@ -145,8 +147,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 RenderComponent<DeviceOverviewComponent>(inputComponentParameter);
 
             // then
-            this.renderedDeviceOverviewComponent.Instance.Container
-                .Should().NotBeNull();
+            this.renderedDeviceOverviewComponent.Instance.Container.CssClass
+                .Should().Be(expectedCssClass);
         }
     }
 }
