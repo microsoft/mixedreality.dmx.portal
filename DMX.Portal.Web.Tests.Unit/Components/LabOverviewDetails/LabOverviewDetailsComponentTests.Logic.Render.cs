@@ -34,10 +34,16 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
             
             initialLabOverviewDetailsComponent.DescriptionValueCell
                 .Should().BeNull();
+
+            initialLabOverviewDetailsComponent.DmxVersionLabelCell
+                .Should().BeNull();
+
+            initialLabOverviewDetailsComponent.DmxVersionValueCell
+                .Should().BeNull();
         }
 
         [Fact]
-        public void ShouldRenderLabNameAndDescriptionDetails()
+        public void ShouldRenderLabNameAndDescriptionAndDmxVersionDetails()
         {
             // given
             LabView randomLabView = CreateRandomLabView();
@@ -46,6 +52,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
             string expectedNameValue = inputLabView.Name;
             string expectedDescriptionLabel = nameof(LabView.Description);
             string expectedDescriptionValue = inputLabView.Description;
+            string expectedDmxVersionLabel = nameof(LabView.DmxVersion);
+            string expectedDmxVersionValue = inputLabView.DmxVersion;
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -72,6 +80,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
             
             this.renderedLabDetailsComponent.Instance.DescriptionValueCell.Value
                 .Should().Be(expectedDescriptionValue);
+
+            this.renderedLabDetailsComponent.Instance.DmxVersionLabelCell.Value
+                .Should().Be(expectedDmxVersionLabel);
+
+            this.renderedLabDetailsComponent.Instance.DmxVersionValueCell.Value
+                .Should().Be(expectedDmxVersionValue);
         }
     }
 }
