@@ -25,4 +25,12 @@
         <TableCellBase @ref=DmxVersionValueCell
                        Value=@Lab.DmxVersion />
     </TableRowBase>
+
+    <TableRowBase>
+        <TableCellBase @ref=StatusLabelCell
+                       Value=@nameof(LabView.Status) />
+
+        <TableCellBase @ref=StatusValueCell
+                       Value=@Lab.Status.ToString() />
+    </TableRowBase>
 </TableBase>
