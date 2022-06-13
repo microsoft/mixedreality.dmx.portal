@@ -10,9 +10,17 @@
         <LabOverviewDetailsComponent @ref=Details
                                      Lab="@Lab" />
 
-        <Iterations Items="@Lab.Devices" Context="Device">
-            <DeviceOverviewComponent Device="Device" />
-        </Iterations>
+        <div>
 
+            <ContainerBase @ref="DevicesContainer"
+                           CssClass="device-overviews">
+
+                <Iterations Items="@Lab.Devices" Context="Device">
+                    <DeviceOverviewComponent Device="Device" />
+                </Iterations>
+
+            </ContainerBase>
+
+        </div>
     </ContainerBase>
 </div>
