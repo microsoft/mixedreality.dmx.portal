@@ -107,6 +107,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
         {
             // given
             LabView someLabView = CreateRandomLabView();
+            string expectedCssClass = "lab-overview-details";
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -119,8 +120,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
                     inputComponentParameters);
 
             // then
-            this.renderedLabDetailsComponent.Instance.Container
-                .Should().NotBeNull();
+            this.renderedLabDetailsComponent.Instance.Container.CssClass
+                .Should().Be(expectedCssClass);
         }
     }
 }
