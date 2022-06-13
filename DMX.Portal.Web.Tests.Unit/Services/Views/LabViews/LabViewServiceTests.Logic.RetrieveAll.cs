@@ -39,7 +39,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                         Type = item.LabDeviceType
                     }).ToList()
                 };
-            }).ToList<Lab>();
+            }).ToList();
 
             List<LabView> randomLabViews = randomLabViewProperties.Select(item =>
             {
@@ -58,7 +58,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                         Type = item.LabDeviceTypeView
                     }).ToList()
                 };
-            }).ToList<LabView>();
+            }).ToList();
 
             List<Lab> retrievedLabs = randomLabs;
             List<LabView> expectedLabViews = randomLabViews;

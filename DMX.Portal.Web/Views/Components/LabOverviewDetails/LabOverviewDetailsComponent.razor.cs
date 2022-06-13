@@ -13,7 +13,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewDetails
         [Parameter]
         public LabView Lab { get; set; }
 
-        public TableBase Details { get; set; }
+        public TableBase DetailsTable { get; set; }
 
         public TableCellBase NameLabelCell { get; set; }
 

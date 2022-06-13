@@ -40,11 +40,18 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
 
             // when
             this.renderedLabDetailsComponent =
-                RenderComponent<LabOverviewDetailsComponent>(inputComponentParameters);
+                RenderComponent<LabOverviewDetailsComponent>(
+                    inputComponentParameters);
 
             // then
-            this.renderedLabDetailsComponent.Instance.NameLabelCell.Value.Should().Be(expectedNameLabel);
-            this.renderedLabDetailsComponent.Instance.NameValueCell.Value.Should().Be(expectedNameValue);
+            this.renderedLabDetailsComponent.Instance.DetailsTable
+                .Should().NotBeNull();
+
+            this.renderedLabDetailsComponent.Instance.NameLabelCell.Value
+                .Should().Be(expectedNameLabel);
+            
+            this.renderedLabDetailsComponent.Instance.NameValueCell.Value
+                .Should().Be(expectedNameValue);
         }
     }
 }

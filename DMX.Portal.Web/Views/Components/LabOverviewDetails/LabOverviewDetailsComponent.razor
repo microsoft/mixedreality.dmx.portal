@@ -1,1 +1,12 @@
-﻿
+﻿@using DMX.Portal.Web.Views.Bases
+@using DMX.Portal.Web.Models.Views.LabViews
+
+<TableBase @ref=DetailsTable>
+    <TableRowBase>
+        <TableCellBase @ref=NameLabelCell
+                       Value=@nameof(LabView.Name) />
+
+        <TableCellBase @ref=NameValueCell
+                       Value=@Lab.Name />
+    </TableRowBase>
+</TableBase>
