@@ -62,7 +62,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
         public void ShouldRenderContainer()
         {
             // given
-            string expectedStyle = "1px solid black;";
+            string expectedCssClass = "lab-overview";
             LabView someLabView = CreateRandomLabView();
 
             ComponentParameter inputComponentParameters =
@@ -76,8 +76,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
                     inputComponentParameters);
 
             // then
-            this.renderedLabOverviewComponent.Instance.Container.Style
-                .Should().Be(expectedStyle);
+            this.renderedLabOverviewComponent.Instance.Container.CssClass
+                .Should().Be(expectedCssClass);
         }
     }
 }
