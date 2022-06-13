@@ -1,7 +1,9 @@
 ﻿@using DMX.Portal.Web.Views.Bases
 
 
-<ContainerBase @ref=Container>
+<ContainerBase @ref=Container
+               CssClass="device-overview">
+
     <div align=center>
         <ImageBase @ref=Image
                    Url=@ImageUrl />
@@ -16,4 +18,5 @@
         <ImageBase @ref=PowerLevelImage
                    Url=@PowerLevelImageUrl />
     </div>
+
 </ContainerBase>
