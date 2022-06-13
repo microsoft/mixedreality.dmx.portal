@@ -57,5 +57,27 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
                 deviceOverviewComponent.Instance.Device)
                     .Should().BeEquivalentTo(inputLabView.Devices);
         }
+
+        [Fact]
+        public void ShouldRenderContainer()
+        {
+            // given
+            string expectedStyle = "1px solid black;";
+            LabView someLabView = CreateRandomLabView();
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewComponent.Lab),
+                    value: someLabView);
+
+            // when
+            this.renderedLabOverviewComponent =
+                RenderComponent<LabOverviewComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabOverviewComponent.Instance.Container.Style
+                .Should().Be(expectedStyle);
+        }
     }
 }
