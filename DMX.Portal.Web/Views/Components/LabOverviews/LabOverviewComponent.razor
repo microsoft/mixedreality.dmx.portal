@@ -1,10 +1,13 @@
 ﻿@using DMX.Portal.Web.Views.Components.DeviceOverviews
 @using DMX.Portal.Web.Views.Components.LabOverviewDetails
+@using DMX.Portal.Web.Views.Bases
 @using PrettyBlazor
 
-<LabOverviewDetailsComponent @ref=Details
-                             Lab="@Lab" />
+<ContainerBase @ref=Container Style="1px solid black;">
+    <LabOverviewDetailsComponent @ref=Details
+                                 Lab="@Lab" />
 
-<Iterations Items="@Lab.Devices" Context="Device">
-    <DeviceOverviewComponent Device="Device" />
-</Iterations>
+    <Iterations Items="@Lab.Devices" Context="Device">
+        <DeviceOverviewComponent Device="Device" />
+    </Iterations>
+</ContainerBase>
