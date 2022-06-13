@@ -8,5 +8,11 @@
 
         <TableCellBase @ref=NameValueCell
                        Value=@Lab.Name />
+
+        <TableCellBase @ref=DescriptionLabelCell
+                       Value=@nameof(LabView.Description) />
+
+        <TableCellBase @ref=DescriptionValueCell
+                       Value=@Lab.Description />
     </TableRowBase>
 </TableBase>
