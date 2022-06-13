@@ -1,16 +1,19 @@
 ﻿@using DMX.Portal.Web.Views.Bases
 
-<div align=center>
-    <ImageBase @ref=Image
-               Url=@ImageUrl />
-</div>
 
-<div align=center>
-    <LabelBase @ref=DeviceLabel
-               Text=@Device.Name />
-</div>
+<ContainerBase @ref=Container>
+    <div align=center>
+        <ImageBase @ref=Image
+                   Url=@ImageUrl />
+    </div>
 
-<div align=center>
-    <ImageBase @ref=PowerLevelImage
-               Url=@PowerLevelImageUrl />
-</div>
+    <div align=center>
+        <LabelBase @ref=DeviceLabel
+                   Text=@Device.Name />
+    </div>
+
+    <div align=center>
+        <ImageBase @ref=PowerLevelImage
+                   Url=@PowerLevelImageUrl />
+    </div>
+</ContainerBase>
