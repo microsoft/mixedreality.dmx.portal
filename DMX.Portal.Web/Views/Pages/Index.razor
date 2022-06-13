@@ -1,18 +1,17 @@
 ﻿@page "/"
-@using DMX.Portal.Web.Models.Views.LabViews
+@using DMX.Portal.Web.Views.Bases
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<DMX.Portal.Web.Views.Components.DeviceOverviews.DeviceOverviewComponent Device="Device" />
-
-@code 
-{
-    public LabDeviceView Device {get; set;} = new LabDeviceView
-    {
-        Name = "NUC",
-        PowerLevel = PowerLevelView.Low,
-        Type = LabDeviceTypeView.PC
-    };
-}
+<TableBase>
+    <TableRowBase>
+        <TableCellBase Value="Andrew" />
+        <TableCellBase Value="Andrew" />
+        <TableCellBase Value="Andrew" />
+        <TableCellBase Value="Andrew" />
+    </TableRowBase>    
+    <TableRowBase>
+        <TableCellBase Value="Andrew" />
+        <TableCellBase Value="Andrew" />
+        <TableCellBase Value="Andrew" />
+        <TableCellBase Value="Andrew" />
+    </TableRowBase>
+</TableBase>
