@@ -3,13 +3,20 @@
 // ---------------------------------------------------------------
 
 using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Views.Bases;
 using Microsoft.AspNetCore.Components;
 
-namespace DMX.Portal.Web.Views.Components.LabDetails
+namespace DMX.Portal.Web.Views.Components.LabOverviewDetails
 {
-    public partial class LabDetailsComponent : ComponentBase
+    public partial class LabOverviewDetailsComponent : ComponentBase
     {
         [Parameter]
         public LabView Lab { get; set; }
+
+        public TableBase Details { get; set; }
+
+        public TableCellBase NameLabelCell { get; set; }
+
+        public TableCellBase NameValueCell { get; set; }
     }
 }
