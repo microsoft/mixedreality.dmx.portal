@@ -1,5 +1,10 @@
-﻿<h3>LabOverviewComponent</h3>
+﻿@using DMX.Portal.Web.Views.Components.DeviceOverviews
+@using DMX.Portal.Web.Views.Components.LabOverviewDetails
+@using PrettyBlazor
 
-@code {
+<LabOverviewDetailsComponent @ref=Details
+                             Lab="@Lab" />
 
-}
+<Iterations Items="@Lab.Devices" Context="Device">
+    <DeviceOverviewComponent Device="Device" />
+</Iterations>
