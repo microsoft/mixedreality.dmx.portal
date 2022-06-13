@@ -46,6 +46,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewDetails
 
             initialLabOverviewDetailsComponent.StatusValueCell
                 .Should().BeNull();
+
+            initialLabOverviewDetailsComponent.Container
+                .Should().BeNull();
         }
 
         [Fact]
