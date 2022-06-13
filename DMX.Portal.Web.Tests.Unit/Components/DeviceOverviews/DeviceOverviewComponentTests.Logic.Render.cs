@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System.Reflection.Metadata;
 using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
@@ -36,6 +37,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 .Should().BeNull();
 
             initialDeviceOverviewComponent.PowerLevelImage
+                .Should().BeNull();
+
+            initialDeviceOverviewComponent.Container
                 .Should().BeNull();
         }
 
@@ -121,6 +125,28 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Url
                 .Should().BeEquivalentTo(expectedPowerLevelImageUrl);
+        }
+
+        [Fact]
+        public void ShouldRenderContainer()
+        {
+            // given
+            LabDeviceView someLabDeviceView =
+                CreateRandomLabDeviceView();
+
+            ComponentParameter inputComponentParameter =
+               ComponentParameter.CreateParameter(
+                   name: nameof(DeviceOverviewComponent.Device),
+                   value: someLabDeviceView);
+
+
+            // when
+            this.renderedDeviceOverviewComponent =
+                RenderComponent<DeviceOverviewComponent>(inputComponentParameter);
+
+            // then
+            this.renderedDeviceOverviewComponent.Instance.Container
+                .Should().NotBeNull();
         }
     }
 }

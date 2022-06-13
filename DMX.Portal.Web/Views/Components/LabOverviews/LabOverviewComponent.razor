@@ -6,11 +6,13 @@
 <div>
     <ContainerBase @ref=Container
                    CssClass="lab-overview">
+
         <LabOverviewDetailsComponent @ref=Details
                                      Lab="@Lab" />
 
         <Iterations Items="@Lab.Devices" Context="Device">
             <DeviceOverviewComponent Device="Device" />
         </Iterations>
+
     </ContainerBase>
 </div>
