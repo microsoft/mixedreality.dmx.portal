@@ -3,12 +3,14 @@
 @using DMX.Portal.Web.Views.Bases
 @using PrettyBlazor
 
-<ContainerBase @ref=Container
-               CssClass="lab-overview">
-    <LabOverviewDetailsComponent @ref=Details
-                                 Lab="@Lab" />
+<div>
+    <ContainerBase @ref=Container
+                   CssClass="lab-overview">
+        <LabOverviewDetailsComponent @ref=Details
+                                     Lab="@Lab" />
 
-    <Iterations Items="@Lab.Devices" Context="Device">
-        <DeviceOverviewComponent Device="Device" />
-    </Iterations>
-</ContainerBase>
+        <Iterations Items="@Lab.Devices" Context="Device">
+            <DeviceOverviewComponent Device="Device" />
+        </Iterations>
+    </ContainerBase>
+</div>
