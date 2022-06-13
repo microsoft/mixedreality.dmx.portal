@@ -83,6 +83,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             inputLabDeviceView.Type = deviceTypeImage.LabDeviceTypeView;
             string expectedImagePath = deviceTypeImage.Url;
+            string expectedImageWidth = "150px";
 
             ComponentParameter inputComponentParameter =
                 ComponentParameter.CreateParameter(
@@ -96,6 +97,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.Image.Url
                 .Should().BeEquivalentTo(expectedImagePath);
+
+            this.renderedDeviceOverviewComponent.Instance.Image.Width
+                .Should().Be(expectedImageWidth);
         }
 
         [Theory]
