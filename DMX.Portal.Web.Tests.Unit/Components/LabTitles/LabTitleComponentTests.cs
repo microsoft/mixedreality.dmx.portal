@@ -9,7 +9,7 @@ using Tynamix.ObjectFiller;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 {
-    public partial class LabTitleComponentTests
+    public partial class LabTitleComponentTests : TestContext
     {
         private IRenderedComponent<LabTitleComponent> renderedLabTitleComponent;
 

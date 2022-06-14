@@ -6,6 +6,8 @@ using DMX.Portal.Web.Views.Components.LabTitles;
 using FluentAssertions;
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using Xunit;
+using DMX.Portal.Web.Models.Views.LabViews;
+using Bunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 {
@@ -22,6 +24,29 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             initialLabTitleComponent.Lab.Should().BeNull();
             initialLabTitleComponent.StatusComponent.Should().BeNull();
             initialLabTitleComponent.LabTitle.Should().BeNull();
+        }
+
+        [Fact]
+        public void ShouldRenderLabTitle()
+        {
+            // given
+            LabView randomLabView = CreateRandomLabView();
+            LabView inputLabView = randomLabView;
+            string expectedLabName = inputLabView.Name;
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabTitleComponent.Lab),
+                    value: inputLabView);
+
+            // when
+            this.renderedLabTitleComponent =
+                RenderComponent<LabTitleComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabTitleComponent.Instance.LabTitle.Text
+                .Should().Be(expectedLabName);
         }
     }
 }
