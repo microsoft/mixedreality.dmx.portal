@@ -48,5 +48,30 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             this.renderedLabTitleComponent.Instance.LabTitle.Text
                 .Should().Be(expectedLabName);
         }
+
+        [Theory]
+        [MemberData(nameof(AllStatuses))]
+        public void ShouldRenderLabStatus(
+            LabStatusView inputStatusView,
+            StatusView expectedStatusView)
+        {
+            // given
+            LabView randomLabView = CreateRandomLabView();
+            randomLabView.Status = inputStatusView;
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabTitleComponent.Lab),
+                    value: randomLabView);
+
+            // when
+            this.renderedLabTitleComponent =
+                RenderComponent<LabTitleComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabTitleComponent.Instance.Status
+                .Should().Be(expectedStatusView);
+        }
     }
 }

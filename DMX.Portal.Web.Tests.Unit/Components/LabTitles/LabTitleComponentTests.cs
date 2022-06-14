@@ -3,9 +3,11 @@
 // ---------------------------------------------------------------
 
 using Bunit;
+using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.LabTitles;
 using Tynamix.ObjectFiller;
+using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 {
@@ -18,5 +20,14 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 
         private static Filler<LabView> CreateLabViewFiller() =>
             new Filler<LabView>();
+
+        public static TheoryData AllStatuses()
+        {
+            return new TheoryData<LabStatusView,StatusView> {
+                { LabStatusView.Available, StatusView.Available },
+                { LabStatusView.Offline, StatusView.Offline },
+                { LabStatusView.Reserved, StatusView.Reserved }
+            };
+        }
     }
 }
