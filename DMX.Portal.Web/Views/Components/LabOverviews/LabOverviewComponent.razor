@@ -2,6 +2,7 @@
 @using DMX.Portal.Web.Views.Components.LabOverviewDetails
 @using DMX.Portal.Web.Views.Bases
 @using PrettyBlazor
+@using DMX.Portal.Web.Views.Components.Statuses
 
 <div>
     <ContainerBase @ref=Container
@@ -9,8 +10,12 @@
 
         <ContainerBase @ref=LabOverviewDetailsContainer
                        CssClass="lab-overview-details">
+
             <ContainerBase @ref=LabTitleStatusContainer
                             CssClass="lab-overview-title">
+
+                            <StatusComponent @ref=StatusComponent
+                                             Status=LabStatus />
             </ContainerBase>
 
             <LabOverviewDetailsComponent @ref=Details
