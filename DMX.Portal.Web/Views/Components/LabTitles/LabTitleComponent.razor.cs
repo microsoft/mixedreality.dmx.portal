@@ -16,6 +16,9 @@ namespace DMX.Portal.Web.Views.Components.LabTitles
         [Parameter]
         public LabView Lab { get; set; }
 
+        [Parameter]
+        public string StatusWidth { get; set; } 
+
         public StatusComponent StatusComponent { get; set; }
         public LargeTitleBase LabTitle { get; set; }
         public StatusView Status { get; set; }
