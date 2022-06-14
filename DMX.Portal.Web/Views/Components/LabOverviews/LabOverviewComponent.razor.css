@@ -8,3 +8,7 @@
     display: flex;
     width: 100%;
 }
+
+::deep .lab-overview-details {
+    width: 50%;
+}

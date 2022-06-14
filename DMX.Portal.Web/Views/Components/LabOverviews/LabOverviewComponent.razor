@@ -7,8 +7,11 @@
     <ContainerBase @ref=Container
                    CssClass="lab-overview">
 
-        <LabOverviewDetailsComponent @ref=Details
-                                     Lab="@Lab" />
+        <ContainerBase @ref=LabOverviewDetailsContainer
+                       CssClass="lab-overview-details">
+            <LabOverviewDetailsComponent @ref=Details
+                                         Lab="@Lab" />
+        </ContainerBase>
 
         <div>
 
