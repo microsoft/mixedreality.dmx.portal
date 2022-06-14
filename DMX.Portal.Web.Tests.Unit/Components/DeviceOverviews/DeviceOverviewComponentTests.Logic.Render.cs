@@ -116,6 +116,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             inputLabDeviceView.PowerLevel = devicePowerLevel.Type;
             string expectedPowerLevelImageUrl = devicePowerLevel.Url;
+            string expectedPowerLevelImageWidth = "15px";
 
             ComponentParameter inputComponentParameter =
                 ComponentParameter.CreateParameter(
@@ -128,7 +129,10 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             // then
             this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Url
-                .Should().BeEquivalentTo(expectedPowerLevelImageUrl);
+                .Should().Be(expectedPowerLevelImageUrl);
+
+            this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Width
+                .Should().Be(expectedPowerLevelImageWidth);
         }
 
         [Fact]
