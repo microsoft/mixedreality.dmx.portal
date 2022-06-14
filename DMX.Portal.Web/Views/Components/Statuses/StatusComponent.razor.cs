@@ -13,14 +13,16 @@ namespace DMX.Portal.Web.Views.Components.Statuses
         [Parameter]
         public StatusView Status { get; set; }
 
+        [Parameter]
+        public string Width { get; set; }
+
         public ImageBase StatusImage { get; set; }
         public string StatusImageUrl { get; set; }
-        public string Width { get; set; }
 
         protected override void OnInitialized() =>
             this.StatusImageUrl = GetStatusUrl(Status);
 
-        private string GetStatusUrl(StatusView statusView)
+        private static string GetStatusUrl(StatusView statusView)
         {
             return statusView switch
             {

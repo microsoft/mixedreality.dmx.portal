@@ -33,14 +33,21 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
             string inputWidth = randomWidth;
             string expectedWidth = inputWidth;
 
-            ComponentParameter inputParameters =
+            ComponentParameter statusParameter =
                 ComponentParameter.CreateParameter(
                     name: nameof(StatusComponent.Status),
                     value: inputStatus);
 
+            ComponentParameter widthParameter =
+                ComponentParameter.CreateParameter(
+                    name: nameof(StatusComponent.Width),
+                    value: inputWidth);
+
             // when
             this.renderedStatusComponent =
-                RenderComponent<StatusComponent>(inputParameters);
+                RenderComponent<StatusComponent>(
+                    statusParameter,
+                    widthParameter);
 
             // then
             this.renderedStatusComponent.Instance.StatusImageUrl
