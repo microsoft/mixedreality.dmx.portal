@@ -16,8 +16,10 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
         [Fact]
         public void ShouldHaveDefaultValues()
         {
+            // given . when
             var initialLabTitleComponent = new LabTitleComponent();
 
+            // then
             initialLabTitleComponent.Status
                 .Should().Be(StatusView.Available);
 
