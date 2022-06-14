@@ -18,9 +18,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
         public static TheoryData AllStatuses()
         {
             return new TheoryData<StatusView, string> {
-                { StatusView.Available, "imgs/Available.gif" },
-                { StatusView.Offline, "imgs/Offline.gif" },
-                { StatusView.Reserved, "imgs/Reserved.gif" }
+                { StatusView.Available, "imgs/AvailableStatus.gif" },
+                { StatusView.Offline, "imgs/OfflineStatus.gif" },
+                { StatusView.Reserved, "imgs/ReservedStatus.gif" }
             };
         }
 
