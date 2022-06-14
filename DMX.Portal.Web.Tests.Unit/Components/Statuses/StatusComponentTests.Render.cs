@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------- 
+// Copyright (c) Microsoft Corporation. All rights reserved. 
+// ---------------------------------------------------------------
+
+using System.Reflection.Metadata;
+using Bunit;
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Views.Components.Statuses;
 using FluentAssertions;
@@ -22,6 +23,32 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
             initialStatusComponent.Status.Should().Be(StatusView.Available);
             initialStatusComponent.StatusImage.Should().BeNull();
             initialStatusComponent.StatusImageUrl.Should().BeNull();
+        }
+
+        [Theory]
+        [MemberData(nameof(AllStatuses))]
+        public void ShouldRenderStatus(StatusView inputStatus, string expectedUrl)
+        {
+            // given
+
+            ComponentParameter inputParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(StatusComponent.Status),
+                    value: inputStatus);
+
+            // when
+            this.renderedStatusComponent =
+                RenderComponent<StatusComponent>(inputParameters);
+
+            // then
+            this.renderedStatusComponent.Instance.StatusImageUrl
+                .Should().Be(expectedUrl);
+
+            this.renderedStatusComponent.Instance.StatusImage
+                .Should().NotBeNull();
+
+            this.renderedStatusComponent.Instance.StatusImage.Url
+                .Should().Be(expectedUrl);
         }
     }
 }
