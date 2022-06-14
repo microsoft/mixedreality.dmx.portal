@@ -5,6 +5,7 @@
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviewDetails;
+using DMX.Portal.Web.Views.Components.Statuses;
 using Microsoft.AspNetCore.Components;
 
 namespace DMX.Portal.Web.Views.Components.LabOverviews
@@ -18,6 +19,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public ContainerBase DevicesContainer { get; set; }
         public ContainerBase LabOverviewDetailsContainer { get; set; }
         public ContainerBase LabTitleStatusContainer { get; set; }
+        public StatusComponent StatusComponent { get; set; }
         public LabOverviewDetailsComponent Details { get; set; }
     }
 }

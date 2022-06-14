@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
 using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
@@ -50,7 +51,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             // then
             this.renderedLabOverviewComponent.Instance.Lab
                 .Should().BeEquivalentTo(inputLabView);
-            
+
             this.renderedLabOverviewComponent.Instance.Details.Lab
                 .Should().BeEquivalentTo(inputLabView);
 
@@ -147,6 +148,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             // then
             this.renderedLabOverviewComponent.Instance.LabTitleStatusContainer
                 .Should().NotBeNull();
+
+            this.renderedLabOverviewComponent.Instance.LabTitleStatusContainer.CssClass
+                .Should().Be("lab-overview-title");
         }
     }
 }
