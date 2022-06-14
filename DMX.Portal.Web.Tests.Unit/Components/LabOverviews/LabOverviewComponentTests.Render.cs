@@ -31,6 +31,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             initialLabOverviewComponent.DevicesContainer.Should().BeNull();
             initialLabOverviewComponent.LabOverviewDetailsContainer.Should().BeNull();
             initialLabOverviewComponent.LabTitleStatusContainer.Should().BeNull();
+            initialLabOverviewComponent.StatusComponent.Should().BeNull();
+            initialLabOverviewComponent.Name.Should().BeNull();
         }
 
         [Fact]
@@ -163,6 +165,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             // given
             LabView someLabView = CreateRandomLabView();
             someLabView.Status = inputLabStatusView;
+            string expectedLabName = someLabView.Name;
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -177,6 +180,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             // then
             this.renderedLabOverviewComponent.Instance.StatusComponent.Status
                 .Should().Be(expectedStatusView);
+
+            this.renderedLabOverviewComponent.Instance.Name.Text
+                .Should().Be(expectedLabName);
         }
     }
 }

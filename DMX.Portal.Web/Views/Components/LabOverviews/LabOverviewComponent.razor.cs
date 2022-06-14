@@ -21,6 +21,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public ContainerBase LabOverviewDetailsContainer { get; set; }
         public ContainerBase LabTitleStatusContainer { get; set; }
         public StatusComponent StatusComponent { get; set; }
+        public LargeTitleBase Name { get; set; }
         public LabOverviewDetailsComponent Details { get; set; }
         public StatusView LabStatus { get; set; }
 
