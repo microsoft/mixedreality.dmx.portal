@@ -25,6 +25,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             // then
             initialLabOverviewComponent.Lab.Should().BeNull();
             initialLabOverviewComponent.Details.Should().BeNull();
+            initialLabOverviewComponent.Container.Should().BeNull();
+            initialLabOverviewComponent.DevicesContainer.Should().BeNull();
+            initialLabOverviewComponent.LabOverviewDetailsContainer.Should().BeNull();
         }
 
         [Fact]
@@ -99,6 +102,28 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
 
             // then
             this.renderedLabOverviewComponent.Instance.DevicesContainer.CssClass
+                .Should().Be(expectedCssClass);
+        }
+
+        [Fact]
+        public void ShouldRenderLabOverviewContainer()
+        {
+            // given
+            string expectedCssClass = "lab-overview-details";
+            LabView someLabView = CreateRandomLabView();
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewComponent.Lab),
+                    value: someLabView);
+
+            // when
+            this.renderedLabOverviewComponent =
+                RenderComponent<LabOverviewComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabOverviewComponent.Instance.LabOverviewDetailsContainer.CssClass
                 .Should().Be(expectedCssClass);
         }
     }
