@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
+using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
@@ -151,6 +152,31 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
 
             this.renderedLabOverviewComponent.Instance.LabTitleStatusContainer.CssClass
                 .Should().Be("lab-overview-title");
+        }
+
+        [Theory]
+        [MemberData(nameof(AllStatuses))]
+        public void ShouldRenderTitleStatuses(
+            LabStatusView inputLabStatusView,
+            StatusView expectedStatusView)
+        {
+            // given
+            LabView someLabView = CreateRandomLabView();
+            someLabView.Status = inputLabStatusView;
+
+            ComponentParameter inputComponentParameters =
+                ComponentParameter.CreateParameter(
+                    name: nameof(LabOverviewComponent.Lab),
+                    value: someLabView);
+
+            // when
+            this.renderedLabOverviewComponent =
+                RenderComponent<LabOverviewComponent>(
+                    inputComponentParameters);
+
+            // then
+            this.renderedLabOverviewComponent.Instance.StatusComponent.Status
+                .Should().Be(expectedStatusView);
         }
     }
 }
