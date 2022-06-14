@@ -26,9 +26,9 @@ namespace DMX.Portal.Web.Views.Components.Statuses
         {
             return statusView switch
             {
-                StatusView.Available => "imgs/Available.gif",
-                StatusView.Offline => "imgs/Offline.gif",
-                _ => "imgs/Reserved.gif"
+                StatusView.Available => "imgs/AvailableStatus.gif",
+                StatusView.Offline => "imgs/OfflineStatus.gif",
+                _ => "imgs/ReservedStatus.gif"
             };
         }
     }
