@@ -58,6 +58,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             // given
             LabView randomLabView = CreateRandomLabView();
             randomLabView.Status = inputStatusView;
+            string expectedStatusWidth = "10px";
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -75,6 +76,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 
             this.renderedLabTitleComponent.Instance.StatusComponent.Status
                 .Should().Be(expectedStatusView);
+
+            this.renderedLabTitleComponent.Instance.StatusComponent.Width
+                .Should().Be(expectedStatusWidth);
         }
     }
 }
