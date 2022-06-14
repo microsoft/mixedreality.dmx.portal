@@ -30,7 +30,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
         public void ShouldRenderStatus(StatusView inputStatus, string expectedUrl)
         {
             // given
-
             ComponentParameter inputParameters =
                 ComponentParameter.CreateParameter(
                     name: nameof(StatusComponent.Status),
