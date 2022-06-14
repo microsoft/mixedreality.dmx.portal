@@ -15,6 +15,7 @@ namespace DMX.Portal.Web.Views.Components.Statuses
 
         public ImageBase StatusImage { get; set; }
         public string StatusImageUrl { get; set; }
+        public string Width { get; set; }
 
         protected override void OnInitialized() =>
             this.StatusImageUrl = GetStatusUrl(Status);

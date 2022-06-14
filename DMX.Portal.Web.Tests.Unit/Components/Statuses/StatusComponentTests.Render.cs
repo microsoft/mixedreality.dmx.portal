@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-using System.Reflection.Metadata;
 using Bunit;
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Views.Components.Statuses;
@@ -30,6 +29,10 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
         public void ShouldRenderStatus(StatusView inputStatus, string expectedUrl)
         {
             // given
+            string randomWidth = GetRandomWidth();
+            string inputWidth = randomWidth;
+            string expectedWidth = inputWidth;
+
             ComponentParameter inputParameters =
                 ComponentParameter.CreateParameter(
                     name: nameof(StatusComponent.Status),
@@ -48,6 +51,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
 
             this.renderedStatusComponent.Instance.StatusImage.Url
                 .Should().Be(expectedUrl);
+
+            this.renderedStatusComponent.Instance.Width
+                .Should().Be(expectedWidth);
+
+            this.renderedStatusComponent.Instance.StatusImage.Width
+                .Should().Be(expectedWidth);
         }
     }
 }
