@@ -72,6 +72,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             // then
             this.renderedLabTitleComponent.Instance.Status
                 .Should().Be(expectedStatusView);
+
+            this.renderedLabTitleComponent.Instance.StatusComponent.Status
+                .Should().Be(expectedStatusView);
         }
     }
 }
