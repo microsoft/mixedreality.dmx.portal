@@ -15,5 +15,18 @@ namespace DMX.Portal.Web.Views.Components.LabTitles
         public LargeTitleBase LabTitle { get; set; }
 
         public StatusView Status { get; set; }
+
+        protected override void OnInitialized() =>
+            this.Status = GetStatusView(Lab.Status);
+
+        private StatusView GetStatusView(LabStatusView labStatusView)
+        {
+            return labStatusView switch
+            {
+                LabStatusView.Reserved => StatusView.Reserved,
+                LabStatusView.Offline => StatusView.Offline,
+                _ => StatusView.Available
+            };
+        }
     }
 }
