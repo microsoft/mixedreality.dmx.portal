@@ -22,6 +22,8 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
         protected override async Task OnInitializedAsync()
         {
             this.Labs = await LabViewService.RetrieveAllLabViewsAsync();
+            this.State = LabOverviewListComponentState.Content;
+            StateHasChanged();
         }
     }
 }
