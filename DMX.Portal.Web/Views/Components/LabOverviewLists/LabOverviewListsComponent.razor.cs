@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DMX.Portal.Web.Models.Views.Components.LabOverviewListComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Services.Views.LabViews;
 using Microsoft.AspNetCore.Components;
@@ -15,7 +16,8 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
         [Inject]
         public ILabViewService LabViewService { get; set; }
 
-        public List<LabView> Labs { get; set; } = new List<LabView>();
+        public LabOverviewListComponentState State { get; set; }
+        public List<LabView> Labs { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

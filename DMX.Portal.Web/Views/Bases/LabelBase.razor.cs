@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace DMX.Portal.Web.Views.Bases
 {
-    public partial class LabelBase
+    public partial class LabelBase : ComponentBase
     {
         [Parameter]
         public string Text { get; set; }

@@ -5,7 +5,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
+using DMX.Portal.Web.Models.Views.Components.LabOverviewListComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviewLists;
 using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
@@ -30,6 +32,44 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
 
             initialRenderedLabOverviewListsComponent.Labs
                 .Should().BeNull();
+        }
+
+        [Fact]
+        public void ShouldRenderLoading()
+        {
+            // given
+            string expectedLoadingLabel = "Loading ...";
+
+            LabOverviewListComponentState expectedState =
+                LabOverviewListComponentState.Loading;
+
+            // when
+            this.renderedLabOverviewListsComponent =
+                RenderComponent<LabOverviewListsComponent>();
+
+            // then
+            this.renderedLabOverviewListsComponent.Instance.State
+                .Should().Be(expectedState);
+
+            IRenderedComponent<LabelBase> loadingLabel =
+                this.renderedLabOverviewListsComponent.FindComponent<LabelBase>();
+
+            loadingLabel.Instance.Text.Should().Be(expectedLoadingLabel);
+
+            this.renderedLabOverviewListsComponent.Instance.Labs
+                .Should().BeNull();
+
+            IEnumerable<IRenderedComponent<LabOverviewComponent>> labComponents =
+                this.renderedLabOverviewListsComponent
+                    .FindComponents<LabOverviewComponent>();
+
+            labComponents.Should().BeEmpty();
+
+            this.labViewServiceMock.Verify(service =>
+                service.RetrieveAllLabViewsAsync(),
+                    Times.Never);
+
+            this.labViewServiceMock.VerifyNoOtherCalls();
         }
 
         [Fact]
