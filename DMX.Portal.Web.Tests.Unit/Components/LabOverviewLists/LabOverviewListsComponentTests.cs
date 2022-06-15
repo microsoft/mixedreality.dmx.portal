@@ -10,6 +10,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
 {
     public partial class LabOverviewListsComponentTests : TestContext
     {
-        RenderFragment<LabOverviewListsComponent> renderedLabOverviewListsComponent;
+        IRenderedComponent<LabOverviewListsComponent> renderedLabOverviewListsComponent;
     }
 }

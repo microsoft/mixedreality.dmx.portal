@@ -20,5 +20,16 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
             initialRenderedLabOverviewListsComponent.Labs
                 .Should().BeNull();
         }
+
+        [Fact]
+        public void LabViewsShouldNotBeNull()
+        {
+            // given .when
+            this.renderedLabOverviewListsComponent = RenderComponent<LabOverviewListsComponent>();
+
+            // then
+            this.renderedLabOverviewListsComponent.Instance.Labs
+                .Should().NotBeNull();
+        }
     }
 }
