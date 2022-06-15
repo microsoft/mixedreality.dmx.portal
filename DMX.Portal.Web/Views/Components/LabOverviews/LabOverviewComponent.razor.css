@@ -10,5 +10,10 @@
 }
 
 ::deep .lab-overview-details {
-    width: 50%;
+    width: 100%;
+    padding: 25px;
+}
+
+::deep .lab-overview-title {
+    display: flex;
 }
