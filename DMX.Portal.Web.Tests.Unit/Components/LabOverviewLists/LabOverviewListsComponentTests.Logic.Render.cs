@@ -89,11 +89,17 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
                 service.RetrieveAllLabViewsAsync())
                     .ReturnsAsync(retrievedLabViews);
 
+            LabOverviewListComponentState expectedState =
+                LabOverviewListComponentState.Content;
+
             // when
             this.renderedLabOverviewListsComponent =
                 RenderComponent<LabOverviewListsComponent>();
 
             // then
+            this.renderedLabOverviewListsComponent.Instance.State
+                .Should().Be(expectedState);
+
             this.renderedLabOverviewListsComponent.Instance.Labs
                 .Should().BeEquivalentTo(expectedLabViews);
 
