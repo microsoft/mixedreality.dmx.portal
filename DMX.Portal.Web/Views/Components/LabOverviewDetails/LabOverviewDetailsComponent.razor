@@ -14,14 +14,6 @@
             </TableRowBase>
 
             <TableRowBase>
-                <TableCellBase @ref=DescriptionLabelCell
-                               Value=@nameof(LabView.Description) />
-
-                <TableCellBase @ref=DescriptionValueCell
-                               Value=@Lab.Description />
-            </TableRowBase>
-
-            <TableRowBase>
                 <TableCellBase @ref=DmxVersionLabelCell
                                Value=@nameof(LabView.DmxVersion) />
 
@@ -35,6 +27,14 @@
 
                 <TableCellBase @ref=StatusValueCell
                                Value=@Lab.Status.ToString() />
+            </TableRowBase>
+
+            <TableRowBase>
+                <TableCellBase @ref=DescriptionLabelCell
+                               Value=@nameof(LabView.Description) />
+
+                <TableCellBase @ref=DescriptionValueCell
+                               Value=@Lab.Description />
             </TableRowBase>
         </TableBase>
     </ContainerBase>
