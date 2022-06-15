@@ -140,7 +140,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 await this.labViewService.RetrieveAllLabViewsAsync();
 
             // then
-            actualLabViews.Should().BeEquivalentTo(expectedLabViews, opt => opt.WithStrictOrdering());
+            actualLabViews.Should().BeEquivalentTo(
+                expectedLabViews, 
+                opt => opt.WithStrictOrdering());
 
             this.labServiceMock.Verify(service =>
                 service.RetrieveAllLabsAsync(),
