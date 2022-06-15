@@ -7,10 +7,12 @@
     <Match>
         <LabelBase Text="Loading..." />
     </Match>
+</Condition>
 
-    <NotMatch>
+<Condition Evaluation=@(State is LabOverviewListComponentState.Content)>
+    <Match>
         <Iterations Items=Labs Context="Lab">
             <LabOverviewComponent Lab="Lab" />
         </Iterations>
-    </NotMatch>
+    </Match>
 </Condition>
