@@ -58,14 +58,14 @@ namespace DMX.Portal.Web
 
         private static void AddBrokers(IServiceCollection services)
         {
-            services.AddScoped<ILoggingBroker, LoggingBroker>();
-            services.AddScoped<IDmxApiBroker, DmxApiBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
+            services.AddTransient<IDmxApiBroker, DmxApiBroker>();
         }
 
         private static void AddServices(IServiceCollection services)
         {
-            services.AddScoped<ILabService, LabService>();
-            services.AddScoped<ILabViewService, LabViewService>();
+            services.AddTransient<ILabService, LabService>();
+            services.AddTransient<ILabViewService, LabViewService>();
         }
     }
 }
