@@ -33,6 +33,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
 
             initialRenderedLabOverviewListsComponent.Labs
                 .Should().BeNull();
+
+            initialRenderedLabOverviewListsComponent.State
+                .Should().Be(LabOverviewListComponentState.Loading);
         }
 
         [Fact]
