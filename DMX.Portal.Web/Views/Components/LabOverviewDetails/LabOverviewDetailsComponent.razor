@@ -1,39 +1,41 @@
 ﻿@using DMX.Portal.Web.Views.Bases
 @using DMX.Portal.Web.Models.Views.LabViews
 
-<ContainerBase @ref=Container
-               CssClass="lab-overview-details">
-    <TableBase @ref=DetailsTable>
-        <TableRowBase>
-            <TableCellBase @ref=NameLabelCell
-                           Value=@nameof(LabView.Name) />
+<div>
+    <ContainerBase @ref=Container
+                   CssClass="lab-overview-details">
+        <TableBase @ref=DetailsTable>
+            <TableRowBase>
+                <TableCellBase @ref=NameLabelCell
+                               Value=@nameof(LabView.Name) />
 
-            <TableCellBase @ref=NameValueCell
-                           Value=@Lab.Name />
-        </TableRowBase>
+                <TableCellBase @ref=NameValueCell
+                               Value=@Lab.Name />
+            </TableRowBase>
 
-        <TableRowBase>
-            <TableCellBase @ref=DescriptionLabelCell
-                           Value=@nameof(LabView.Description) />
+            <TableRowBase>
+                <TableCellBase @ref=DescriptionLabelCell
+                               Value=@nameof(LabView.Description) />
 
-            <TableCellBase @ref=DescriptionValueCell
-                           Value=@Lab.Description />
-        </TableRowBase>
+                <TableCellBase @ref=DescriptionValueCell
+                               Value=@Lab.Description />
+            </TableRowBase>
 
-        <TableRowBase>
-            <TableCellBase @ref=DmxVersionLabelCell
-                           Value=@nameof(LabView.DmxVersion) />
+            <TableRowBase>
+                <TableCellBase @ref=DmxVersionLabelCell
+                               Value=@nameof(LabView.DmxVersion) />
 
-            <TableCellBase @ref=DmxVersionValueCell
-                           Value=@Lab.DmxVersion />
-        </TableRowBase>
+                <TableCellBase @ref=DmxVersionValueCell
+                               Value=@Lab.DmxVersion />
+            </TableRowBase>
 
-        <TableRowBase>
-            <TableCellBase @ref=StatusLabelCell
-                           Value=@nameof(LabView.Status) />
+            <TableRowBase>
+                <TableCellBase @ref=StatusLabelCell
+                               Value=@nameof(LabView.Status) />
 
-            <TableCellBase @ref=StatusValueCell
-                           Value=@Lab.Status.ToString() />
-        </TableRowBase>
-    </TableBase>
-</ContainerBase>
+                <TableCellBase @ref=StatusValueCell
+                               Value=@Lab.Status.ToString() />
+            </TableRowBase>
+        </TableBase>
+    </ContainerBase>
+</div>
