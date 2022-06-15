@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.Components.LabOverviewListComponents;
@@ -21,8 +22,16 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
 
         protected override async Task OnInitializedAsync()
         {
-            this.Labs = await LabViewService.RetrieveAllLabViewsAsync();
-            this.State = LabOverviewListComponentState.Content;
+            try
+            {
+                this.Labs = await LabViewService.RetrieveAllLabViewsAsync();
+                this.State = LabOverviewListComponentState.Content;
+            }
+            catch (Exception exception)
+            {
+                this.State = LabOverviewListComponentState.Error;
+            }
+
             StateHasChanged();
         }
     }

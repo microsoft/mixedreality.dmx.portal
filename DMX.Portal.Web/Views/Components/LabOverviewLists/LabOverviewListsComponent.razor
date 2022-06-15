@@ -16,3 +16,9 @@
         </Iterations>
     </Match>
 </Condition>
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Error)>
+    <Match>
+        <LabelBase Text="An error has occured, contact support." />
+    </Match>
+</Condition>

@@ -44,6 +44,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
             LabOverviewListComponentState expectedState =
                 LabOverviewListComponentState.Loading;
 
+            this.labViewServiceMock.Setup(service =>
+                service.RetrieveAllLabViewsAsync())
+                .ReturnsAsync(delay: TimeSpan.FromSeconds(1),
+                              value: It.IsAny<List<LabView>>());
+
             // when
             this.renderedLabOverviewListsComponent =
                 RenderComponent<LabOverviewListsComponent>();
@@ -131,7 +136,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
             LabOverviewListComponentState expectedState =
                 LabOverviewListComponentState.Error;
 
-            string expectedErrorMessage = "An error has occured, contact support";
+            string expectedErrorMessage = "An error has occured, contact support.";
 
             // when
             this.renderedLabOverviewListsComponent =
