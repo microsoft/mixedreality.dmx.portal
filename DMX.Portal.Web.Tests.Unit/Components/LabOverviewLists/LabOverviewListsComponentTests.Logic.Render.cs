@@ -10,6 +10,7 @@ using DMX.Portal.Web.Views.Components.LabOverviewLists;
 using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
 using Force.DeepCloner;
+using Moq;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
@@ -44,6 +45,10 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
             List<LabView> expectedLabViews =
                 retrievedLabViews.DeepClone();
 
+            this.labViewServiceMock.Setup(service =>
+                service.RetrieveAllLabViewsAsync())
+                    .ReturnsAsync(retrievedLabViews);
+
             // when
             this.renderedLabOverviewListsComponent =
                 RenderComponent<LabOverviewListsComponent>();
@@ -58,6 +63,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
 
             labComponents.Select(labComponent => labComponent.Instance.Lab)
                 .Should().BeEquivalentTo(expectedLabViews);
+
+            this.labViewServiceMock.Verify(service =>
+                service.RetrieveAllLabViewsAsync(),
+                    Times.Once);
+
+            this.labViewServiceMock.VerifyNoOtherCalls();
         }
     }
 }
