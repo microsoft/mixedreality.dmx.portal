@@ -16,5 +16,8 @@ namespace DMX.Portal.Web.Views.Bases
 
         [Parameter]
         public string Height { get; set; }
+
+        [Parameter]
+        public string CssClass { get; set; }
     }
 }

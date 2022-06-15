@@ -29,25 +29,17 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
         public void ShouldRenderStatus(StatusView inputStatus, string expectedUrl)
         {
             // given
-            string randomWidth = GetRandomWidth();
-            string inputWidth = randomWidth;
-            string expectedWidth = inputWidth;
+            string expectedCssClass = "status-image";
 
             ComponentParameter statusParameter =
                 ComponentParameter.CreateParameter(
                     name: nameof(StatusComponent.Status),
                     value: inputStatus);
 
-            ComponentParameter widthParameter =
-                ComponentParameter.CreateParameter(
-                    name: nameof(StatusComponent.Width),
-                    value: inputWidth);
-
             // when
             this.renderedStatusComponent =
                 RenderComponent<StatusComponent>(
-                    statusParameter,
-                    widthParameter);
+                    statusParameter);
 
             // then
             this.renderedStatusComponent.Instance.StatusImageUrl
@@ -59,11 +51,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
             this.renderedStatusComponent.Instance.StatusImage.Url
                 .Should().Be(expectedUrl);
 
-            this.renderedStatusComponent.Instance.Width
-                .Should().Be(expectedWidth);
-
-            this.renderedStatusComponent.Instance.StatusImage.Width
-                .Should().Be(expectedWidth);
+            this.renderedStatusComponent.Instance.StatusImage.CssClass
+                .Should().Be(expectedCssClass);
         }
     }
 }

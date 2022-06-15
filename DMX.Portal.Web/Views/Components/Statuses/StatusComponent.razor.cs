@@ -13,9 +13,6 @@ namespace DMX.Portal.Web.Views.Components.Statuses
         [Parameter]
         public StatusView Status { get; set; }
 
-        [Parameter]
-        public string Width { get; set; }
-
         public ImageBase StatusImage { get; set; }
         public string StatusImageUrl { get; set; }
 
