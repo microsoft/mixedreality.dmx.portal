@@ -3,8 +3,8 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.LabViews;
-using DMX.Portal.Web.Services.Foundations.Labs;
 using DMX.Portal.Web.Services.Views.LabViews;
 using Microsoft.AspNetCore.Components;
 
@@ -12,16 +12,14 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
 {
     public partial class LabOverviewListsComponent : ComponentBase
     {
-        public List<LabView> Labs { get; set; }
-
+        [Inject]
         public ILabViewService LabViewService { get; set; }
 
-        protected override void OnInitialized()
-        {
-            this.Labs = GetLabs();
-        }
+        public List<LabView> Labs { get; set; }
 
-        private static List<LabView> GetLabs() => 
-            new List<LabView>();
+        protected override async Task OnInitializedAsync()
+        {
+            this.Labs = await LabViewService.RetrieveAllLabViewsAsync();
+        }
     }
 }
