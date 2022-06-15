@@ -15,7 +15,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
         [Inject]
         public ILabViewService LabViewService { get; set; }
 
-        public List<LabView> Labs { get; set; }
+        public List<LabView> Labs { get; set; } = new List<LabView>();
 
         protected override async Task OnInitializedAsync()
         {
