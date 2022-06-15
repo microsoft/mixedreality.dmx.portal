@@ -31,8 +31,13 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         {
             List<Lab> labs = await this.labService.RetrieveAllLabsAsync();
 
-            return labs.Select(AsLabView).ToList();
+            return OrderLabViewsByName(
+                labs.Select(AsLabView).ToList());
         });
+
+        private static List<LabView> OrderLabViewsByName(
+            List<LabView> labViews) =>
+                labViews.OrderBy(labView => labView.Name).ToList();
 
         private static Func<Lab, LabView> AsLabView =>
         lab => new LabView
