@@ -2,8 +2,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+using Bunit;
+using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.LabOverviewLists;
+using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
+using Force.DeepCloner;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
@@ -14,33 +20,44 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
         public void ShouldRenderDefaultValues()
         {
             // given . when
-            var initialRenderedLabOverviewListsComponent = new LabOverviewListsComponent();
+            var initialRenderedLabOverviewListsComponent =
+                new LabOverviewListsComponent();
 
             // then
+            initialRenderedLabOverviewListsComponent.LabViewService
+                .Should().BeNull();
+
             initialRenderedLabOverviewListsComponent.Labs
                 .Should().BeNull();
         }
 
         [Fact]
-        public void LabViewServiceShouldNotBeNull()
+        public void ShouldRenderAllLabViews()
         {
-            // given .when
-            this.renderedLabOverviewListsComponent = RenderComponent<LabOverviewListsComponent>();
+            // given
+            List<LabView> randomLabviews =
+                CreateRandomLabViews();
+            
+            List<LabView> retrievedLabViews =
+                randomLabviews;
+            
+            List<LabView> expectedLabViews =
+                retrievedLabViews.DeepClone();
 
-            // then
-            this.renderedLabOverviewListsComponent.Instance.LabViewService
-                .Should().NotBeNull();
-        }
-
-        [Fact]
-        public void LabViewsShouldNotBeNull()
-        {
-            // given .when
-            this.renderedLabOverviewListsComponent = RenderComponent<LabOverviewListsComponent>();
+            // when
+            this.renderedLabOverviewListsComponent =
+                RenderComponent<LabOverviewListsComponent>();
 
             // then
             this.renderedLabOverviewListsComponent.Instance.Labs
-                .Should().NotBeNull();
+                .Should().BeEquivalentTo(expectedLabViews);
+
+            IEnumerable<IRenderedComponent<LabOverviewComponent>> labComponents =
+                this.renderedLabOverviewListsComponent
+                    .FindComponents<LabOverviewComponent>();
+
+            labComponents.Select(labComponent => labComponent.Instance.Lab)
+                .Should().BeEquivalentTo(expectedLabViews);
         }
     }
 }
