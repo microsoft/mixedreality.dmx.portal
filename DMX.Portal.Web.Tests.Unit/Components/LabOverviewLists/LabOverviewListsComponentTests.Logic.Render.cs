@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
@@ -78,10 +79,10 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
             // given
             List<LabView> randomLabviews =
                 CreateRandomLabViews();
-            
+
             List<LabView> retrievedLabViews =
                 randomLabviews;
-            
+
             List<LabView> expectedLabViews =
                 retrievedLabViews.DeepClone();
 
@@ -109,6 +110,42 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
 
             labComponents.Select(labComponent => labComponent.Instance.Lab)
                 .Should().BeEquivalentTo(expectedLabViews);
+
+            this.labViewServiceMock.Verify(service =>
+                service.RetrieveAllLabViewsAsync(),
+                    Times.Once);
+
+            this.labViewServiceMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public void ShouldRenderError()
+        {
+            // given
+            var exception = new Exception();
+
+            this.labViewServiceMock.Setup(service =>
+                service.RetrieveAllLabViewsAsync())
+                    .Throws(exception);
+
+            LabOverviewListComponentState expectedState =
+                LabOverviewListComponentState.Error;
+
+            string expectedErrorMessage = "An error has occured, contact support";
+
+            // when
+            this.renderedLabOverviewListsComponent =
+                RenderComponent<LabOverviewListsComponent>();
+
+            // then
+            this.renderedLabOverviewListsComponent.Instance.State
+                .Should().Be(expectedState);
+
+            IRenderedComponent<LabelBase> errorLabel =
+                this.renderedLabOverviewListsComponent.FindComponent<LabelBase>();
+
+            errorLabel.Instance.Text
+                .Should().Be(expectedErrorMessage);
 
             this.labViewServiceMock.Verify(service =>
                 service.RetrieveAllLabViewsAsync(),
