@@ -1,18 +1,38 @@
 ﻿@page "/"
 @using DMX.Portal.Web.Models.Views.LabViews
 @using DMX.Portal.Web.Views.Components.LabOverviewDetails
+@using DMX.Portal.Web.Views.Components.LabOverviews
 
 @code
 {
     public LabView Lab { get; set; } = new LabView
         {
-            Description = "Hassan",
-            DmxVersion = "loves",
-            Name = "us!",
-            Status = LabStatusView.Available
+            Description = "Testing for hololens",
+            DmxVersion = "1.5",
+            Name = "BONDI LAB 1125",
+            Status = LabStatusView.Available,
+            Devices = new List<LabDeviceView>
+            {
+                new LabDeviceView
+                {
+                    Name = "Lab1",
+                    PowerLevel = PowerLevelView.High,
+                    Type = LabDeviceTypeView.HeadMountedDisplay
+                },
+                new LabDeviceView
+                {
+                    Name = "Lab2",
+                    PowerLevel = PowerLevelView.Medium,
+                    Type = LabDeviceTypeView.Phone
+                },
+                new LabDeviceView
+                {
+                    Name = "Lab3",
+                    PowerLevel = PowerLevelView.Low,
+                    Type = LabDeviceTypeView.PC
+                },
+            }
         };
 }
 
-<LabOverviewDetailsComponent Lab="Lab">
-    
-</LabOverviewDetailsComponent>
+<LabOverviewComponent Lab="Lab"/>

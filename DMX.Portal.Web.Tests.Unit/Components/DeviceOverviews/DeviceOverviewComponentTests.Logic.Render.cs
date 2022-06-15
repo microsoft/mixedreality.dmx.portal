@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System.Reflection.Metadata;
 using Bunit;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
@@ -36,6 +37,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 .Should().BeNull();
 
             initialDeviceOverviewComponent.PowerLevelImage
+                .Should().BeNull();
+
+            initialDeviceOverviewComponent.Container
                 .Should().BeNull();
         }
 
@@ -79,6 +83,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             inputLabDeviceView.Type = deviceTypeImage.LabDeviceTypeView;
             string expectedImagePath = deviceTypeImage.Url;
+            string expectedImageWidth = "150px";
 
             ComponentParameter inputComponentParameter =
                 ComponentParameter.CreateParameter(
@@ -92,6 +97,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
             // then
             this.renderedDeviceOverviewComponent.Instance.Image.Url
                 .Should().BeEquivalentTo(expectedImagePath);
+
+            this.renderedDeviceOverviewComponent.Instance.Image.Width
+                .Should().Be(expectedImageWidth);
         }
 
         [Theory]
@@ -108,6 +116,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             inputLabDeviceView.PowerLevel = devicePowerLevel.Type;
             string expectedPowerLevelImageUrl = devicePowerLevel.Url;
+            string expectedPowerLevelImageWidth = "15px";
 
             ComponentParameter inputComponentParameter =
                 ComponentParameter.CreateParameter(
@@ -120,7 +129,34 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
 
             // then
             this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Url
-                .Should().BeEquivalentTo(expectedPowerLevelImageUrl);
+                .Should().Be(expectedPowerLevelImageUrl);
+
+            this.renderedDeviceOverviewComponent.Instance.PowerLevelImage.Width
+                .Should().Be(expectedPowerLevelImageWidth);
+        }
+
+        [Fact]
+        public void ShouldRenderContainer()
+        {
+            // given
+            string expectedCssClass = "device-overview";
+
+            LabDeviceView someLabDeviceView =
+                CreateRandomLabDeviceView();
+
+            ComponentParameter inputComponentParameter =
+               ComponentParameter.CreateParameter(
+                   name: nameof(DeviceOverviewComponent.Device),
+                   value: someLabDeviceView);
+
+
+            // when
+            this.renderedDeviceOverviewComponent =
+                RenderComponent<DeviceOverviewComponent>(inputComponentParameter);
+
+            // then
+            this.renderedDeviceOverviewComponent.Instance.Container.CssClass
+                .Should().Be(expectedCssClass);
         }
     }
 }

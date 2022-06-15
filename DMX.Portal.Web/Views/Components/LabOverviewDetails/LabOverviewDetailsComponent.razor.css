@@ -1,0 +1,8 @@
+﻿::deep .lab-overview-details {
+    display: flex;
+    width: 100%;
+}
+
+::deep .lab-overview-details td {
+    padding-right: 15px;
+}

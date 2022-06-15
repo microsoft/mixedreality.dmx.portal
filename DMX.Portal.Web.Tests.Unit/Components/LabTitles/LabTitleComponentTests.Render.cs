@@ -35,6 +35,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             LabView randomLabView = CreateRandomLabView();
             LabView inputLabView = randomLabView;
             string expectedLabName = inputLabView.Name;
+            string expectedCssClass = "lab-title";
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -49,6 +50,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             // then
             this.renderedLabTitleComponent.Instance.LabTitle.Text
                 .Should().Be(expectedLabName);
+
+            this.renderedLabTitleComponent.Instance.LabTitle.ClassName
+                .Should().Be(expectedCssClass);
         }
 
         [Theory]
@@ -60,7 +64,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             // given
             LabView randomLabView = CreateRandomLabView();
             randomLabView.Status = inputStatusView;
-            string expectedStatusWidth = "10px";
 
             ComponentParameter inputLabParameter =
                 ComponentParameter.CreateParameter(
@@ -78,9 +81,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 
             this.renderedLabTitleComponent.Instance.StatusComponent.Status
                 .Should().Be(expectedStatusView);
-
-            this.renderedLabTitleComponent.Instance.StatusComponent.Width
-                .Should().Be(expectedStatusWidth);
         }
     }
 }
