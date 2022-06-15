@@ -1,6 +1,16 @@
 ﻿@using DMX.Portal.Web.Views.Components.LabOverviews
+@using DMX.Portal.Web.Views.Bases
+@using Models.Views.Components.LabOverviewListComponents
 @using PrettyBlazor
 
-<Iterations Items=Labs Context="Lab">
-    <LabOverviewComponent Lab="Lab" />
-</Iterations>
+<Condition Evaluation=@(State is LabOverviewListComponentState.Loading)>
+    <Match>
+        <LabelBase Text="Loading..." />
+    </Match>
+
+    <NotMatch>
+        <Iterations Items=Labs Context="Lab">
+            <LabOverviewComponent Lab="Lab" />
+        </Iterations>
+    </NotMatch>
+</Condition>

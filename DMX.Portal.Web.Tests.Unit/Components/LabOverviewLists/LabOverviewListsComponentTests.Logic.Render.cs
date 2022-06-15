@@ -38,7 +38,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
         public void ShouldRenderLoading()
         {
             // given
-            string expectedLoadingLabel = "Loading ...";
+            string expectedLoadingLabel = "Loading...";
 
             LabOverviewListComponentState expectedState =
                 LabOverviewListComponentState.Loading;
@@ -67,7 +67,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
 
             this.labViewServiceMock.Verify(service =>
                 service.RetrieveAllLabViewsAsync(),
-                    Times.Never);
+                    Times.Once);
 
             this.labViewServiceMock.VerifyNoOtherCalls();
         }
