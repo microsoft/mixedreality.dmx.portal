@@ -11,5 +11,13 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
     public partial class LabOverviewListsComponent : ComponentBase
     {
         public List<LabView> Labs { get; set; }
+
+        protected override void OnInitialized()
+        {
+            this.Labs = GetLabs();
+        }
+
+        private static List<LabView> GetLabs() => 
+            new List<LabView>();
     }
 }
