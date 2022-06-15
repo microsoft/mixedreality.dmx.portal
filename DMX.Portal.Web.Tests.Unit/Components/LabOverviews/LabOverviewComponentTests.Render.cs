@@ -7,7 +7,6 @@ using System.Linq;
 using Bunit;
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
-using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
 using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
@@ -31,8 +30,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             initialLabOverviewComponent.DevicesContainer.Should().BeNull();
             initialLabOverviewComponent.LabOverviewDetailsContainer.Should().BeNull();
             initialLabOverviewComponent.LabTitleStatusContainer.Should().BeNull();
-            initialLabOverviewComponent.StatusComponent.Should().BeNull();
-            initialLabOverviewComponent.Name.Should().BeNull();
+            initialLabOverviewComponent.LabTitleComponent.Should().BeNull();
         }
 
         [Fact]
@@ -156,16 +154,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
                 .Should().Be("lab-overview-title");
         }
 
-        [Theory]
-        [MemberData(nameof(AllStatuses))]
-        public void ShouldRenderTitleStatuses(
-            LabStatusView inputLabStatusView,
-            StatusView expectedStatusView)
+        [Fact]
+        public void ShouldRenderLabTitleComponent()
         {
             // given
             LabView someLabView = CreateRandomLabView();
-            someLabView.Status = inputLabStatusView;
-            string expectedLabName = someLabView.Name;
+            LabView inputLabView = someLabView;
 
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
@@ -178,11 +172,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
                     inputComponentParameters);
 
             // then
-            this.renderedLabOverviewComponent.Instance.StatusComponent.Status
-                .Should().Be(expectedStatusView);
+            this.renderedLabOverviewComponent.Instance.LabTitleComponent
+                .Should().NotBeNull();
 
-            this.renderedLabOverviewComponent.Instance.Name.Text
-                .Should().Be(expectedLabName);
+            this.renderedLabOverviewComponent.Instance.Lab
+                .Should().BeEquivalentTo(inputLabView);
         }
     }
 }
