@@ -1,0 +1,24 @@
+﻿@using DMX.Portal.Web.Views.Components.LabOverviews
+@using DMX.Portal.Web.Views.Bases
+@using Models.Views.Components.LabOverviewListComponents
+@using PrettyBlazor
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Loading)>
+    <Match>
+        <LabelBase Text="Loading..." />
+    </Match>
+</Condition>
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Content)>
+    <Match>
+        <Iterations Items=Labs Context="Lab">
+            <LabOverviewComponent Lab="Lab" />
+        </Iterations>
+    </Match>
+</Condition>
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Error)>
+    <Match>
+        <LabelBase Text="An error has occured, contact support." />
+    </Match>
+</Condition>
