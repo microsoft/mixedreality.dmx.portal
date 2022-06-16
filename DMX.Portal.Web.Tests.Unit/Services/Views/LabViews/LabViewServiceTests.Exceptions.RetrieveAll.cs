@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
+using FluentAssertions;
 using Moq;
 using Xeptions;
 using Xunit;
@@ -21,7 +22,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             Xeption dependencyException)
         {
             // given
-            var expectedLabDependencyException =
+            var expectedLabViewDependencyException =
                 new LabViewDependencyException(
                     dependencyException.InnerException as Xeption);
 
@@ -33,9 +34,13 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             ValueTask<List<LabView>> retrieveAllLabViews =
                 this.labViewService.RetrieveAllLabViewsAsync();
 
+            LabViewDependencyException actualLabViewDependencyException =
+                await Assert.ThrowsAsync<LabViewDependencyException>(() =>
+                    retrieveAllLabViews.AsTask());
+
             // then
-            await Assert.ThrowsAsync<LabViewDependencyException>(() =>
-                retrieveAllLabViews.AsTask());
+            actualLabViewDependencyException
+                .Should().BeEquivalentTo(expectedLabViewDependencyException);
 
             this.labServiceMock.Verify(service =>
                 service.RetrieveAllLabsAsync(),
@@ -43,7 +48,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
-                    expectedLabDependencyException))),
+                    expectedLabViewDependencyException))),
                         Times.Once);
 
             this.labServiceMock.VerifyNoOtherCalls();
@@ -70,9 +75,13 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             ValueTask<List<LabView>> retrieveAllLabViews =
                 this.labViewService.RetrieveAllLabViewsAsync();
 
+            LabViewServiceException actualLabViewServiceException =
+                await Assert.ThrowsAsync<LabViewServiceException>(() =>
+                    retrieveAllLabViews.AsTask());
+
             // then
-            await Assert.ThrowsAsync<LabViewServiceException>(() =>
-                retrieveAllLabViews.AsTask());
+            actualLabViewServiceException
+                .Should().BeEquivalentTo(expectedLabViewServiceException);
 
             this.labServiceMock.Verify(service =>
                 service.RetrieveAllLabsAsync(),
