@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Labs.Exceptions;
+using FluentAssertions;
 using Moq;
 using RESTFulSense.Exceptions;
 using Xeptions;
@@ -37,9 +38,13 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             ValueTask<List<Lab>> getAllLabsTask =
                 this.labService.RetrieveAllLabsAsync();
 
+            LabDependencyException actualLabDependencyException =
+                await Assert.ThrowsAsync<LabDependencyException>(() =>
+                    getAllLabsTask.AsTask());
+
             // then
-            await Assert.ThrowsAsync<LabDependencyException>(() =>
-                getAllLabsTask.AsTask());
+            actualLabDependencyException
+                .Should().BeEquivalentTo(expectedLabDependencyException);
 
             this.dmxApiBrokerMock.Verify(broker =>
                 broker.GetAllLabsAsync(),
@@ -78,9 +83,13 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             ValueTask<List<Lab>> getAllLabsTask =
                 this.labService.RetrieveAllLabsAsync();
 
+            LabDependencyException actualLabDependencyException =
+                await Assert.ThrowsAsync<LabDependencyException>(() =>
+                    getAllLabsTask.AsTask());
+
             // then
-            await Assert.ThrowsAsync<LabDependencyException>(() =>
-                getAllLabsTask.AsTask());
+            actualLabDependencyException
+                .Should().BeEquivalentTo(expectedLabDependencyException);
 
             this.dmxApiBrokerMock.Verify(broker =>
                 broker.GetAllLabsAsync(),
@@ -115,9 +124,13 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             ValueTask<List<Lab>> getAllLabsTask =
                 this.labService.RetrieveAllLabsAsync();
 
+            LabServiceException actualLabServiceException =
+                await Assert.ThrowsAsync<LabServiceException>(() =>
+                    getAllLabsTask.AsTask());
+
             // then
-            await Assert.ThrowsAsync<LabServiceException>(() =>
-                getAllLabsTask.AsTask());
+            actualLabServiceException
+                .Should().BeEquivalentTo(expectedLabServiceException);
 
             this.dmxApiBrokerMock.Verify(broker =>
                 broker.GetAllLabsAsync(),
