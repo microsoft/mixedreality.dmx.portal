@@ -18,6 +18,7 @@ namespace DMX.Portal.Web.Views.Components.DeviceOverviews
         public string ImageUrl { get; set; }
         public string PowerLevelImageUrl { get; set; }
         public LabelBase DeviceLabel { get; set; }
+        public ContainerBase Container { get; set; }
 
         protected override void OnInitialized()
         {

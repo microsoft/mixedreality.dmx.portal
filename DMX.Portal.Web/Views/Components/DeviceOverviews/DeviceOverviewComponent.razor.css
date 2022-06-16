@@ -1,0 +1,13 @@
+﻿.flex-parent-element {
+    display: flex;
+    width: 100%;
+}
+
+.device-overview {
+    flex: 1;
+    margin: 3px;
+}
+
+    .device-overview:first-child {
+        margin-right: 3px;
+    }

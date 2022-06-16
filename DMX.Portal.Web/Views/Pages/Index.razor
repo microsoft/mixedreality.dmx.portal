@@ -1,18 +1,7 @@
 ﻿@page "/"
 @using DMX.Portal.Web.Models.Views.LabViews
 @using DMX.Portal.Web.Views.Components.LabOverviewDetails
+@using DMX.Portal.Web.Views.Components.LabOverviewLists
+@using DMX.Portal.Web.Views.Components.LabOverviews
 
-@code
-{
-    public LabView Lab { get; set; } = new LabView
-        {
-            Description = "Hassan",
-            DmxVersion = "loves",
-            Name = "us!",
-            Status = LabStatusView.Available
-        };
-}
-
-<LabOverviewDetailsComponent Lab="Lab">
-    
-</LabOverviewDetailsComponent>
+<LabOverviewListsComponent />

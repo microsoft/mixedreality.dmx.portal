@@ -96,6 +96,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 }).ToList<dynamic>();
         }
 
+        private static List<LabView> OrderLabViewsByName(List<LabView> labs) =>
+            labs.OrderBy(lab => lab.Name).ToList();
+
         private static (T, U) GetRandomCorrespondingEnums<T, U>()
         {
             int max = Enum.GetValues(typeof(T)).Length;

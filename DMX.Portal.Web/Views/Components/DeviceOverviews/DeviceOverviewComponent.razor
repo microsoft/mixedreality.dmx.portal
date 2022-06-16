@@ -1,16 +1,25 @@
 ﻿@using DMX.Portal.Web.Views.Bases
 
-<div align=center>
-    <ImageBase @ref=Image
-               Url=@ImageUrl />
-</div>
+<div>
+    <ContainerBase @ref=Container
+                   CssClass="device-overview">
 
-<div align=center>
-    <LabelBase @ref=DeviceLabel
-               Text=@Device.Name />
-</div>
+        <div align=center>
+            <ImageBase @ref=Image
+                       Url=@ImageUrl
+                       Width="150px" />
+        </div>
 
-<div align=center>
-    <ImageBase @ref=PowerLevelImage
-               Url=@PowerLevelImageUrl />
+        <div align=center>
+            <LabelBase @ref=DeviceLabel
+                       Text=@Device.Name />
+        </div>
+
+        <div align=center>
+            <ImageBase @ref=PowerLevelImage
+                       Url=@PowerLevelImageUrl
+                       Width="15px"/>
+        </div>
+
+    </ContainerBase>
 </div>
