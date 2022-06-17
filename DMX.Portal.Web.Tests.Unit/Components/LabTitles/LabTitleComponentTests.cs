@@ -23,7 +23,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
 
         public static TheoryData AllStatuses()
         {
-            return new TheoryData<LabStatusView,StatusView> {
+            return new TheoryData<LabStatusView, StatusView> {
                 { LabStatusView.Available, StatusView.Available },
                 { LabStatusView.Offline, StatusView.Offline },
                 { LabStatusView.Reserved, StatusView.Reserved }

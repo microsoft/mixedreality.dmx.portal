@@ -141,7 +141,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             // then
             actualLabViews.Should().BeEquivalentTo(
-                expectedLabViews, 
+                expectedLabViews,
                 opt => opt.WithStrictOrdering());
 
             this.labServiceMock.Verify(service =>

@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-using System.Net.NetworkInformation;
 using Bunit;
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Views.Components.Statuses;
@@ -26,9 +25,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Statuses
 
         private static string GetRandomWidth()
         {
-            int randomNumber = 
+            int randomNumber =
                 new IntRange(min: 1, max: 100).GetValue();
-            
+
             return $"{randomNumber}px";
         }
     }

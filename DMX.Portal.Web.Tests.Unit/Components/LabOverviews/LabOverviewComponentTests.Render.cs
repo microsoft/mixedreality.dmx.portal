@@ -5,7 +5,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
-using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
 using DMX.Portal.Web.Views.Components.LabOverviews;
