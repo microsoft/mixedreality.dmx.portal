@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="PrettyBlazor" Version="1.2.0" />
     <PackageReference Include="RESTFulSense" Version="2.5.0" />
+    <PackageReference Include="SharpStyles" Version="0.2.0" />
+    <PackageReference Include="Tynamix.ObjectFiller" Version="1.5.8" />
     <PackageReference Include="Xeption" Version="2.4.0" />
   </ItemGroup>
 

@@ -30,7 +30,7 @@ namespace DMX.Portal.Web.Brokers.DmxApis
             LocalConfiguration localConfigurations =
                 configuration.Get<LocalConfiguration>();
 
-            string apiBaseUrl = localConfigurations.ApiConfiguration.Url;
+            string apiBaseUrl = "https://localhost";//localConfigurations.ApiConfiguration.Url;
             this.httpClient.BaseAddress = new Uri(apiBaseUrl);
 
             return new RESTFulApiFactoryClient(this.httpClient);
