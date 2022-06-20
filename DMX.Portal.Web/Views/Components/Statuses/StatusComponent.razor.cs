@@ -5,6 +5,7 @@
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
 using DMX.Portal.Web.Views.Bases;
 using Microsoft.AspNetCore.Components;
+using SharpStyles.Models;
 
 namespace DMX.Portal.Web.Views.Components.Statuses
 {
@@ -18,8 +19,11 @@ namespace DMX.Portal.Web.Views.Components.Statuses
         public StyleBase StyleElement { get; set; }
         public StatusComponentStyle Style { get; set; }
 
-        protected override void OnInitialized() =>
+        protected override void OnInitialized()
+        {
+            SetupStyle();
             this.StatusImageUrl = GetStatusUrl(Status);
+        }
 
         private static string GetStatusUrl(StatusView statusView)
         {
@@ -28,6 +32,20 @@ namespace DMX.Portal.Web.Views.Components.Statuses
                 StatusView.Available => "imgs/AvailableStatus.gif",
                 StatusView.Offline => "imgs/OfflineStatus.gif",
                 _ => "imgs/ReservedStatus.gif"
+            };
+        }
+
+        private void SetupStyle()
+        {
+            this.Style = new StatusComponentStyle
+            {
+                StatusImage = new SharpStyle
+                {
+                    Height = "15px",
+                    Width = "15px",
+                    MarginRight = "9px",
+                    MarginBottom = "3px"
+                }
             };
         }
     }
