@@ -70,5 +70,12 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
 
         private static Filler<Lab> CreateLabFiller() =>
             new Filler<Lab>();
+
+        private static Dictionary<string, List<string>> CreateRandomDictionary()
+        {
+            var filler = new Filler<Dictionary<string, List<string>>>();
+
+            return filler.Create();
+        }
     }
 }

@@ -156,11 +156,18 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             var randomMessage = GetRandomString();
             var httpResponseMessage = new HttpResponseMessage();
 
+            var randomDictionary = CreateRandomDictionary();
+
             var httpResponseBadRequestException = 
                 new HttpResponseBadRequestException(httpResponseMessage, randomMessage);
 
-            var expectedInvalidLabException =
-                new InvalidLabException(httpResponseBadRequestException);
+            httpResponseBadRequestException.AddData(randomDictionary);
+
+            var invalidLabException =
+                new InvalidLabException(httpResponseBadRequestException, randomDictionary);
+
+            var expectedLabDependencyValidationException =
+                new LabDependencyValidationException(invalidLabException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.PostLabAsync(It.IsAny<Lab>()))
@@ -169,18 +176,20 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // when
             ValueTask<Lab> addLabTask = this.labService.AddLabAsync(inputLab);
 
-            InvalidLabException actualInvalidLabException =
-                await Assert.ThrowsAsync<InvalidLabException>(addLabTask.AsTask);
+            LabDependencyValidationException actualLabDependencyValidationException =
+                await Assert.ThrowsAsync<LabDependencyValidationException>(addLabTask.AsTask);
 
             // then
-            actualInvalidLabException.Should().BeEquivalentTo(expectedInvalidLabException);
+            actualLabDependencyValidationException.Should().BeEquivalentTo(
+                expectedLabDependencyValidationException);
 
             this.dmxApiBrokerMock.Verify(broker =>
                 broker.PostLabAsync(It.IsAny<Lab>()),
                     Times.Once);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedInvalidLabException))),
+                broker.LogError(It.Is(
+                    SameExceptionAs(expectedLabDependencyValidationException))),
                     Times.Once);
 
             this.dmxApiBrokerMock.VerifyNoOtherCalls();
