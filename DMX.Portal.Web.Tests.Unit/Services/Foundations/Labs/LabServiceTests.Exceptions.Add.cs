@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -99,6 +100,48 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
                     expectedLabDependencyException))),
+                        Times.Once);
+
+            this.dmxApiBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public async Task ShouldThrowServiceExceptionOnAddIfErrorOccursAndLogItAsync()
+        {
+            // given
+            var someLab = CreateRandomLab();
+
+            var serviceException = new Exception();
+
+            var failedLabServiceException =
+                new FailedLabServiceException(serviceException);
+
+            var expectedLabServiceException =
+                new LabServiceException(failedLabServiceException);
+
+            this.dmxApiBrokerMock.Setup(broker =>
+                broker.PostLabAsync(It.IsAny<Lab>()))
+                    .ThrowsAsync(serviceException);
+
+            // when
+            ValueTask<Lab> addLabTask =
+                this.labService.AddLabAsync(someLab);
+
+            LabServiceException actualLabServiceException =
+                await Assert.ThrowsAsync<LabServiceException>(addLabTask.AsTask);
+
+            // then
+            actualLabServiceException
+                .Should().BeEquivalentTo(expectedLabServiceException);
+
+            this.dmxApiBrokerMock.Verify(broker =>
+                broker.PostLabAsync(It.IsAny<Lab>()),
+                    Times.Once);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLabServiceException))),
                         Times.Once);
 
             this.dmxApiBrokerMock.VerifyNoOtherCalls();
