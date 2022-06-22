@@ -68,6 +68,21 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         private static int GetRandomNumber() =>
             new IntRange(min: 2, max: 10).GetValue();
 
+        private static T GetInvalidEnum<T>()
+        {
+            int randomNumber = GetLocalRandomNumber();
+
+            while (Enum.IsDefined(typeof(T), randomNumber))
+            {
+                randomNumber = GetLocalRandomNumber();
+            }
+
+            return (T)(object)randomNumber;
+
+            static int GetLocalRandomNumber() =>
+                new IntRange(min: int.MinValue, max: int.MaxValue).GetValue();
+        }
+
         private static Filler<Lab> CreateLabFiller() =>
             new Filler<Lab>();
 
