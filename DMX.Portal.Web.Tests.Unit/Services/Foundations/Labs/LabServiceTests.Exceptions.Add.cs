@@ -44,7 +44,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                 .Should().BeEquivalentTo(expectedLabDependencyException);
 
             this.dmxApiBrokerMock.Verify(broker =>
-                broker.GetAllLabsAsync(),
+                broker.PostLabAsync(It.IsAny<Lab>()),
                     Times.Once);
 
             this.loggingBrokerMock.Verify(broker =>
