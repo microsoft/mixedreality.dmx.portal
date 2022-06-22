@@ -10,6 +10,7 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
 {
     public interface ILabService
     {
+        ValueTask<Lab> AddLabAsync(Lab lab);
         ValueTask<List<Lab>> RetrieveAllLabsAsync();
     }
 }

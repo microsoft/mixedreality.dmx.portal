@@ -23,6 +23,11 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             this.loggingBroker = loggingBroker;
         }
 
+        public ValueTask<Lab> AddLabAsync(Lab lab)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public ValueTask<List<Lab>> RetrieveAllLabsAsync() =>
         TryCatch(async () => await this.dmxApiBroker.GetAllLabsAsync());
     }

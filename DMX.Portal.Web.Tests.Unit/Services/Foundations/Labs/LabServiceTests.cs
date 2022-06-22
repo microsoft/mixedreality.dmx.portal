@@ -59,6 +59,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         private static string GetRandomString() =>
             new MnemonicString().GetValue();
 
+        private static Lab CreateRandomLab() =>
+            CreateLabFiller().Create();
+
         private static List<Lab> CreateRandomLabs() =>
             CreateLabFiller().Create(count: GetRandomNumber()).ToList();
 
