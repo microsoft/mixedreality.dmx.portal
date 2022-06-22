@@ -94,7 +94,15 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
                     httpResponseBadRequestException,
                     httpResponseBadRequestException.Data);
 
-                throw CreateAndLogLabDependencyValidationException(invalidLabException);
+                throw CreateAndLogDependencyValidationException(invalidLabException);
+            }
+            catch (HttpResponseConflictException httpResponseConflictException)
+            {
+                var invalidLabException = new InvalidLabException(
+                    httpResponseConflictException,
+                    httpResponseConflictException.Data);
+
+                throw CreateAndLogDependencyValidationException(invalidLabException);
             }
             catch (HttpResponseException httpResponseException)
             {
@@ -136,7 +144,7 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             return labServiceException;
         }
 
-        private LabDependencyValidationException CreateAndLogLabDependencyValidationException(
+        private LabDependencyValidationException CreateAndLogDependencyValidationException(
             Xeption xeption)
         {
             var labDependencyValidationException = new LabDependencyValidationException(xeption);
