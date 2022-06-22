@@ -14,5 +14,8 @@ namespace DMX.Portal.Web.Brokers.DmxApis
 
         public async ValueTask<List<Lab>> GetAllLabsAsync() =>
             await GetAsync<List<Lab>>(LabsRelativeUrl);
+
+        public async ValueTask<Lab> PostLabAsync(Lab lab) =>
+            await PostAsync<Lab>(LabsRelativeUrl, lab);
     }
 }

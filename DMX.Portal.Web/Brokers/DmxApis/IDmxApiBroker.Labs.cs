@@ -11,5 +11,6 @@ namespace DMX.Portal.Web.Brokers.DmxApis
     public partial interface IDmxApiBroker
     {
         ValueTask<List<Lab>> GetAllLabsAsync();
+        ValueTask<Lab> PostLabAsync(Lab lab);
     }
 }
