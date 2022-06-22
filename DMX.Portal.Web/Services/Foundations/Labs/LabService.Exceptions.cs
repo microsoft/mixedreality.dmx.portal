@@ -67,6 +67,10 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             {
                 return await returningLabFunction();
             }
+            catch (NullLabException nullLabException)
+            {
+                throw CreateAndLogValidationException(nullLabException);
+            }
             catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
             {
                 var failedLabDependencyException =
@@ -151,6 +155,14 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             this.loggingBroker.LogError(labDependencyValidationException);
 
             return labDependencyValidationException;
+        }
+
+        private LabValidationException CreateAndLogValidationException(Xeption xeption)
+        {
+            var labValidationException = new LabValidationException(xeption);
+            this.loggingBroker.LogError(labValidationException);
+
+            return labValidationException;
         }
     }
 }
