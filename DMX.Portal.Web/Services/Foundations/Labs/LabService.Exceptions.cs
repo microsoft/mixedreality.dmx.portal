@@ -71,6 +71,10 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             {
                 throw CreateAndLogValidationException(nullLabException);
             }
+            catch (InvalidLabException invalidLabException)
+            {
+                throw CreateAndLogValidationException(invalidLabException);
+            }
             catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
             {
                 var failedLabDependencyException =
