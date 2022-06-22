@@ -94,6 +94,13 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
 
                 throw CreateAndLogDependencyException(failedLabDependencyException);
             }
+            catch (Exception exception)
+            {
+                var failedLabServiceException =
+                    new FailedLabServiceException(exception);
+
+                throw CreateAndLogServiceException(failedLabServiceException);
+            }
         }
 
         private LabDependencyException CreateAndLogCriticalDependencyException(Xeption xeption)
