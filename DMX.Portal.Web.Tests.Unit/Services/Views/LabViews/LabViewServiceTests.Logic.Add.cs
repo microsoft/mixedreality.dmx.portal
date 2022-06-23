@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Views.LabViews;
 using FluentAssertions;
+using Force.DeepCloner;
 using Moq;
 using Xunit;
 
@@ -55,7 +56,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             Lab inputLab = randomLab;
             Lab addedLab = inputLab;
             LabView inputLabView = randomLabView;
-            LabView expectedLabView = inputLabView;
+            LabView expectedLabView = inputLabView.DeepClone();
 
             this.labServiceMock.Setup(service =>
                 service.AddLabAsync(inputLab))
