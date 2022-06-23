@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace DMX.Portal.Web.Views.Bases
 {
-    public partial class ImageBase
+    public partial class ImageBase : ComponentBase
     {
         [Parameter]
         public string Url { get; set; }
