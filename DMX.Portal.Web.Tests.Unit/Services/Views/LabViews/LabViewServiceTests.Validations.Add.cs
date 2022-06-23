@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿// --------------------------------------------------------------- 
+// Copyright (c) Microsoft Corporation. All rights reserved. 
+// ---------------------------------------------------------------
+
+using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
@@ -15,7 +19,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
         {
             // given
             LabView nullLabView = null;
-            var nullLabViewException = new NullLabViewException();
+            
+            var nullLabViewException =
+                new NullLabViewException();
+
             var expectedLabViewValidationException =
                 new LabViewValidationException(nullLabViewException);
 
@@ -24,18 +31,21 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 this.labViewService.AddLabViewAsync(nullLabView);
 
             var actualLabViewValidationException =
-                await Assert.ThrowsAsync<LabViewValidationException>(addLabViewTask.AsTask);
+                await Assert.ThrowsAsync<LabViewValidationException>(
+                    addLabViewTask.AsTask);
 
             // then
-            actualLabViewValidationException.Should().BeEquivalentTo(expectedLabViewValidationException);
+            actualLabViewValidationException.Should().BeEquivalentTo(
+                expectedLabViewValidationException);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedLabViewValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLabViewValidationException))),
+                        Times.Once);
 
             this.labServiceMock.Verify(service =>
                 service.AddLabAsync(It.IsAny<Lab>()),
-                Times.Never);
+                    Times.Never);
 
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.labServiceMock.VerifyNoOtherCalls();
@@ -80,21 +90,25 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             // when
             ValueTask<LabView> addLabViewTask =
-                this.labViewService.AddLabViewAsync(invalidLabView);
+                this.labViewService.AddLabViewAsync(
+                    invalidLabView);
 
             var actualLabViewValidationException =
-                await Assert.ThrowsAsync<LabViewValidationException>(addLabViewTask.AsTask);
+                await Assert.ThrowsAsync<LabViewValidationException>(
+                    addLabViewTask.AsTask);
 
             // then
-            actualLabViewValidationException.Should().BeEquivalentTo(expectedLabViewValidationException);
+            actualLabViewValidationException.Should().BeEquivalentTo(
+                expectedLabViewValidationException);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedLabViewValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLabViewValidationException))),
+                        Times.Once);
 
             this.labServiceMock.Verify(service =>
                 service.AddLabAsync(It.IsAny<Lab>()),
-                Times.Never);
+                    Times.Never);
 
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.labServiceMock.VerifyNoOtherCalls();
