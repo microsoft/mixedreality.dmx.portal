@@ -10,14 +10,12 @@ namespace DMX.Portal.Web.Models.Labs.Exceptions
 {
     public class InvalidLabException : Xeption
     {
-        private const string exceptionMessage = "Invalid lab error occurred, please correct the errors and try again.";
-
         public InvalidLabException()
-            : base(message: exceptionMessage)
+            : base(message: "Invalid lab error occurred, please correct the errors and try again.")
         { }
 
         public InvalidLabException(Exception innerException, IDictionary data)
-            : base(message: exceptionMessage,
+            : base(message: "Invalid lab error occurred, please correct the errors and try again.",
                   innerException, 
                   data)
         { }
