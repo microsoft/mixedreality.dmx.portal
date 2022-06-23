@@ -206,8 +206,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         public async Task ShouldThrowServiceExceptionOnAddIfErrorOccursAndLogItAsync()
         {
             // given
-            var someLab = CreateRandomLab();
-
+            Lab someLab = CreateRandomLab();
             var serviceException = new Exception();
 
             var failedLabServiceException =
