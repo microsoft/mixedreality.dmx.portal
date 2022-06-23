@@ -59,13 +59,38 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         private static string GetRandomString() =>
             new MnemonicString().GetValue();
 
+        private static Lab CreateRandomLab() =>
+            CreateLabFiller().Create();
+
         private static List<Lab> CreateRandomLabs() =>
             CreateLabFiller().Create(count: GetRandomNumber()).ToList();
 
         private static int GetRandomNumber() =>
             new IntRange(min: 2, max: 10).GetValue();
 
+        private static T GetInvalidEnum<T>()
+        {
+            int randomNumber = GetLocalRandomNumber();
+
+            while (Enum.IsDefined(typeof(T), randomNumber))
+            {
+                randomNumber = GetLocalRandomNumber();
+            }
+
+            return (T)(object)randomNumber;
+
+            static int GetLocalRandomNumber() =>
+                new IntRange(min: int.MinValue, max: int.MaxValue).GetValue();
+        }
+
         private static Filler<Lab> CreateLabFiller() =>
             new Filler<Lab>();
+
+        private static Dictionary<string, List<string>> CreateRandomDictionary()
+        {
+            var filler = new Filler<Dictionary<string, List<string>>>();
+
+            return filler.Create();
+        }
     }
 }

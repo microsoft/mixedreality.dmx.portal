@@ -72,8 +72,8 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             var failedLabDependencyException =
                 new FailedLabDependencyException(httpResponseException);
 
-            var expectedLabDependencyException = new
-                LabDependencyException(failedLabDependencyException);
+            var expectedLabDependencyException =
+                new LabDependencyException(failedLabDependencyException);
 
             this.dmxApiBrokerMock.Setup(broker =>
                 broker.GetAllLabsAsync())
