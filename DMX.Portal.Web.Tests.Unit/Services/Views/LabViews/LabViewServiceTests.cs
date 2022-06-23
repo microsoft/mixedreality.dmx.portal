@@ -72,6 +72,25 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 }).ToList<dynamic>();
         }
 
+        private static dynamic CreateRandomLabViewProperty()
+        {
+            Guid randomId = Guid.NewGuid();
+
+            (LabStatus labStatus, LabStatusView labStatusView) =
+                GetRandomCorrespondingEnums<LabStatus, LabStatusView>();
+
+            return new
+            {
+                Id = randomId,
+                LabName = GetRandomString(),
+                LabDescription = GetRandomString(),
+                DmxVersion = "1.0",
+                LabStatusView = labStatusView,
+                LabStatus = labStatus,
+                Devices = CreateRandomLabDevices()
+            };
+        }
+
         private static List<dynamic> CreateRandomLabDevices()
         {
             return Enumerable.Range(start: 0, count: GetRandomNumber())

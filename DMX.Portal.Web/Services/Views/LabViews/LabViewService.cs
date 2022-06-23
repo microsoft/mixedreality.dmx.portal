@@ -68,5 +68,10 @@ namespace DMX.Portal.Web.Services.Views.LabViews
                 _ => PowerLevelView.Unknown
             };
         }
+
+        public ValueTask<LabView> AddLabViewAsync(LabView labView)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
