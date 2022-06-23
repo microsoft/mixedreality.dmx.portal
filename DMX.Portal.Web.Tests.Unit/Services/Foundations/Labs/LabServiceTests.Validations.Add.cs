@@ -19,8 +19,11 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             Lab nullLab = null;
             
-            var nullLabException = new NullLabException();
-            var expectedLabValidationException = new LabValidationException(nullLabException);
+            var nullLabException =
+                new NullLabException();
+            
+            var expectedLabValidationException =
+                new LabValidationException(nullLabException);
 
             // when
             ValueTask<Lab> addLabTask = this.labService.AddLabAsync(nullLab);
