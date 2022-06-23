@@ -29,14 +29,17 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             ValueTask<Lab> addLabTask = this.labService.AddLabAsync(nullLab);
 
             LabValidationException actualLabValidationException =
-                await Assert.ThrowsAsync<LabValidationException>(addLabTask.AsTask);
+                await Assert.ThrowsAsync<LabValidationException>(
+                    addLabTask.AsTask);
 
             // then
-            actualLabValidationException.Should().BeEquivalentTo(expectedLabValidationException);
+            actualLabValidationException.Should().BeEquivalentTo(
+                expectedLabValidationException);
 
             loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedLabValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLabValidationException))),
+                        Times.Once);
 
             dmxApiBrokerMock.Verify(broker =>
                 broker.PostLabAsync(It.IsAny<Lab>()),
@@ -82,18 +85,21 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                 this.labService.AddLabAsync(invalidLab);
 
             LabValidationException actualLabValidationException =
-                await Assert.ThrowsAsync<LabValidationException>(addLabTask.AsTask);
+                await Assert.ThrowsAsync<LabValidationException>(
+                    addLabTask.AsTask);
 
             // then
-            actualLabValidationException.Should().BeEquivalentTo(expectedLabValidationException);
+            actualLabValidationException.Should().BeEquivalentTo(
+                expectedLabValidationException);
 
             loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(expectedLabValidationException))),
-                Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLabValidationException))),
+                        Times.Once);
 
             dmxApiBrokerMock.Verify(broker =>
                 broker.PostLabAsync(It.IsAny<Lab>()),
-                Times.Never);
+                    Times.Never);
 
             dmxApiBrokerMock.VerifyNoOtherCalls();
             loggingBrokerMock.VerifyNoOtherCalls();
