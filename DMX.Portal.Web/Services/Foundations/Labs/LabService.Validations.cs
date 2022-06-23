@@ -22,7 +22,7 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
 
         private static void ValidateLabIsNotNull(Lab lab)
         {
-            if (lab == null)
+            if (lab is null)
             {
                 throw new NullLabException();
             }

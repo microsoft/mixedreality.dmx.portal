@@ -27,6 +27,7 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
         TryCatch(async () =>
         {
             ValidateLabOnAdd(lab);
+
             return await this.dmxApiBroker.PostLabAsync(lab);
         });
 

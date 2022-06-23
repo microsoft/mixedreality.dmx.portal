@@ -15,6 +15,7 @@ namespace DMX.Portal.Web.Models.Labs.Exceptions
         public InvalidLabException()
             : base(message: exceptionMessage)
         { }
+
         public InvalidLabException(Exception innerException, IDictionary data)
             : base(message: exceptionMessage,
                   innerException, 
