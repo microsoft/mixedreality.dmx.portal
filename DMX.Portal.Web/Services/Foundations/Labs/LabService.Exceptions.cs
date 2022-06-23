@@ -4,7 +4,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Labs.Exceptions;
@@ -96,19 +95,19 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
 
                 throw CreateAndLogCriticalDependencyException(failedLabDependencyException);
             }
+            catch (HttpResponseConflictException httpResponseConflictException)
+            {
+                var invalidLabException = new AlreadyExistsLabException(
+                    httpResponseConflictException,
+                    httpResponseConflictException.Data);
+
+                throw CreateAndLogDependencyValidationException(invalidLabException);
+            }
             catch (HttpResponseBadRequestException httpResponseBadRequestException)
             {
                 var invalidLabException = new InvalidLabException(
                     httpResponseBadRequestException,
                     httpResponseBadRequestException.Data);
-
-                throw CreateAndLogDependencyValidationException(invalidLabException);
-            }
-            catch (HttpResponseConflictException httpResponseConflictException)
-            {
-                var invalidLabException = new InvalidLabException(
-                    httpResponseConflictException,
-                    httpResponseConflictException.Data);
 
                 throw CreateAndLogDependencyValidationException(invalidLabException);
             }

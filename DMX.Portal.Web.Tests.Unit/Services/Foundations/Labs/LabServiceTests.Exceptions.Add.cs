@@ -119,12 +119,16 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             var randomDictionary = CreateRandomDictionary();
 
             var httpResponseConflictException =
-                new HttpResponseConflictException(httpResponseMessage, randomMessage);
+                new HttpResponseConflictException(
+                    httpResponseMessage,
+                    randomMessage);
 
             httpResponseConflictException.AddData(randomDictionary);
 
             var invalidLabException =
-                new AlreadyExistsLabException(httpResponseConflictException, randomDictionary);
+                new AlreadyExistsLabException(
+                    httpResponseConflictException,
+                    randomDictionary);
 
             var expectedLabDependencyValidationException =
                 new LabDependencyValidationException(invalidLabException);
@@ -137,7 +141,8 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             ValueTask<Lab> addLabTask = this.labService.AddLabAsync(inputLab);
 
             LabDependencyValidationException actualLabDependencyValidationException =
-                await Assert.ThrowsAsync<LabDependencyValidationException>(addLabTask.AsTask);
+                await Assert.ThrowsAsync<LabDependencyValidationException>(
+                    addLabTask.AsTask);
 
             // then
             actualLabDependencyValidationException.Should().BeEquivalentTo(
@@ -148,9 +153,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                     Times.Once);
 
             this.loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(
-                    SameExceptionAs(expectedLabDependencyValidationException))),
-                    Times.Once);
+                broker.LogError(It.Is(SameExceptionAs(
+                    expectedLabDependencyValidationException))),
+                        Times.Once);
 
             this.dmxApiBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
