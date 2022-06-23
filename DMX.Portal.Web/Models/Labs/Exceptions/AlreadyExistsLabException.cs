@@ -16,7 +16,7 @@ namespace DMX.Portal.Web.Models.Labs.Exceptions
 
         public AlreadyExistsLabException(Exception innerException, IDictionary data)
             : base(message: "Invalid lab error occurred, please correct the errors and try again.",
-                  innerException, 
+                  innerException,
                   data)
         { }
     }

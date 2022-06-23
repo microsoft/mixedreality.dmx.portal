@@ -18,17 +18,17 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         {
             // given
             Lab nullLab = null;
-            
+
             var nullLabException =
                 new NullLabException();
-            
+
             var expectedLabValidationException =
                 new LabValidationException(nullLabException);
 
             // when
             ValueTask<Lab> addLabTask = this.labService.AddLabAsync(nullLab);
 
-            LabValidationException actualLabValidationException = 
+            LabValidationException actualLabValidationException =
                 await Assert.ThrowsAsync<LabValidationException>(addLabTask.AsTask);
 
             // then
@@ -74,11 +74,11 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                 key: nameof(Lab.Description),
                 values: "Text is required");
 
-            var expectedLabValidationException = 
+            var expectedLabValidationException =
                 new LabValidationException(invalidLabException);
 
             // when
-            ValueTask<Lab> addLabTask = 
+            ValueTask<Lab> addLabTask =
                 this.labService.AddLabAsync(invalidLab);
 
             LabValidationException actualLabValidationException =

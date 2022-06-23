@@ -3,7 +3,6 @@
 // ---------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
@@ -175,7 +174,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             var failedLabDependencyException =
                 new FailedLabDependencyException(httpResponseException);
 
-            var expectedLabDependencyException = 
+            var expectedLabDependencyException =
                 new LabDependencyException(failedLabDependencyException);
 
             this.dmxApiBrokerMock.Setup(broker =>
