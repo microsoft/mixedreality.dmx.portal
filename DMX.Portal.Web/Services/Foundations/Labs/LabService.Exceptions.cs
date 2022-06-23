@@ -15,6 +15,7 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
     public partial class LabService
     {
         private delegate ValueTask<List<Lab>> ReturningLabsFunction();
+        private delegate ValueTask<Lab> ReturningLabFunction();
 
         private async ValueTask<List<Lab>> TryCatch(ReturningLabsFunction returningLabsFunction)
         {
@@ -59,6 +60,73 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             }
         }
 
+        private async ValueTask<Lab> TryCatch(ReturningLabFunction returningLabFunction)
+        {
+            try
+            {
+                return await returningLabFunction();
+            }
+            catch (NullLabException nullLabException)
+            {
+                throw CreateAndLogValidationException(nullLabException);
+            }
+            catch (InvalidLabException invalidLabException)
+            {
+                throw CreateAndLogValidationException(invalidLabException);
+            }
+            catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
+            {
+                var failedLabDependencyException =
+                    new FailedLabDependencyException(httpResponseUrlNotFoundException);
+
+                throw CreateAndLogCriticalDependencyException(failedLabDependencyException);
+            }
+            catch (HttpResponseUnauthorizedException httpResponseUrlNotFoundException)
+            {
+                var failedLabDependencyException =
+                    new FailedLabDependencyException(httpResponseUrlNotFoundException);
+
+                throw CreateAndLogCriticalDependencyException(failedLabDependencyException);
+            }
+            catch (HttpResponseForbiddenException httpResponseForbiddenException)
+            {
+                var failedLabDependencyException =
+                    new FailedLabDependencyException(httpResponseForbiddenException);
+
+                throw CreateAndLogCriticalDependencyException(failedLabDependencyException);
+            }
+            catch (HttpResponseConflictException httpResponseConflictException)
+            {
+                var invalidLabException = new AlreadyExistsLabException(
+                    httpResponseConflictException,
+                    httpResponseConflictException.Data);
+
+                throw CreateAndLogDependencyValidationException(invalidLabException);
+            }
+            catch (HttpResponseBadRequestException httpResponseBadRequestException)
+            {
+                var invalidLabException = new InvalidLabException(
+                    httpResponseBadRequestException,
+                    httpResponseBadRequestException.Data);
+
+                throw CreateAndLogDependencyValidationException(invalidLabException);
+            }
+            catch (HttpResponseException httpResponseException)
+            {
+                var failedLabDependencyException =
+                    new FailedLabDependencyException(httpResponseException);
+
+                throw CreateAndLogDependencyException(failedLabDependencyException);
+            }
+            catch (Exception exception)
+            {
+                var failedLabServiceException =
+                    new FailedLabServiceException(exception);
+
+                throw CreateAndLogServiceException(failedLabServiceException);
+            }
+        }
+
         private LabDependencyException CreateAndLogCriticalDependencyException(Xeption xeption)
         {
             var labDependencyException = new LabDependencyException(xeption);
@@ -81,6 +149,23 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             this.loggingBroker.LogError(labServiceException);
 
             return labServiceException;
+        }
+
+        private LabDependencyValidationException CreateAndLogDependencyValidationException(
+            Xeption xeption)
+        {
+            var labDependencyValidationException = new LabDependencyValidationException(xeption);
+            this.loggingBroker.LogError(labDependencyValidationException);
+
+            return labDependencyValidationException;
+        }
+
+        private LabValidationException CreateAndLogValidationException(Xeption xeption)
+        {
+            var labValidationException = new LabValidationException(xeption);
+            this.loggingBroker.LogError(labValidationException);
+
+            return labValidationException;
         }
     }
 }
