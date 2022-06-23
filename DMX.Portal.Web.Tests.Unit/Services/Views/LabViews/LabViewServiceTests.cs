@@ -121,6 +121,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 }).ToList<dynamic>();
         }
 
+        private static LabView CreateRandomLabView() =>
+            new Filler<LabView>().Create();
+
         private static List<LabView> OrderLabViewsByName(List<LabView> labs) =>
             labs.OrderBy(lab => lab.Name).ToList();
 
