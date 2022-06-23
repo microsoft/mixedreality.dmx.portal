@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
@@ -20,7 +16,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             // given
             LabView nullLabView = null;
             var nullLabViewException = new NullLabViewException();
-            var expectedLabViewValidationException = 
+            var expectedLabViewValidationException =
                 new LabViewValidationException(nullLabViewException);
 
             // when
@@ -62,6 +58,22 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             var invalidLabViewException =
                 new InvalidLabViewException();
+
+            invalidLabViewException.AddData(
+                key: nameof(LabView.Id),
+                values: "Id is required");
+
+            invalidLabViewException.AddData(
+                key: nameof(LabView.Name),
+                values: "Text is required");
+
+            invalidLabViewException.AddData(
+                key: nameof(LabView.Description),
+                values: "Text is required");
+
+            invalidLabViewException.AddData(
+                key: nameof(LabView.DmxVersion),
+                values: "Text is required");
 
             var expectedLabViewValidationException =
                 new LabViewValidationException(invalidLabViewException);
