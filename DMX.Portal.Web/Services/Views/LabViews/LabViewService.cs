@@ -35,14 +35,17 @@ namespace DMX.Portal.Web.Services.Views.LabViews
                 labs.Select(AsLabViewWithDevices).ToList());
         });
 
-        public async ValueTask<LabView> AddLabViewAsync(LabView labView)
+        public ValueTask<LabView> AddLabViewAsync(LabView labView) =>
+        TryCatch(async () =>
         {
+            ValidateLabViewOnAdd(labView);
+
             Lab inputLab = AsLab(labView);
             Lab addedLab = await this.labService.AddLabAsync(inputLab);
             LabView addedLabView = AsLabView(addedLab);
 
             return addedLabView;
-        }
+        });
 
         private static List<LabView> OrderLabViewsByName(
             List<LabView> labViews) =>

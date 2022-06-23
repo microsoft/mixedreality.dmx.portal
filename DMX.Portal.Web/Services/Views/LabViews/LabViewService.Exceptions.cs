@@ -15,6 +15,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
     public partial class LabViewService
     {
         private delegate ValueTask<List<LabView>> ReturningLabViewsFunction();
+        private delegate ValueTask<LabView> ReturningLabViewFunction();
 
         private async ValueTask<List<LabView>> TryCatch(ReturningLabViewsFunction returningLabViewsFunction)
         {
@@ -35,6 +36,33 @@ namespace DMX.Portal.Web.Services.Views.LabViews
                 var failedLabViewServiceException = new FailedLabViewServiceException(exception);
                 throw CreateAndLogServiceException(failedLabViewServiceException);
             }
+        }
+
+        private async ValueTask<LabView> TryCatch(ReturningLabViewFunction returningLabViewFunction)
+        {
+            try
+            {
+                return await returningLabViewFunction();
+            }
+            catch (NullLabViewException nullLabViewException)
+            {
+                throw CreateAndLogValidationException(nullLabViewException);
+            }
+            catch (Exception exception)
+            {
+                var failedLabViewServiceException = new FailedLabViewServiceException(exception);
+                throw CreateAndLogServiceException(failedLabViewServiceException);
+            }
+        }
+
+        private Exception CreateAndLogValidationException(Xeption xeption)
+        {
+            var labViewValidationException =
+                new LabViewValidationException(xeption);
+
+            this.loggingBroker.LogError(labViewValidationException);
+
+            return labViewValidationException;
         }
 
         private LabViewDependencyException CreateAndLogDependencyException(Xeption exception)
