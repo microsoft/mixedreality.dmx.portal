@@ -12,6 +12,7 @@ using DMX.Portal.Web.Models.Labs.Exceptions;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using DMX.Portal.Web.Services.Views.LabViews;
+using KellermanSoftware.CompareNetObjects;
 using Moq;
 using Tynamix.ObjectFiller;
 using Xeptions;
@@ -23,12 +24,14 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
     {
         private readonly Mock<ILabService> labServiceMock;
         private readonly Mock<ILoggingBroker> loggingBrokerMock;
+        private readonly ICompareLogic compareLogic;
         private readonly ILabViewService labViewService;
 
         public LabViewServiceTests()
         {
             this.labServiceMock = new Mock<ILabService>();
             this.loggingBrokerMock = new Mock<ILoggingBroker>();
+            this.compareLogic = new CompareLogic();
 
             this.labViewService = new LabViewService(
                 labService: this.labServiceMock.Object,
@@ -46,8 +49,11 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             };
         }
 
-        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
+        private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
             actualException => actualException.SameExceptionAs(expectedException);
+
+        private Expression<Func<Lab, bool>> SameLabAs(Lab expectedLab) =>
+            actualLab => this.compareLogic.Compare(expectedLab, actualLab).AreEqual;
 
         private static List<dynamic> CreateRandomLabViewProperties()
         {

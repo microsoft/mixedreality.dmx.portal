@@ -26,15 +26,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 Id = randomLabViewProperties.Id,
                 Name = randomLabViewProperties.LabName,
                 Description = randomLabViewProperties.LabDescription,
-                Status = randomLabViewProperties.LabStatus,
-
-                Devices = ((List<dynamic>)randomLabViewProperties.Devices).Select(item =>
-                new LabDevice
-                {
-                    Name = item.DeviceName,
-                    PowerLevel = item.PowerLevel,
-                    Type = item.LabDeviceType
-                }).ToList()
+                Status = randomLabViewProperties.LabStatus
             };
 
             LabView randomLabView = new LabView()
@@ -43,14 +35,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 Name = randomLabViewProperties.LabName,
                 Description = randomLabViewProperties.LabDescription,
                 Status = randomLabViewProperties.LabStatusView,
-                DmxVersion = randomLabViewProperties.DmxVersion,
-                Devices = ((List<dynamic>)randomLabViewProperties.Devices).Select(item =>
-                new LabDeviceView
-                {
-                    Name = item.DeviceName,
-                    PowerLevel = item.PowerLevelView,
-                    Type = item.LabDeviceTypeView
-                }).ToList()
+                DmxVersion = randomLabViewProperties.DmxVersion
             };
 
             Lab inputLab = randomLab;
@@ -59,7 +44,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             LabView expectedLabView = inputLabView.DeepClone();
 
             this.labServiceMock.Setup(service =>
-                service.AddLabAsync(inputLab))
+                service.AddLabAsync(It.Is(SameLabAs(inputLab))))
                     .ReturnsAsync(addedLab);
 
             // when
@@ -70,7 +55,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             actualLabView.Should().BeEquivalentTo(expectedLabView);
 
             this.labServiceMock.Verify(service =>
-                service.AddLabAsync(inputLab),
+                service.AddLabAsync(It.Is(SameLabAs(inputLab))),
                     Times.Once);
 
             this.labServiceMock.VerifyNoOtherCalls();
