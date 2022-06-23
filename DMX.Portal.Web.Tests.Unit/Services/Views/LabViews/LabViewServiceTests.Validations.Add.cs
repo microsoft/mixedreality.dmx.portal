@@ -19,7 +19,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
         {
             // given
             LabView nullLabView = null;
-            
+
             var nullLabViewException =
                 new NullLabViewException();
 
