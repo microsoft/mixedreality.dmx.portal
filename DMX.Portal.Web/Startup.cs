@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Syncfusion.Blazor;
 
 namespace DMX.Portal.Web
 {
@@ -66,6 +67,7 @@ namespace DMX.Portal.Web
         {
             services.AddTransient<ILabService, LabService>();
             services.AddTransient<ILabViewService, LabViewService>();
+            services.AddSyncfusionBlazor();
         }
     }
 }
