@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Views.LabViews;
@@ -49,6 +50,47 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(expectedLabViewDependencyException))),
+                    Times.Once);
+
+            this.labServiceMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public async Task ShouldThrowServiceExceptionOnAddIfServiceErrorOccurrsAndLogItAsync()
+        {
+            // given
+            var randomLabView = CreateRandomLabView();
+            var inputLabView = randomLabView;
+            var serviceException = new Exception();
+
+            var failedLabViewServiceException =
+                new FailedLabViewServiceException(serviceException);
+
+            var expectedLabViewServiceException =
+                new LabViewServiceException(failedLabViewServiceException);
+
+            this.labServiceMock.Setup(service =>
+                service.AddLabAsync(It.IsAny<Lab>()))
+                    .ThrowsAsync(serviceException);
+
+            // when
+            ValueTask<LabView> addLabView = 
+                this.labViewService.AddLabViewAsync(randomLabView);
+
+            var actualLabViewServiceException =
+                await Assert.ThrowsAsync<LabViewServiceException>(addLabView.AsTask);
+
+            // then
+            actualLabViewServiceException
+                .Should().BeEquivalentTo(expectedLabViewServiceException); 
+
+            this.labServiceMock.Verify(service =>
+                service.AddLabAsync(It.IsAny<Lab>()), 
+                    Times.Once());
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedLabViewServiceException))),
                     Times.Once);
 
             this.labServiceMock.VerifyNoOtherCalls();
