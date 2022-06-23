@@ -52,6 +52,14 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             {
                 throw CreateAndLogValidationException(invalidLabViewException);
             }
+            catch (LabDependencyException labDependencyException)
+            {
+                throw CreateAndLogDependencyException(labDependencyException);
+            }
+            catch (LabServiceException labServiceException)
+            {
+                throw CreateAndLogDependencyException(labServiceException);
+            }
             catch (Exception exception)
             {
                 var failedLabViewServiceException = new FailedLabViewServiceException(exception);

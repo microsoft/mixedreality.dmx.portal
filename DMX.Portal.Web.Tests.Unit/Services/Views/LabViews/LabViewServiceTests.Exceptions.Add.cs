@@ -25,7 +25,8 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             LabView inputLabView = randomLabView;
 
             var expectedLabViewDependencyException =
-                new LabViewDependencyException(dependencyException);
+                new LabViewDependencyException(
+                    dependencyException.InnerException as Xeption);
 
             this.labServiceMock.Setup(service =>
                 service.AddLabAsync(It.IsAny<Lab>()))
