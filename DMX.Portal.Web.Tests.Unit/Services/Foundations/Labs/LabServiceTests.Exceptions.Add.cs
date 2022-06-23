@@ -124,7 +124,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             httpResponseConflictException.AddData(randomDictionary);
 
             var invalidLabException =
-                new InvalidLabException(httpResponseConflictException, randomDictionary);
+                new AlreadyExistsLabException(httpResponseConflictException, randomDictionary);
 
             var expectedLabDependencyValidationException =
                 new LabDependencyValidationException(invalidLabException);
