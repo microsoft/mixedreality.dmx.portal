@@ -98,46 +98,5 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             dmxApiBrokerMock.VerifyNoOtherCalls();
             loggingBrokerMock.VerifyNoOtherCalls();
         }
-
-        [Fact]
-        public async Task ShouldThrowValidationExceptionOnAddIfLabStatusIsInvalidAndLogItAsync()
-        {
-            // given
-            var randomLab = CreateRandomLab();
-            Lab invalidLab = randomLab;
-            invalidLab.Status = GetInvalidEnum<LabStatus>();
-
-            var invalidLabException = new InvalidLabException();
-
-            invalidLabException.AddData(
-                key: nameof(Lab.Status),
-                values: "Value is not recognized");
-
-            var expectedLabValidationException =
-                new LabValidationException(invalidLabException);
-
-            // when
-            ValueTask<Lab> addLabTask =
-                this.labService.AddLabAsync(invalidLab);
-
-            LabValidationException actualLabValidationException =
-                await Assert.ThrowsAsync<LabValidationException>(addLabTask.AsTask);
-
-            // then
-            actualLabValidationException.Should().BeEquivalentTo(
-                expectedLabValidationException);
-
-            loggingBrokerMock.Verify(broker =>
-                broker.LogError(It.Is(SameExceptionAs(
-                    expectedLabValidationException))),
-                        Times.Once);
-
-            dmxApiBrokerMock.Verify(broker =>
-                broker.PostLabAsync(It.IsAny<Lab>()),
-                    Times.Never);
-
-            dmxApiBrokerMock.VerifyNoOtherCalls();
-            loggingBrokerMock.VerifyNoOtherCalls();
-        }
     }
 }
