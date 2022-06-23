@@ -25,7 +25,9 @@ namespace DMX.Portal.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddSyncfusionBlazor();
             services.AddHttpClient();
+
             AddBrokers(services);
             AddServices(services);
 
@@ -67,7 +69,6 @@ namespace DMX.Portal.Web
         {
             services.AddTransient<ILabService, LabService>();
             services.AddTransient<ILabViewService, LabViewService>();
-            services.AddSyncfusionBlazor();
         }
     }
 }
