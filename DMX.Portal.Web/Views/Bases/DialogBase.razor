@@ -1,0 +1,20 @@
+﻿@using Syncfusion.Blazor.Popups
+
+<SfDialog @bind-Visible=@IsVisible
+          Header=@Title
+          Height=@Height
+          Width=@Width
+          ShowCloseIcon=true
+          IsModal=true
+          AllowDragging=true>
+    <DialogTemplates>
+        <Content>@Content</Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton @ref=DialogButton
+                      Disabled=IsDialogButtonDisabled
+                      Content=@ButtonTitle
+                      OnClick=@Click 
+                      IsPrimary=true />
+    </DialogButtons>
+</SfDialog>
