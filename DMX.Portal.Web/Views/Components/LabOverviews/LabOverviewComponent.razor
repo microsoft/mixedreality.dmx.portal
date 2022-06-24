@@ -14,7 +14,10 @@
 
             <ContainerBase @ref=LabTitleStatusContainer
                            CssClass="lab-overview-title">
-                <LabTitleComponent @ref=LabTitleComponent Lab=@Lab />
+
+                <LabTitleComponent  @ref=LabTitleComponent 
+                                    Lab=@Lab />
+
             </ContainerBase>
 
             <LabOverviewDetailsComponent @ref=Details
@@ -27,8 +30,11 @@
             <ContainerBase @ref="DevicesContainer"
                            CssClass="device-overviews">
 
-                <Iterations Items="@Lab.Devices" Context="Device">
+                <Iterations Items="@Lab.Devices" 
+                            Context="Device">
+
                     <DeviceOverviewComponent Device="Device" />
+
                 </Iterations>
 
             </ContainerBase>
