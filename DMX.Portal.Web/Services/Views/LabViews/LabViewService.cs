@@ -32,7 +32,19 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             List<Lab> labs = await this.labService.RetrieveAllLabsAsync();
 
             return OrderLabViewsByName(
-                labs.Select(AsLabView).ToList());
+                labs.Select(AsLabViewWithDevices).ToList());
+        });
+
+        public ValueTask<LabView> AddLabViewAsync(LabView labView) =>
+        TryCatch(async () =>
+        {
+            ValidateLabViewOnAdd(labView);
+
+            Lab inputLab = AsLab(labView);
+            Lab addedLab = await this.labService.AddLabAsync(inputLab);
+            LabView addedLabView = AsLabView(addedLab);
+
+            return addedLabView;
         });
 
         private static List<LabView> OrderLabViewsByName(
@@ -46,8 +58,27 @@ namespace DMX.Portal.Web.Services.Views.LabViews
             Name = lab.Name,
             Description = lab.Description,
             DmxVersion = "1.0",
+            Status = (LabStatusView)lab.Status
+        };
+
+        private static Func<Lab, LabView> AsLabViewWithDevices =>
+        lab => new LabView
+        {
+            Id = lab.Id,
+            Name = lab.Name,
+            Description = lab.Description,
+            DmxVersion = "1.0",
             Status = (LabStatusView)lab.Status,
             Devices = lab.Devices.Select(AsLabDeviceView).ToList()
+        };
+
+        private static Func<LabView, Lab> AsLab =>
+        lab => new Lab
+        {
+            Id = lab.Id,
+            Name = lab.Name,
+            Description = lab.Description,
+            Status = (LabStatus)lab.Status
         };
 
         private static Func<LabDevice, LabDeviceView> AsLabDeviceView =

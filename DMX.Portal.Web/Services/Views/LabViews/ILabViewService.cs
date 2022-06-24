@@ -11,5 +11,6 @@ namespace DMX.Portal.Web.Services.Views.LabViews
     public interface ILabViewService
     {
         ValueTask<List<LabView>> RetrieveAllLabViewsAsync();
+        ValueTask<LabView> AddLabViewAsync(LabView labView);
     }
 }
