@@ -27,7 +27,7 @@ namespace DMX.Portal.Web
             services.AddServerSideBlazor();
             services.AddSyncfusionBlazor();
             services.AddHttpClient();
-
+            services.AddSyncfusionBlazor();
             AddBrokers(services);
             AddServices(services);
 
