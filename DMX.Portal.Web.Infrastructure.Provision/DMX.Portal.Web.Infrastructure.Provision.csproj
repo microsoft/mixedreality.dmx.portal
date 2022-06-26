@@ -9,9 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.38.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.0-preview.4.22229.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0-preview.4.22229.4" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-preview.4.22229.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.0-preview.5.22301.12" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="7.0.0-preview.5.22301.12" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-preview.5.22301.12" />
   </ItemGroup>
 
 </Project>
