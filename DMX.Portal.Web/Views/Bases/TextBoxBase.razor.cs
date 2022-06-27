@@ -23,7 +23,7 @@ namespace DMX.Portal.Web.Views.Bases
 
         public bool IsEnabled => IsDisabled is false;
 
-        public async Task SetValue(string value)
+        public async Task SetValueAsync(string value)
         {
             this.Value = value;
             await ValueChanged.InvokeAsync(this.Value);
