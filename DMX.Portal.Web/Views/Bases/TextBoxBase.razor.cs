@@ -23,11 +23,12 @@ namespace DMX.Portal.Web.Views.Bases
 
         public bool IsEnabled => IsDisabled is false;
 
-        public async Task SetValueAsync(string value)
-        {
-            this.Value = value;
-            await ValueChanged.InvokeAsync(this.Value);
-        }
+        public Task SetValueAsync(string value) =>
+            InvokeAsync(async () =>
+            {
+                this.Value = value;
+                await this.ValueChanged.InvokeAsync(this.Value);
+            });
 
         private Task OnValueChanged(ChangeEventArgs changeEventArgs)
         {
