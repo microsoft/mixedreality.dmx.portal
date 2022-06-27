@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
@@ -105,6 +106,62 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 
             this.labViewServiceMock.Verify(service =>
                 service.AddLabViewAsync(this.renderedNewLabDialog.Instance.LabView),
+                    Times.Once);
+
+            this.labViewServiceMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public async Task ShouldDisableControlAndDisplayLoadingOnSubmitAsync()
+        {
+            // given
+            string randomLabName = GetRandomString();
+            string randomLabDescription = GetRandomString();
+
+            var someLabView = new LabView
+            {
+                Name = randomLabName,
+                Description = randomLabDescription
+            };
+
+            this.labViewServiceMock.Setup(service =>
+                service.AddLabViewAsync(It.IsAny<LabView>()))
+                    .ReturnsAsync(
+                        value: someLabView,
+                        delay: TimeSpan.FromMilliseconds(500));
+
+            // when 
+            this.renderedNewLabDialog =
+                RenderComponent<NewLabDialog>();
+
+            this.renderedNewLabDialog.Instance
+                .OpenDialog();
+
+            await this.renderedNewLabDialog.Instance.LabName
+                .SetValueAsync(randomLabName);
+
+            await this.renderedNewLabDialog.Instance.LabDescription
+                .SetValueAsync(randomLabDescription);
+
+            this.renderedNewLabDialog.Instance.Dialog
+                .Click();
+
+            // then
+            this.renderedNewLabDialog.Instance.LabName
+                .IsDisabled.Should().BeTrue();
+
+            this.renderedNewLabDialog.Instance.LabDescription
+                .IsDisabled.Should().BeTrue();
+
+            this.renderedNewLabDialog.Instance.Dialog.DialogButton
+                .Disabled.Should().BeTrue();
+
+            this.renderedNewLabDialog.Instance.Spinner.IsVisible
+                .Should().BeTrue();
+
+            this.labViewServiceMock.Verify(service =>
+                service.AddLabViewAsync(
+                    It.IsAny<LabView>()),
                     Times.Once);
 
             this.labViewServiceMock.VerifyNoOtherCalls();
