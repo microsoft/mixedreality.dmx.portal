@@ -24,8 +24,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 CreateRandomLabViewProperties();
 
             List<Lab> randomLabs = randomLabViewProperties.Select(item =>
-            {
-                return new Lab
+                new Lab
                 {
                     Id = item.Id,
                     Name = item.LabName,
@@ -33,33 +32,31 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                     Status = item.LabStatus,
 
                     Devices = ((List<dynamic>)item.Devices).Select(item =>
-                    new LabDevice
-                    {
-                        Name = item.DeviceName,
-                        PowerLevel = item.PowerLevel,
-                        Type = item.LabDeviceType
-                    }).ToList()
-                };
-            }).ToList();
+                        new LabDevice
+                        {
+                            Name = item.DeviceName,
+                            PowerLevel = item.PowerLevel,
+                            Type = item.LabDeviceType
+                        }).ToList()
+                }).ToList();
 
             List<LabView> randomLabViews = randomLabViewProperties.Select(item =>
-            {
-                return new LabView
+                new LabView
                 {
                     Id = item.Id,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatusView,
                     DmxVersion = item.DmxVersion,
+
                     Devices = ((List<dynamic>)item.Devices).Select(item =>
-                    new LabDeviceView
-                    {
-                        Name = item.DeviceName,
-                        PowerLevel = item.PowerLevelView,
-                        Type = item.LabDeviceTypeView
-                    }).ToList()
-                };
-            }).ToList();
+                        new LabDeviceView
+                        {
+                            Name = item.DeviceName,
+                            PowerLevel = item.PowerLevelView,
+                            Type = item.LabDeviceTypeView
+                        }).ToList()
+                }).ToList();
 
             List<Lab> retrievedLabs = randomLabs;
             List<LabView> expectedLabViews = randomLabViews;
@@ -91,8 +88,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 CreateRandomLabViewProperties();
 
             List<Lab> randomLabs = randomLabViewProperties.Select(item =>
-            {
-                return new Lab
+                new Lab
                 {
                     Id = item.Id,
                     Name = item.LabName,
@@ -100,14 +96,14 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                     Status = item.LabStatus,
 
                     Devices = ((List<dynamic>)item.Devices).Select(item =>
-                    new LabDevice
-                    {
-                        Name = item.DeviceName,
-                        PowerLevel = item.PowerLevel,
-                        Type = item.LabDeviceType
-                    }).ToList()
-                };
-            }).ToList();
+                        new LabDevice
+                        {
+                            Name = item.DeviceName,
+                            PowerLevel = item.PowerLevel,
+                            Type = item.LabDeviceType
+                        }).ToList()
+
+                }).ToList();
 
             List<LabView> randomLabViews = randomLabViewProperties.Select(item =>
             {
@@ -129,7 +125,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             }).ToList();
 
             List<Lab> retrievedLabs = randomLabs;
-            List<LabView> expectedLabViews = OrderLabViewsByName(randomLabViews.DeepClone());
+
+            List<LabView> expectedLabViews = 
+                OrderLabViewsByName(randomLabViews.DeepClone());
 
             this.labServiceMock.Setup(service =>
                 service.RetrieveAllLabsAsync())
@@ -142,7 +140,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             // then
             actualLabViews.Should().BeEquivalentTo(
                 expectedLabViews,
-                opt => opt.WithStrictOrdering());
+                options => options.WithStrictOrdering());
 
             this.labServiceMock.Verify(service =>
                 service.RetrieveAllLabsAsync(),

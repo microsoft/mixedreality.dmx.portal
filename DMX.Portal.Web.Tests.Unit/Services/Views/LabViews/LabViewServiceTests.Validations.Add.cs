@@ -30,7 +30,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             ValueTask<LabView> addLabViewTask =
                 this.labViewService.AddLabViewAsync(nullLabView);
 
-            var actualLabViewValidationException =
+            LabViewValidationException actualLabViewValidationException =
                 await Assert.ThrowsAsync<LabViewValidationException>(
                     addLabViewTask.AsTask);
 
@@ -93,7 +93,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 this.labViewService.AddLabViewAsync(
                     invalidLabView);
 
-            var actualLabViewValidationException =
+            LabViewValidationException actualLabViewValidationException =
                 await Assert.ThrowsAsync<LabViewValidationException>(
                     addLabViewTask.AsTask);
 

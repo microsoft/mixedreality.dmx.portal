@@ -21,7 +21,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             dynamic randomLabViewProperties =
                 CreateRandomLabViewProperty();
 
-            Lab randomLab = new Lab()
+            var randomLab = new Lab()
             {
                 Id = randomLabViewProperties.Id,
                 Name = randomLabViewProperties.LabName,
@@ -29,7 +29,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 Status = randomLabViewProperties.LabStatus
             };
 
-            LabView randomLabView = new LabView()
+            var randomLabView = new LabView()
             {
                 Id = randomLabViewProperties.Id,
                 Name = randomLabViewProperties.LabName,
