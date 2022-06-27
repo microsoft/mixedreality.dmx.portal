@@ -26,5 +26,10 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public string ErrorMessage { get; set; }
         public SpinnerBase Spinner { get; set; }
         public ValidationSummaryBase ContentValidationSummary { get; set; }
+
+        public void OpenDialog()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
