@@ -56,6 +56,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
+            this.renderedNewLabDialog.Instance.Spinner.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.Spinner.IsVisible.Should().BeFalse();
         }
     }
 }
