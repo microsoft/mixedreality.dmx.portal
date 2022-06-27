@@ -162,7 +162,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.labViewServiceMock.Verify(service =>
                 service.AddLabViewAsync(
                     It.IsAny<LabView>()),
-                    Times.Once);
+                        Times.Once);
 
             this.labViewServiceMock.VerifyNoOtherCalls();
         }
