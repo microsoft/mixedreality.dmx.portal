@@ -1,1 +1,12 @@
-﻿
+﻿@using DMX.Portal.Web.Views.Bases
+
+<DialogBase @ref=Dialog
+            Title="Lab Details"
+            ButtonTitle="Save New Lab">
+
+    <Content>
+        <TextBoxBase @ref=LabName/>
+        <TextBoxBase @ref=LabDescription />
+    </Content>
+
+</DialogBase>

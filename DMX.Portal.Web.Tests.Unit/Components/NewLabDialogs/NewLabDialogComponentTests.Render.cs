@@ -50,13 +50,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabViewService.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Dialog.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Dialog.IsVisible.Should().BeTrue();
-            this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("New Lab Details");
+            this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("Lab Details");
             this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
             this.renderedNewLabDialog.Instance.LabName.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
-            this.renderedNewLabDialog.Instance.Spinner.IsVisible.Should().BeFalse();
         }
     }
 }

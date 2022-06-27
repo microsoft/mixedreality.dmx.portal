@@ -27,9 +27,16 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public SpinnerBase Spinner { get; set; }
         public ValidationSummaryBase ContentValidationSummary { get; set; }
 
+        protected override void OnInitialized()
+        {
+            this.LabView = new LabView();
+            this.State = NewLabDialogComponentState.Content;
+        }
+
         public void OpenDialog()
         {
-            throw new NotImplementedException();
+            this.Dialog.Show();
+            this.IsVisible = this.Dialog.IsVisible;
         }
     }
 }
