@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System;
+using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Services.Views.LabViews;
@@ -36,6 +37,24 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public void OpenDialog()
         {
             this.Dialog.Show();
+            this.IsVisible = this.Dialog.IsVisible;
+        }
+
+        public async ValueTask AddLabViewAsync()
+        {
+            this.LabName.Disable();
+            this.LabDescription.Disable();
+            this.Dialog.DisableButton();
+            this.Spinner.Show();
+
+            await this.LabViewService.AddLabViewAsync(this.LabView);
+
+            CloseDialog();
+        }
+
+        public void CloseDialog()
+        {
+            this.Dialog.Hide();
             this.IsVisible = this.Dialog.IsVisible;
         }
     }

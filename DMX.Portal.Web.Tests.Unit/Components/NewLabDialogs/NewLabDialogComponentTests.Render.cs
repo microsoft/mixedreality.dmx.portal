@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.NewLabDialogs;
@@ -63,7 +64,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
         }
 
         [Fact]
-        public async void ShouldSubmitLabViewAsync()
+        public async Task ShouldSubmitLabViewAsync()
         {
             // given
             string randomLabName = GetRandomString();
@@ -103,7 +104,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 .Should().BeEquivalentTo(expectedLabView);
 
             this.labViewServiceMock.Verify(service =>
-                service.AddLabViewAsync(expectedLabView),
+                service.AddLabViewAsync(this.renderedNewLabDialog.Instance.LabView),
                     Times.Once);
 
             this.labViewServiceMock.VerifyNoOtherCalls();

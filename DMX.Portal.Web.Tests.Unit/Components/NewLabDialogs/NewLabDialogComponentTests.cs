@@ -22,6 +22,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.labViewServiceMock = new Mock<ILabViewService>();
             this.Services.AddTransient(services => this.labViewServiceMock.Object);
             this.Services.AddSyncfusionBlazor();
+            this.Services.AddOptions();
         }
 
         public static string GetRandomString() =>
