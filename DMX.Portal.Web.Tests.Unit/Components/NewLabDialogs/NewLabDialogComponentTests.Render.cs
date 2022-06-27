@@ -6,6 +6,7 @@ using DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.NewLabDialogs;
 using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
@@ -59,6 +60,53 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Spinner.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Spinner.IsVisible.Should().BeFalse();
             this.renderedNewLabDialog.Instance.ContentValidationSummary.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async void ShouldSubmitLabViewAsync()
+        {
+            // given
+            string randomLabName = GetRandomString();
+            string randomLabDescription = GetRandomString();
+            string inputLabName = randomLabName;
+            string inputLabDescription = randomLabDescription;
+            string expectedLabName = inputLabName;
+            string expectedLabDescription = inputLabDescription;
+
+            var expectedLabView = new LabView
+            {
+                Name = inputLabName,
+                Description = inputLabDescription
+            };
+
+            // when
+            this.renderedNewLabDialog =
+                RenderComponent<NewLabDialog>();
+
+            this.renderedNewLabDialog.Instance
+                .OpenDialog();
+
+            await this.renderedNewLabDialog.Instance.LabName
+                .SetValueAsync(inputLabName);
+
+            await this.renderedNewLabDialog.Instance.LabDescription
+                .SetValueAsync(inputLabDescription);
+
+            this.renderedNewLabDialog.Instance.Dialog
+                .Click();
+
+            // then
+            this.renderedNewLabDialog.Instance.Dialog.IsVisible
+                .Should().BeFalse();
+
+            this.renderedNewLabDialog.Instance.LabView
+                .Should().BeEquivalentTo(expectedLabView);
+
+            this.labViewServiceMock.Verify(service =>
+                service.AddLabViewAsync(expectedLabView),
+                    Times.Once);
+
+            this.labViewServiceMock.VerifyNoOtherCalls();
         }
     }
 }

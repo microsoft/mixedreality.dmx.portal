@@ -8,6 +8,7 @@ using DMX.Portal.Web.Views.Components.NewLabDialogs;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Syncfusion.Blazor;
+using Tynamix.ObjectFiller;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 {
@@ -22,5 +23,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.Services.AddTransient(services => this.labViewServiceMock.Object);
             this.Services.AddSyncfusionBlazor();
         }
+
+        public static string GetRandomString() =>
+            new MnemonicString(GetRandomNumber()).GetValue();
+
+        public static int GetRandomNumber() =>
+            new IntRange(min: 1, max: 10).GetValue();
     }
 }
