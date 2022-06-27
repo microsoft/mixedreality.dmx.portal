@@ -42,11 +42,6 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
 
         public async ValueTask AddLabViewAsync()
         {
-            this.LabName.Disable();
-            this.LabDescription.Disable();
-            this.Dialog.DisableButton();
-            this.Spinner.Show();
-
             await this.LabViewService.AddLabViewAsync(this.LabView);
 
             CloseDialog();
