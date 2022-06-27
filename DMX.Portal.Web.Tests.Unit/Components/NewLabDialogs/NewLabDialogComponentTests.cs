@@ -58,11 +58,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             return new TheoryData<Xeption>
             {
                 new LabViewValidationException(invalidLabViewNameException),
-                new LabViewDependencyException(invalidLabViewNameException),
                 new LabViewValidationException(invalidLabViewDescriptionException),
-                new LabViewDependencyException(invalidLabViewDescriptionException),
                 new LabViewValidationException(invalidLabViewNameDescriptionException),
-                new LabViewDependencyException(invalidLabViewNameDescriptionException)
             };
         }
 
