@@ -40,17 +40,18 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
             this.IsVisible = this.Dialog.IsVisible;
         }
 
-        public async ValueTask AddLabViewAsync()
-        {
-            this.LabName.Disable();
-            this.LabDescription.Disable();
-            this.Dialog.DisableButton();
-            this.Spinner.Show();
+        public ValueTask AddLabViewAsync() =>
+            TryCatch (async () =>
+            {
+                this.LabName.Disable();
+                this.LabDescription.Disable();
+                this.Dialog.DisableButton();
+                this.Spinner.Show();
 
-            await this.LabViewService.AddLabViewAsync(this.LabView);
+                await this.LabViewService.AddLabViewAsync(this.LabView);
 
-            CloseDialog();
-        }
+                CloseDialog();
+            });
 
         public void CloseDialog()
         {

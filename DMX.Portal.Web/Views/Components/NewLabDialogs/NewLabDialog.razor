@@ -12,7 +12,12 @@
         <TextBoxBase @ref=LabDescription 
                      @bind-Value="@LabView.Description" />
 
-        <ValidationSummaryBase @ref=ContentValidationSummary />
+        <ValidationSummaryBase @ref=ContentValidationSummary 
+                               Key=@nameof(LabView.Name) 
+                               ValidationData=@Exception?.Data 
+                               Color="Red"
+                               Message=@ErrorMessage />
+
         <SpinnerBase @ref=Spinner />
     </Content>
 
