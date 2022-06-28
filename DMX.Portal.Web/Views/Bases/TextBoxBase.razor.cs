@@ -21,6 +21,9 @@ namespace DMX.Portal.Web.Views.Bases
         [Parameter]
         public bool IsDisabled { get; set; }
 
+        [Parameter]
+        public string CssClass { get; set; }
+
         public bool IsEnabled => IsDisabled is false;
 
         public Task SetValueAsync(string value) =>

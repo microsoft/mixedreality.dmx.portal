@@ -44,6 +44,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 NewLabDialogComponentState.Content;
 
             var expectedLabView = new LabView();
+            string expectedTextBoxCssClass = "new-lab-text-box";
 
             // when 
             this.renderedNewLabDialog = RenderComponent<NewLabDialog>();
@@ -57,7 +58,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("Lab Details");
             this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
             this.renderedNewLabDialog.Instance.LabName.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabName.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabDescription.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
             this.renderedNewLabDialog.Instance.Spinner.Should().NotBeNull();
