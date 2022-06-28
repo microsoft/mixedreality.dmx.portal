@@ -18,11 +18,29 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
             {
                 RenderValidationError(labViewValidationException);
             }
+            catch (LabViewDependencyException labViewDependencyException)
+            {
+                RenderDependencyError(labViewDependencyException);
+            }
+            catch (LabViewServiceException labViewServiceException)
+            {
+                RenderDependencyError(labViewServiceException);
+            }
         }
 
         private void RenderValidationError(Xeption xeption)
         {
             this.Exception = xeption.InnerException;
+            this.LabName.Enable();
+            this.LabDescription.Enable();
+            this.Dialog.EnableButton();
+            this.Spinner.Hide();
+        }
+
+        private void RenderDependencyError(Xeption xeption)
+        {
+            this.Exception = xeption;
+            this.ErrorMessage = xeption.Message;
             this.LabName.Enable();
             this.LabDescription.Enable();
             this.Dialog.EnableButton();
