@@ -70,7 +70,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             return new TheoryData<Xeption>
             {
                 new LabViewDependencyException(someException),
-                new LabServiceException(someException)
+                new LabViewServiceException(someException)
             };
         }
 
