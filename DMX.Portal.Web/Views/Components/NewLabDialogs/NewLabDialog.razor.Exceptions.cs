@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿// --------------------------------------------------------------- 
+// Copyright (c) Microsoft Corporation. All rights reserved. 
+// ---------------------------------------------------------------
+
+using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
 using Xeptions;
 
