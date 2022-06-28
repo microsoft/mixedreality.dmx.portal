@@ -26,7 +26,10 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public Exception Exception { get; set; }
         public string ErrorMessage { get; set; }
         public SpinnerBase Spinner { get; set; }
-        public ValidationSummaryBase ContentValidationSummary { get; set; }
+        public ValidationSummaryBase LabNameValidationSummary { get; set; }
+        public ValidationSummaryBase LabDescriptionValidationSummary { get; set; }
+
+
 
         protected override void OnInitialized()
         {

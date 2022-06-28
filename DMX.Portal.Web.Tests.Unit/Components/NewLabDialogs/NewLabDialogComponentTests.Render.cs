@@ -32,7 +32,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             initialNewLabDialogComponent.Exception.Should().BeNull();
             initialNewLabDialogComponent.ErrorMessage.Should().BeNull();
             initialNewLabDialogComponent.Spinner.Should().BeNull();
-            initialNewLabDialogComponent.ContentValidationSummary.Should().BeNull();
+            initialNewLabDialogComponent.LabNameValidationSummary.Should().BeNull();
+            initialNewLabDialogComponent.LabDescriptionValidationSummary.Should().BeNull();
         }
 
         [Fact]
@@ -61,7 +62,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
             this.renderedNewLabDialog.Instance.Spinner.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Spinner.IsVisible.Should().BeFalse();
-            this.renderedNewLabDialog.Instance.ContentValidationSummary.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabNameValidationSummary.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.Should().NotBeNull();
         }
 
         [Fact]
