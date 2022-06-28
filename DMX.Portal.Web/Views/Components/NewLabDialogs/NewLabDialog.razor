@@ -7,10 +7,12 @@
 
     <Content>
         <TextBoxBase @ref=LabName
-                     @bind-Value="@LabView.Name" />
+                     @bind-Value="@LabView.Name"
+                     Placeholder=@nameof(LabView.Name) />
 
         <TextBoxBase @ref=LabDescription 
-                     @bind-Value="@LabView.Description" />
+                     @bind-Value="@LabView.Description"
+                     Placeholder=@nameof(LabView.Description) />
 
         <ValidationSummaryBase @ref=LabNameValidationSummary 
                                Key=@nameof(LabView.Name) 
