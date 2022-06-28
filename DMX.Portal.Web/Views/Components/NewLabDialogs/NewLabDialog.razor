@@ -8,11 +8,13 @@
     <Content>
         <TextBoxBase @ref=LabName
                      @bind-Value="@LabView.Name"
-                     Placeholder=@nameof(LabView.Name) />
+                     Placeholder=@nameof(LabView.Name) 
+                     CssClass="new-lab-text-box" />
 
         <TextBoxBase @ref=LabDescription 
                      @bind-Value="@LabView.Description"
-                     Placeholder=@nameof(LabView.Description) />
+                     Placeholder=@nameof(LabView.Description) 
+                     CssClass="new-lab-text-box" />
 
         <ValidationSummaryBase @ref=LabNameValidationSummary 
                                Key=@nameof(LabView.Name) 
