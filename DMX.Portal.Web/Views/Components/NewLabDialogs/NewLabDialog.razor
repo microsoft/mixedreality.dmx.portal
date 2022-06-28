@@ -3,28 +3,35 @@
 <DialogBase @ref=Dialog
             Title="Lab Details"
             ButtonTitle="Save New Lab"
-            OnClick=@AddLabViewAsync >
+            MinHeight="335px"
+            Width="350px"
+            OnClick=@AddLabViewAsync>
 
     <Content>
-        <TextBoxBase @ref=LabName
-                     @bind-Value="@LabView.Name"
-                     Placeholder=@nameof(LabView.Name) 
-                     CssClass="new-lab-text-box" />
+        <div>
+            <ContainerBase CssClass="new-lab-textbox">
+                <TextBoxBase @ref=LabName
+                             @bind-Value="@LabView.Name"
+                             Placeholder=@nameof(LabView.Name) />
 
-        <TextBoxBase @ref=LabDescription 
-                     @bind-Value="@LabView.Description"
-                     Placeholder=@nameof(LabView.Description) 
-                     CssClass="new-lab-text-box" />
+            </ContainerBase>
 
-        <ValidationSummaryBase @ref=LabNameValidationSummary 
-                               Key=@nameof(LabView.Name) 
-                               ValidationData=@Exception?.Data 
+            <ContainerBase CssClass="new-lab-textbox-bottom">
+                <TextBoxBase @ref=LabDescription
+                             @bind-Value="@LabView.Description"
+                             Placeholder=@nameof(LabView.Description) 
+                             Multiline=true />
+            </ContainerBase>
+        </div>
+        <ValidationSummaryBase @ref=LabNameValidationSummary
+                               Key=@nameof(LabView.Name)
+                               ValidationData=@Exception?.Data
                                Color="Red"
                                Message=@ErrorMessage />
 
-        <ValidationSummaryBase @ref=LabDescriptionValidationSummary 
-                               Key=@nameof(LabView.Description) 
-                               ValidationData=@Exception?.Data 
+        <ValidationSummaryBase @ref=LabDescriptionValidationSummary
+                               Key=@nameof(LabView.Description)
+                               ValidationData=@Exception?.Data
                                Color="Red"
                                Message=@ErrorMessage />
 
