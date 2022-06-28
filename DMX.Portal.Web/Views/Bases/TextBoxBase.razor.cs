@@ -24,6 +24,9 @@ namespace DMX.Portal.Web.Views.Bases
         [Parameter]
         public string CssClass { get; set; }
 
+        [Parameter]
+        public bool Multiline { get; set; }
+
         public bool IsEnabled => IsDisabled is false;
 
         public Task SetValueAsync(string value) =>
