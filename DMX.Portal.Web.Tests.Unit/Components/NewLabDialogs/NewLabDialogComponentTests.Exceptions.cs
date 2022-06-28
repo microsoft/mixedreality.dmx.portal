@@ -63,9 +63,15 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 .Should().BeEquivalentTo(
                     labViewValidationException.InnerException.Data);
 
+            this.renderedNewLabDialog.Instance.LabNameValidationSummary.Key
+                .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Name));
+
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.ValidationData
                 .Should().BeEquivalentTo(
                     labViewValidationException.InnerException.Data);
+
+            this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.Key
+                .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Description));
 
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Color
                 .Should().Be("Red");
