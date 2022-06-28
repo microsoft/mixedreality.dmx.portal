@@ -28,7 +28,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                     .ThrowsAsync(labViewValidationException);
 
             // when
-            this.renderedNewLabDialog = 
+            this.renderedNewLabDialog =
                 RenderComponent<NewLabDialog>();
 
             this.renderedNewLabDialog.Instance

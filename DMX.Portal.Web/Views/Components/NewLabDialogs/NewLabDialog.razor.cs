@@ -44,7 +44,7 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         }
 
         public ValueTask AddLabViewAsync() =>
-            TryCatch (async () =>
+            TryCatch(async () =>
             {
                 this.LabName.Disable();
                 this.LabDescription.Disable();

@@ -4,7 +4,6 @@
 
 using System.Linq;
 using Bunit;
-using DMX.Portal.Web.Models.Labs.Exceptions;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
 using DMX.Portal.Web.Services.Views.LabViews;

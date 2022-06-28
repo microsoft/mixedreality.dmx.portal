@@ -107,8 +107,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 .Should().BeEquivalentTo(expectedLabView);
 
             this.labViewServiceMock.Verify(service =>
-                service.AddLabViewAsync(this.renderedNewLabDialog.Instance.LabView),
-                    Times.Once);
+                service.AddLabViewAsync(
+                    this.renderedNewLabDialog.Instance.LabView),
+                        Times.Once);
 
             this.labViewServiceMock.VerifyNoOtherCalls();
         }
