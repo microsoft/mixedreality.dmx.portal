@@ -29,8 +29,6 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public ValidationSummaryBase LabNameValidationSummary { get; set; }
         public ValidationSummaryBase LabDescriptionValidationSummary { get; set; }
 
-
-
         protected override void OnInitialized()
         {
             this.LabView = new LabView();
