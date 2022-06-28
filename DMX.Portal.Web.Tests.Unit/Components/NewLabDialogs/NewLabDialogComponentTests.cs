@@ -63,6 +63,17 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             };
         }
 
+        public static TheoryData<Xeption> DependencyExceptions()
+        {
+            var someException = new Xeption();
+
+            return new TheoryData<Xeption>
+            {
+                new LabViewDependencyException(someException),
+                new LabServiceException(someException)
+            };
+        }
+
         private static string GetRandomString() =>
             new MnemonicString(GetRandomNumber()).GetValue();
 
