@@ -11,6 +11,22 @@
         <div>
             <ContainerBase CssClass="new-lab-textbox">
 
+                <TextBoxBase @ref=LabId
+                             @bind-Value="@labIdString"
+                             Placeholder=@nameof(LabView.Id) />
+
+            </ContainerBase>
+
+            <ContainerBase CssClass="new-lab-textbox">
+
+                <TextBoxBase @ref=LabDmxVersion
+                             @bind-Value="@LabView.DmxVersion"
+                             Placeholder=@nameof(LabView.DmxVersion) />
+
+            </ContainerBase>
+
+            <ContainerBase CssClass="new-lab-textbox">
+
                 <TextBoxBase @ref=LabName
                              @bind-Value="@LabView.Name"
                              Placeholder=@nameof(LabView.Name) />
