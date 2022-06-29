@@ -64,8 +64,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("Lab Details");
             this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
-            this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabDmxVersion.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
@@ -81,6 +79,15 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabNameContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
+            
+            this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
+
+            Guid.TryParse(this.renderedNewLabDialog.Instance.LabId.Value, out Guid labIdGuid)
+                .Should().BeTrue();
+
+            labIdGuid.Should().NotBe(Guid.Empty);
+
+            this.renderedNewLabDialog.Instance.LabDmxVersion.Should().Be("1.0");
         }
 
         [Fact]
