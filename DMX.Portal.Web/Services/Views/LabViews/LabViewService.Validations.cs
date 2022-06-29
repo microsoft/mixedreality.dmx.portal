@@ -5,6 +5,7 @@
 using System;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DMX.Portal.Web.Services.Views.LabViews
 {
@@ -16,6 +17,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
 
             Validate(
                 (Rule: IsInvalid(labView.Id), Parameter: nameof(LabView.Id)),
+                (Rule: IsInvalidId(labView.ExternalId), Parameter: nameof(LabView.ExternalId)),
                 (Rule: IsInvalid(labView.Name), Parameter: nameof(LabView.Name)),
                 (Rule: IsInvalid(labView.Description), Parameter: nameof(LabView.Description)),
                 (Rule: IsInvalid(labView.DmxVersion), Parameter: nameof(LabView.DmxVersion)));
@@ -38,6 +40,12 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         private static dynamic IsInvalid(Guid id) => new
         {
             Condition = Guid.Empty == id,
+            Message = "Id is required"
+        };
+
+        private static dynamic IsInvalidId(string id) => new
+{
+            Condition = String.IsNullOrWhiteSpace(id),
             Message = "Id is required"
         };
 
