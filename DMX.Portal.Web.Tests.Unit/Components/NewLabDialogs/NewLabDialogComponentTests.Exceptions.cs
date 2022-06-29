@@ -133,9 +133,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Spinner.IsVisible
                 .Should().BeFalse();
 
-            this.renderedNewLabDialog.Instance.LabNameValidationSummary
-                .Message.Should().Be(labViewDependencyException.Message);
-
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Key
                 .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Name));
 
@@ -144,10 +141,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Color
                 .Should().Be("Red");
-
-            this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary
-                .Message.Should().Be(labViewDependencyException.Message);
-
+            
             this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.Key
                 .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Description));
 
