@@ -50,12 +50,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 NewLabDialogComponentState.Content;
 
             var expectedLabView = new LabView();
+            string expectedTextBoxCssClass = "new-lab-textbox";
+            string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
 
             // when 
             this.renderedNewLabDialog = RenderComponent<NewLabDialog>();
             this.renderedNewLabDialog.Instance.OpenDialog();
-            string expectedTextBoxCssClass = "new-lab-textbox";
-            string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
 
             // then
             this.renderedNewLabDialog.Instance.State.Should().Be(expectedState);
@@ -64,6 +64,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("Lab Details");
             this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
+            this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabId.IsDisabled.Should().BeTrue();
+            this.renderedNewLabDialog.Instance.LabDmxVersion.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabDmxVersion.IsDisabled.Should().BeTrue();
+            this.renderedNewLabDialog.Instance.LabName.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
@@ -80,14 +85,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
             
-            this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
-
             Guid.TryParse(this.renderedNewLabDialog.Instance.LabId.Value, out Guid labIdGuid)
                 .Should().BeTrue();
 
             labIdGuid.Should().NotBe(Guid.Empty);
 
-            this.renderedNewLabDialog.Instance.LabDmxVersion.Should().Be("1.0");
+            this.renderedNewLabDialog.Instance.LabDmxVersion.Value.Should().Be("1.0");
         }
 
         [Fact]
