@@ -16,12 +16,13 @@
                              Placeholder=@nameof(LabView.Id) 
                              IsDisabled=true />
 
+
             </ContainerBase>
 
             <ContainerBase @ref=LabDmxVersionContainer CssClass="new-lab-textbox">
 
                 <TextBoxBase @ref=LabDmxVersion
-                             @bind-Value="@labDmxVersionString"
+                             @bind-Value="@LabView.DmxVersion"
                              Placeholder=@nameof(LabView.DmxVersion) 
                              IsDisabled=true />
 
