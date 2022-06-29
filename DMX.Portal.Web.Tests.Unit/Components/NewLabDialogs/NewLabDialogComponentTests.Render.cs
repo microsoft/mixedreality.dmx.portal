@@ -57,6 +57,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 
             string expectedTextBoxCssClass = "new-lab-textbox";
             string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
+            string expectedDependencyErrorMessageLabelCssClass = "new-lab-error-message";
 
             // when 
             this.renderedNewLabDialog = RenderComponent<NewLabDialog>();
@@ -94,6 +95,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
             this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.ClassName.Should().Be(expectedDependencyErrorMessageLabelCssClass);
 
             Guid.TryParse(this.renderedNewLabDialog.Instance.LabId.Value, out Guid labIdGuid)
                 .Should().BeTrue();
