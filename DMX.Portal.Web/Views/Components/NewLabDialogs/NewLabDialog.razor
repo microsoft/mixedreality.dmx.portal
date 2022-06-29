@@ -14,7 +14,7 @@
 
                 <TextBoxBase @ref=LabId
                              @bind-Value="@labIdString"
-                             Placeholder=@nameof(LabView.Id) 
+                             Placeholder=@nameof(LabView.Id)
                              IsDisabled=true />
 
 
@@ -25,7 +25,7 @@
 
                 <TextBoxBase @ref=LabDmxVersion
                              @bind-Value="@LabView.DmxVersion"
-                             Placeholder=@nameof(LabView.DmxVersion) 
+                             Placeholder=@nameof(LabView.DmxVersion)
                              IsDisabled=true />
 
             </ContainerBase>
@@ -58,11 +58,11 @@
                                        Color="Red" />
 
             </ContainerBase>
+            <LabelBase @ref="@DependencyErrorMessageLabel"
+                       Text="@ErrorMessage"
+                       ClassName="new-lab-error-message" />
+
+            <SpinnerBase @ref=Spinner />
         </div>
-
-        <LabelBase @ref="@DependencyErrorMessageLabel"
-                   Text="@ErrorMessage" />
-
-        <SpinnerBase @ref=Spinner />
     </Content>
 </DialogBase>
