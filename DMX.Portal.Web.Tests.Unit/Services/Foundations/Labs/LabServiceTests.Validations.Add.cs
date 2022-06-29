@@ -59,6 +59,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             var invalidLab = new Lab()
             {
+                ExternalId = invalidString,
                 Name = invalidString,
                 Description = invalidString,
             };

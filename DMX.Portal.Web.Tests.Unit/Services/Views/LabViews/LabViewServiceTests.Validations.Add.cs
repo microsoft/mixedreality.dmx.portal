@@ -61,6 +61,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             // given
             var invalidLabView = new LabView()
             {
+                ExternalId = invalidString,
                 Name = invalidString,
                 Description = invalidString,
                 DmxVersion = invalidString
@@ -71,6 +72,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             invalidLabViewException.AddData(
                 key: nameof(LabView.Id),
+                values: "Id is required");
+
+            invalidLabViewException.AddData(
+                key: nameof(LabView.ExternalId),
                 values: "Id is required");
 
             invalidLabViewException.AddData(
