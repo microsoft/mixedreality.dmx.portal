@@ -50,7 +50,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             NewLabDialogComponentState expectedState =
                 NewLabDialogComponentState.Content;
 
-            var expectedLabView = new LabView();
+            var expectedLabView = new LabView
+            {
+                DmxVersion = "1.0"
+            };
+
             string expectedTextBoxCssClass = "new-lab-textbox";
             string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
 
@@ -72,7 +76,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabName.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
-            this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
+            this.renderedNewLabDialog.Instance.LabView.Name.Should().Be(expectedLabView.Name);
+            this.renderedNewLabDialog.Instance.LabView.Description.Should().Be(expectedLabView.Description);
+            this.renderedNewLabDialog.Instance.LabView.DmxVersion.Should().Be(expectedLabView.DmxVersion);
+            this.renderedNewLabDialog.Instance.LabView.Status.Should().Be(expectedLabView.Status);
+            this.renderedNewLabDialog.Instance.LabView.Devices.Should().BeEquivalentTo(expectedLabView.Devices);
             this.renderedNewLabDialog.Instance.Spinner.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Spinner.IsVisible.Should().BeFalse();
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Should().NotBeNull();
