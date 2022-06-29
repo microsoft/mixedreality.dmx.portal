@@ -76,11 +76,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabIdContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDmxVersionContainer.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxCssClass);
+            this.renderedNewLabDialog.Instance.LabDmxVersionContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabNameContainer.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxCssClass);
+            this.renderedNewLabDialog.Instance.LabNameContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
+            this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
         }
 
         [Fact]
