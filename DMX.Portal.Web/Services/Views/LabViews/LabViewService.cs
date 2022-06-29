@@ -55,6 +55,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         lab => new LabView
         {
             Id = lab.Id,
+            ExternalId = lab.ExternalId,
             Name = lab.Name,
             Description = lab.Description,
             DmxVersion = "1.0",
@@ -76,6 +77,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         lab => new Lab
         {
             Id = lab.Id,
+            ExternalId = lab.ExternalId,
             Name = lab.Name,
             Description = lab.Description,
             Status = (LabStatus)lab.Status
