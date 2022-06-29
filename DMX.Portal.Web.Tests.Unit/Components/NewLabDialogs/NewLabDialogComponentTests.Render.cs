@@ -117,7 +117,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             var expectedLabView = new LabView
             {
                 Name = inputLabName,
-                Description = inputLabDescription
+                Description = inputLabDescription,
+                DmxVersion = "1.0"
             };
 
             // when
@@ -140,8 +141,16 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog.IsVisible
                 .Should().BeFalse();
 
-            this.renderedNewLabDialog.Instance.LabView
-                .Should().BeEquivalentTo(expectedLabView);
+            this.renderedNewLabDialog.Instance.LabView.Name.Should().Be(expectedLabView.Name);
+            this.renderedNewLabDialog.Instance.LabView.Description.Should().Be(expectedLabView.Description);
+            this.renderedNewLabDialog.Instance.LabView.DmxVersion.Should().Be(expectedLabView.DmxVersion);
+            this.renderedNewLabDialog.Instance.LabView.Status.Should().Be(expectedLabView.Status);
+            this.renderedNewLabDialog.Instance.LabView.Devices.Should().BeEquivalentTo(expectedLabView.Devices);
+
+            Guid.TryParse(this.renderedNewLabDialog.Instance.LabId.Value, out Guid labIdGuid)
+                .Should().BeTrue();
+
+            labIdGuid.Should().NotBe(Guid.Empty);
 
             this.labViewServiceMock.Verify(service =>
                 service.AddLabViewAsync(
