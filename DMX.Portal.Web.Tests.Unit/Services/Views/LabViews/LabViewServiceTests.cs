@@ -68,6 +68,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                     return new
                     {
                         Id = randomId,
+                        ExternalId = GetRandomString(),
                         LabName = GetRandomString(),
                         LabDescription = GetRandomString(),
                         DmxVersion = "1.0",
@@ -87,7 +88,8 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             return new
             {
-                Id = randomId,
+                Id = Guid.NewGuid(),
+                ExternalId = GetRandomString(),
                 LabName = GetRandomString(),
                 LabDescription = GetRandomString(),
                 DmxVersion = "1.0",

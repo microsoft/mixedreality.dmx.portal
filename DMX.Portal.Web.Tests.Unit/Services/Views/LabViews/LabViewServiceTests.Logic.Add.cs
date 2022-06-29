@@ -24,6 +24,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             var randomLab = new Lab()
             {
                 Id = randomLabViewProperties.Id,
+                ExternalId = randomLabViewProperties.ExternalId,
                 Name = randomLabViewProperties.LabName,
                 Description = randomLabViewProperties.LabDescription,
                 Status = randomLabViewProperties.LabStatus
@@ -32,6 +33,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
             var randomLabView = new LabView()
             {
                 Id = randomLabViewProperties.Id,
+                ExternalId = randomLabViewProperties.ExternalId,
                 Name = randomLabViewProperties.LabName,
                 Description = randomLabViewProperties.LabDescription,
                 Status = randomLabViewProperties.LabStatusView,
