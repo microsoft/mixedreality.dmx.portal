@@ -141,7 +141,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Color
                 .Should().Be("Red");
-            
+
             this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.Key
                 .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Description));
 
