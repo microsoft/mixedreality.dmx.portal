@@ -19,6 +19,8 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
 
         public NewLabDialogComponentState State { get; set; }
         public DialogBase Dialog { get; set; }
+        public TextBoxBase LabId { get; set; }
+        public TextBoxBase LabDmxVersion { get; set; }
         public TextBoxBase LabName { get; set; }
         public TextBoxBase LabDescription { get; set; }
         public bool IsVisible { get; set; }

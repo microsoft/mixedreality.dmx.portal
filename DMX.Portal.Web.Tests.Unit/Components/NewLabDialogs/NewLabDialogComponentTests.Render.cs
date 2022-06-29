@@ -25,6 +25,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             initialNewLabDialogComponent.LabViewService.Should().BeNull();
             initialNewLabDialogComponent.State.Should().Be(NewLabDialogComponentState.Loading);
             initialNewLabDialogComponent.Dialog.Should().BeNull();
+            initialNewLabDialogComponent.LabId.Should().BeNull();
+            initialNewLabDialogComponent.LabDmxVersion.Should().BeNull();
             initialNewLabDialogComponent.LabName.Should().BeNull();
             initialNewLabDialogComponent.LabDescription.Should().BeNull();
             initialNewLabDialogComponent.IsVisible.Should().BeFalse();
@@ -57,7 +59,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("Lab Details");
             this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
-            this.renderedNewLabDialog.Instance.LabName.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabDmxVersion.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabName.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescription.CssClass.Should().Be(expectedTextBoxCssClass);
