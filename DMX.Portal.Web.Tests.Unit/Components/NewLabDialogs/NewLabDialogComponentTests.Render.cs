@@ -36,6 +36,10 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             initialNewLabDialogComponent.Spinner.Should().BeNull();
             initialNewLabDialogComponent.LabNameValidationSummary.Should().BeNull();
             initialNewLabDialogComponent.LabDescriptionValidationSummary.Should().BeNull();
+            initialNewLabDialogComponent.LabIdContainer.Should().BeNull();
+            initialNewLabDialogComponent.LabDmxVersionContainer.Should().BeNull();
+            initialNewLabDialogComponent.LabNameContainer.Should().BeNull();
+            initialNewLabDialogComponent.LabDescriptionContainer.Should().BeNull();
         }
 
         [Fact]
@@ -46,11 +50,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 NewLabDialogComponentState.Content;
 
             var expectedLabView = new LabView();
-            string expectedTextBoxCssClass = "new-lab-text-box";
 
             // when 
             this.renderedNewLabDialog = RenderComponent<NewLabDialog>();
             this.renderedNewLabDialog.Instance.OpenDialog();
+            string expectedTextBoxCssClass = "new-lab-textbox";
+            string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
 
             // then
             this.renderedNewLabDialog.Instance.State.Should().Be(expectedState);
@@ -61,15 +66,21 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
             this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDmxVersion.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabName.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabDescription.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.IsVisible.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabView.Should().BeEquivalentTo(expectedLabView);
             this.renderedNewLabDialog.Instance.Spinner.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Spinner.IsVisible.Should().BeFalse();
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabIdContainer.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxCssClass);
+            this.renderedNewLabDialog.Instance.LabDmxVersionContainer.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxCssClass);
+            this.renderedNewLabDialog.Instance.LabNameContainer.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxCssClass);
+            this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabIdContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
         }
 
         [Fact]

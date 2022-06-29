@@ -30,11 +30,18 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public SpinnerBase Spinner { get; set; }
         public ValidationSummaryBase LabNameValidationSummary { get; set; }
         public ValidationSummaryBase LabDescriptionValidationSummary { get; set; }
+        public ContainerBase LabIdContainer { get; set; }
+        public ContainerBase LabDmxVersionContainer { get; set; }
+        public ContainerBase LabNameContainer { get; set; }
+        public ContainerBase LabDescriptionContainer { get; set; }
+
+        private string labIdString;
 
         protected override void OnInitialized()
         {
             this.LabView = new LabView();
             this.State = NewLabDialogComponentState.Content;
+            labIdString = this.LabView.Id.ToString();
         }
 
         public void OpenDialog()
