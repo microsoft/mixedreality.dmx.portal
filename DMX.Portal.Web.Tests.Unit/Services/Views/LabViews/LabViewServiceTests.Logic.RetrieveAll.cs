@@ -126,7 +126,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             List<Lab> retrievedLabs = randomLabs;
 
-            List<LabView> expectedLabViews = 
+            List<LabView> expectedLabViews =
                 OrderLabViewsByName(randomLabViews.DeepClone());
 
             this.labServiceMock.Setup(service =>
