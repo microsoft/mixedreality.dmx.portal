@@ -9,7 +9,8 @@
 
     <Content>
         <div>
-            <ContainerBase @ref=LabIdContainer CssClass="new-lab-textbox">
+            <ContainerBase @ref=LabIdContainer
+                           CssClass="new-lab-textbox">
 
                 <TextBoxBase @ref=LabId
                              @bind-Value="@labIdString"
@@ -19,7 +20,8 @@
 
             </ContainerBase>
 
-            <ContainerBase @ref=LabDmxVersionContainer CssClass="new-lab-textbox">
+            <ContainerBase @ref=LabDmxVersionContainer
+                           CssClass="new-lab-textbox">
 
                 <TextBoxBase @ref=LabDmxVersion
                              @bind-Value="@LabView.DmxVersion"
@@ -28,7 +30,8 @@
 
             </ContainerBase>
 
-            <ContainerBase @ref=LabNameContainer CssClass="new-lab-textbox">
+            <ContainerBase @ref=LabNameContainer
+                           CssClass="new-lab-textbox">
 
                 <TextBoxBase @ref=LabName
                              @bind-Value="@LabView.Name"
@@ -41,7 +44,8 @@
 
             </ContainerBase>
 
-            <ContainerBase @ref=LabDescriptionContainer  CssClass="new-lab-textbox-bottom">
+            <ContainerBase @ref=LabDescriptionContainer
+                           CssClass="new-lab-textbox-bottom">
 
                 <TextBoxBase @ref=LabDescription
                              @bind-Value="@LabView.Description"
@@ -55,7 +59,10 @@
 
             </ContainerBase>
         </div>
-        <LabelBase Text="@ErrorMessage" />
+
+        <LabelBase @ref="@DependencyErrorMessageLabel"
+                   Text="@ErrorMessage" />
+
         <SpinnerBase @ref=Spinner />
     </Content>
 </DialogBase>
