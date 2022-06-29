@@ -36,6 +36,7 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public ContainerBase LabDescriptionContainer { get; set; }
 
         private string labIdString;
+        private string labDmxVersionString;
 
         protected override void OnInitialized()
         {
@@ -48,6 +49,9 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         {
             this.Dialog.Show();
             this.IsVisible = this.Dialog.IsVisible;
+            labIdString = Guid.NewGuid().ToString();
+            labDmxVersionString = "1.0";
+            InvokeAsync(StateHasChanged);
         }
 
         public ValueTask AddLabViewAsync() =>
