@@ -93,6 +93,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 new Lab
                 {
                     Id = item.Id,
+                    ExternalId = item.ExternalId,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatus,
@@ -112,6 +113,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 return new LabView
                 {
                     Id = item.Id,
+                    ExternalId = item.ExternalId,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatusView,
