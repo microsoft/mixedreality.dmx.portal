@@ -34,6 +34,7 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public ContainerBase LabDmxVersionContainer { get; set; }
         public ContainerBase LabNameContainer { get; set; }
         public ContainerBase LabDescriptionContainer { get; set; }
+        public LabelBase DependencyErrorMessageLabel { get; set; }
 
         private string labIdString;
 

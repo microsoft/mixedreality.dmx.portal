@@ -40,6 +40,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             initialNewLabDialogComponent.LabDmxVersionContainer.Should().BeNull();
             initialNewLabDialogComponent.LabNameContainer.Should().BeNull();
             initialNewLabDialogComponent.LabDescriptionContainer.Should().BeNull();
+            initialNewLabDialogComponent.DependencyErrorMessageLabel.Should().BeNull();
         }
 
         [Fact]
@@ -84,7 +85,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabNameContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
-            
+            this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.Should().NotBeNull();
+
             Guid.TryParse(this.renderedNewLabDialog.Instance.LabId.Value, out Guid labIdGuid)
                 .Should().BeTrue();
 
