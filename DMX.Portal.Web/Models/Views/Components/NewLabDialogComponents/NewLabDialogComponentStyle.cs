@@ -10,7 +10,7 @@ namespace DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents
     public class NewLabDialogComponentStyle : SharpStyle
     {
         [CssClass]
-        public SharpStyle NewLabTextBox { get; set; }
+        public SharpStyle NewLabTextbox { get; set; }
 
         [CssClass]
         public SharpStyle NewLabErrorMessage { get; set; }

@@ -53,7 +53,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             // given
             var expectedStyle = new NewLabDialogComponentStyle
             {
-                NewLabTextBox = new SharpStyle
+                NewLabTextbox = new SharpStyle
                 {
                     PaddingBottom = "20px"
                 },
