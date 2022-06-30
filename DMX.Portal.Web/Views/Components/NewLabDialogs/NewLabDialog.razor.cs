@@ -36,13 +36,22 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public ContainerBase LabDescriptionContainer { get; set; }
         public LabelBase DependencyErrorMessageLabel { get; set; }
 
-        private string labIdString;
+        private string LabIdString
+        {
+            get => LabView.Id.ToString();
+            set
+            {
+                if (Guid.TryParse(value, out Guid guid))
+                {
+                    LabView.Id = guid;
+                }
+            }
+        }
 
         protected override void OnInitialized()
         {
             this.LabView = new LabView();
             this.State = NewLabDialogComponentState.Content;
-            labIdString = this.LabView.Id.ToString();
         }
 
         public void OpenDialog()
@@ -51,7 +60,6 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
             this.IsVisible = this.Dialog.IsVisible;
             this.LabView.DmxVersion = "1.0";
             this.LabView.Id = Guid.NewGuid();
-            labIdString = this.LabView.Id.ToString();
             InvokeAsync(StateHasChanged);
         }
 
