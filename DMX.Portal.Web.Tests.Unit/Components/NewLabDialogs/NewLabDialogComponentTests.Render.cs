@@ -50,14 +50,17 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             NewLabDialogComponentState expectedState =
                 NewLabDialogComponentState.Content;
 
-            var expectedLabView = new LabView
-            {
-                DmxVersion = "1.0"
-            };
-
             string expectedTextBoxCssClass = "new-lab-textbox";
             string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
             string expectedDependencyErrorMessageLabelCssClass = "new-lab-error-message";
+            string expectedDialogTitle = "Lab Details";
+            string expectedDialogButtonTitle = "Save New Lab";
+            string expectedDmxVersion = "1.0";
+
+            var expectedLabView = new LabView
+            {
+                DmxVersion = expectedDmxVersion
+            };
 
             // when 
             this.renderedNewLabDialog = RenderComponent<NewLabDialog>();
@@ -68,11 +71,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabViewService.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Dialog.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.Dialog.IsVisible.Should().BeTrue();
-            this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be("Lab Details");
-            this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be("Save New Lab");
+            this.renderedNewLabDialog.Instance.Dialog.Title.Should().Be(expectedDialogTitle);
+            this.renderedNewLabDialog.Instance.Dialog.ButtonTitle.Should().Be(expectedDialogButtonTitle);
             this.renderedNewLabDialog.Instance.LabId.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabId.IsDisabled.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabDmxVersion.Should().NotBeNull();
+            this.renderedNewLabDialog.Instance.LabDmxVersion.Value.Should().Be(expectedDmxVersion);
             this.renderedNewLabDialog.Instance.LabDmxVersion.IsDisabled.Should().BeTrue();
             this.renderedNewLabDialog.Instance.LabName.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabDescription.Should().NotBeNull();
@@ -101,8 +105,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 .Should().BeTrue();
 
             labIdGuid.Should().NotBe(Guid.Empty);
-
-            this.renderedNewLabDialog.Instance.LabDmxVersion.Value.Should().Be("1.0");
         }
 
         [Fact]
@@ -113,6 +115,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             string randomLabDescription = GetRandomString();
             string inputLabName = randomLabName;
             string inputLabDescription = randomLabDescription;
+            string inputDmxVersion = "1.0";
             string expectedLabName = inputLabName;
             string expectedLabDescription = inputLabDescription;
 
@@ -120,7 +123,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             {
                 Name = inputLabName,
                 Description = inputLabDescription,
-                DmxVersion = "1.0"
+                DmxVersion = inputDmxVersion
             };
 
             // when

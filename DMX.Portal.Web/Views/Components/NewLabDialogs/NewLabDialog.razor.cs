@@ -52,22 +52,21 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
             this.LabView.DmxVersion = "1.0";
             this.LabView.Id = Guid.NewGuid();
             labIdString = this.LabView.Id.ToString();
-
             InvokeAsync(StateHasChanged);
         }
 
         public ValueTask AddLabViewAsync() =>
-            TryCatch(async () =>
-            {
-                this.LabName.Disable();
-                this.LabDescription.Disable();
-                this.Dialog.DisableButton();
-                this.Spinner.Show();
+        TryCatch(async () =>
+        {
+            this.LabName.Disable();
+            this.LabDescription.Disable();
+            this.Dialog.DisableButton();
+            this.Spinner.Show();
 
-                await this.LabViewService.AddLabViewAsync(this.LabView);
+            await this.LabViewService.AddLabViewAsync(this.LabView);
 
-                CloseDialog();
-            });
+            CloseDialog();
+        });
 
         public void CloseDialog()
         {

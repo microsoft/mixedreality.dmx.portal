@@ -116,7 +116,6 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.Dialog
                 .Click();
 
-
             // then
             this.renderedNewLabDialog.Instance.Dialog.IsVisible
                 .Should().BeTrue();
