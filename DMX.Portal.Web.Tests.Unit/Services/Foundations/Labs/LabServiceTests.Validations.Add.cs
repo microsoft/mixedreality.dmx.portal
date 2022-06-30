@@ -70,6 +70,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
                 values: "Id is required");
 
             invalidLabException.AddData(
+                key: nameof(Lab.ExternalId),
+                values: "Id is required");
+
+            invalidLabException.AddData(
                 key: nameof(Lab.Name),
                 values: "Text is required");
 
