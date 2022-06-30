@@ -22,6 +22,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             // given
             string someLabName = GetRandomString();
             string someLabDescription = GetRandomString();
+            string expectedLabNameValidationSummaryColor = "Red";
+            string expectedLabDescriptionValidationSummaryColor = "Red";
 
             this.labViewServiceMock.Setup(service =>
                 service.AddLabViewAsync(It.IsAny<LabView>()))
@@ -67,7 +69,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Name));
 
             this.renderedNewLabDialog.Instance.LabNameValidationSummary.Color
-                .Should().Be("Red");
+                .Should().Be(expectedLabNameValidationSummaryColor);
 
             this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.ValidationData
                 .Should().BeEquivalentTo(
@@ -77,7 +79,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
                 .Should().Be(nameof(this.renderedNewLabDialog.Instance.LabView.Description));
 
             this.renderedNewLabDialog.Instance.LabDescriptionValidationSummary.Color
-                .Should().Be("Red");
+                .Should().Be(expectedLabDescriptionValidationSummaryColor);
 
             this.labViewServiceMock.Verify(service =>
                 service.AddLabViewAsync(

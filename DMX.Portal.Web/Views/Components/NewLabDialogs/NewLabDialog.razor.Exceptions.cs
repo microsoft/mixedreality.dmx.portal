@@ -32,9 +32,9 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
             }
         }
 
-        private void RenderValidationError(Xeption xeption)
+        private void RenderValidationError(Xeption exception)
         {
-            this.Exception = xeption.InnerException;
+            this.Exception = exception.InnerException;
             this.LabName.Enable();
             this.LabDescription.Enable();
             this.Dialog.EnableButton();

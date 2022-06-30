@@ -97,9 +97,13 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabNameContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.LabNameContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass.Should().Be(expectedTextBoxBottomCssClass);
             this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.Should().NotBeNull();
-            this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.ClassName.Should().Be(expectedDependencyErrorMessageLabelCssClass);
+            
+            this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass
+                .Should().Be(expectedTextBoxBottomCssClass);
+
+            this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.ClassName
+                    .Should().Be(expectedDependencyErrorMessageLabelCssClass);
 
             Guid.TryParse(this.renderedNewLabDialog.Instance.LabId.Value, out Guid labIdGuid)
                 .Should().BeTrue();
