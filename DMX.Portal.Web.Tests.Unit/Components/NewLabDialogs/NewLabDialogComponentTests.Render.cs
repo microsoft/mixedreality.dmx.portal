@@ -9,9 +9,8 @@ using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.NewLabDialogs;
 using FluentAssertions;
 using Moq;
-using Xunit;
-using SharpStyles;
 using SharpStyles.Models;
+using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 {
