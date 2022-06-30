@@ -9,6 +9,7 @@ using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using Microsoft.AspNetCore.Components;
+using SharpStyles.Models;
 
 namespace DMX.Portal.Web.Views.Components.NewLabDialogs
 {
@@ -52,6 +53,7 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
 
         protected override void OnInitialized()
         {
+            SetupStyle();
             this.LabView = new LabView();
             this.State = NewLabDialogComponentState.Content;
         }
@@ -82,6 +84,21 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         {
             this.Dialog.Hide();
             this.IsVisible = this.Dialog.IsVisible;
+        }
+
+        private void SetupStyle()
+        {
+            this.Style = new NewLabDialogComponentStyle
+            {
+                NewLabTextBox = new SharpStyle
+                {
+                    PaddingBottom = "20px"
+                },
+                NewLabErrorMessage = new SharpStyle
+                {
+                    Color = "red"
+                }
+            };
         }
     }
 }
