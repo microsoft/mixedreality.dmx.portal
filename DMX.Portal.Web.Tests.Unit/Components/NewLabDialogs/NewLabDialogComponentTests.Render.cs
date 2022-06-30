@@ -10,6 +10,8 @@ using DMX.Portal.Web.Views.Components.NewLabDialogs;
 using FluentAssertions;
 using Moq;
 using Xunit;
+using SharpStyles;
+using SharpStyles.Models;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 {
@@ -41,6 +43,38 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             initialNewLabDialogComponent.LabNameContainer.Should().BeNull();
             initialNewLabDialogComponent.LabDescriptionContainer.Should().BeNull();
             initialNewLabDialogComponent.DependencyErrorMessageLabel.Should().BeNull();
+            initialNewLabDialogComponent.StyleElement.Should().BeNull();
+            initialNewLabDialogComponent.Style.Should().BeNull();
+        }
+
+        [Fact]
+        public void ShouldSetupComponentStyles()
+        {
+            // given
+            var expectedStyle = new NewLabDialogComponentStyle
+            {
+                NewLabTextBox = new SharpStyle
+                {
+                    PaddingBottom = "20px"
+                },
+                NewLabErrorMessage = new SharpStyle
+                {
+                    Color = "red"
+                }
+            };
+
+            // when
+            this.renderedNewLabDialog = RenderComponent<NewLabDialog>();
+
+            // then
+            this.renderedNewLabDialog.Instance.StyleElement
+                .Should().NotBeNull();
+
+            this.renderedNewLabDialog.Instance.Style
+                .Should().BeEquivalentTo(expectedStyle);
+
+            this.renderedNewLabDialog.Instance.StyleElement.Style
+                .Should().BeEquivalentTo(expectedStyle);
         }
 
         [Fact]
@@ -98,7 +132,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             this.renderedNewLabDialog.Instance.LabNameContainer.CssClass.Should().Be(expectedTextBoxCssClass);
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.Should().NotBeNull();
             this.renderedNewLabDialog.Instance.DependencyErrorMessageLabel.Should().NotBeNull();
-            
+
             this.renderedNewLabDialog.Instance.LabDescriptionContainer.CssClass
                 .Should().Be(expectedTextBoxBottomCssClass);
 

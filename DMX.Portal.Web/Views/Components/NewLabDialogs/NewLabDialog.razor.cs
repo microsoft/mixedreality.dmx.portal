@@ -18,6 +18,8 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         public ILabViewService LabViewService { get; set; }
 
         public NewLabDialogComponentState State { get; set; }
+        public StyleBase StyleElement { get; set; }
+        public NewLabDialogComponentStyle Style { get; set; }
         public DialogBase Dialog { get; set; }
         public TextBoxBase LabId { get; set; }
         public TextBoxBase LabDmxVersion { get; set; }
