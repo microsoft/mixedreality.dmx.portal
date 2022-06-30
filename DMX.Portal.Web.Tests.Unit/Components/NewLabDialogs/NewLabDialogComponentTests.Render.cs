@@ -87,8 +87,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
             string expectedTextBoxCssClass = "new-lab-textbox";
             string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";
             string expectedDependencyErrorMessageLabelCssClass = "new-lab-error-message";
-            string expectedDialogTitle = "Lab Details";
-            string expectedDialogButtonTitle = "Save New Lab";
+            string expectedDialogTitle = "New Lab";
+            string expectedDialogButtonTitle = "Submit";
             string expectedDmxVersion = "1.0";
 
             var expectedLabView = new LabView
