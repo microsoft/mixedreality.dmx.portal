@@ -3,8 +3,6 @@
 // ---------------------------------------------------------------
 
 using System;
-using System.Data;
-using System.Reflection.Metadata;
 using DMX.Portal.Web.Models.Labs;
 using DMX.Portal.Web.Models.Labs.Exceptions;
 
@@ -36,14 +34,14 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             Condition = String.IsNullOrWhiteSpace(id),
             Message = "Id is required"
         };
-        
+
 
         private static dynamic IsInvalid(Guid id) => new
         {
             Condition = id == Guid.Empty,
             Message = "Id is required"
         };
-        
+
 
         private static dynamic IsInvalid(string text) => new
         {

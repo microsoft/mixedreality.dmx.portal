@@ -27,6 +27,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 new Lab
                 {
                     Id = item.Id,
+                    ExternalId = item.ExternalId,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatus,
@@ -44,6 +45,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 new LabView
                 {
                     Id = item.Id,
+                    ExternalId = item.ExternalId,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatusView,
@@ -91,6 +93,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 new Lab
                 {
                     Id = item.Id,
+                    ExternalId = item.ExternalId,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatus,
@@ -110,6 +113,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 return new LabView
                 {
                     Id = item.Id,
+                    ExternalId = item.ExternalId,
                     Name = item.LabName,
                     Description = item.LabDescription,
                     Status = item.LabStatusView,
@@ -126,7 +130,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             List<Lab> retrievedLabs = randomLabs;
 
-            List<LabView> expectedLabViews = 
+            List<LabView> expectedLabViews =
                 OrderLabViewsByName(randomLabViews.DeepClone());
 
             this.labServiceMock.Setup(service =>

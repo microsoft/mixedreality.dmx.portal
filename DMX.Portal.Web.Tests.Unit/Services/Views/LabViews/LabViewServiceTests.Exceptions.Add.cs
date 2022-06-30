@@ -77,7 +77,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                     .ThrowsAsync(serviceException);
 
             // when
-            ValueTask<LabView> addLabView = 
+            ValueTask<LabView> addLabView =
                 this.labViewService.AddLabViewAsync(randomLabView);
 
             var actualLabViewServiceException =
@@ -86,10 +86,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
             // then
             actualLabViewServiceException
-                .Should().BeEquivalentTo(expectedLabViewServiceException); 
+                .Should().BeEquivalentTo(expectedLabViewServiceException);
 
             this.labServiceMock.Verify(service =>
-                service.AddLabAsync(It.IsAny<Lab>()), 
+                service.AddLabAsync(It.IsAny<Lab>()),
                     Times.Once());
 
             this.loggingBrokerMock.Verify(broker =>
