@@ -9,8 +9,9 @@
   <ItemGroup>
     <PackageReference Include="PrettyBlazor" Version="1.2.0" />
     <PackageReference Include="RESTFulSense" Version="2.5.0" />
-    <PackageReference Include="Syncfusion.Blazor" Version="20.1.0.61" />
-    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.1.0.61" />
+    <PackageReference Include="SharpStyles" Version="0.3.0" />
+    <PackageReference Include="Syncfusion.Blazor" Version="20.2.0.36" />
+    <PackageReference Include="Syncfusion.Blazor.Themes" Version="20.2.0.36" />
     <PackageReference Include="Xeption" Version="2.4.0" />
   </ItemGroup>
 
