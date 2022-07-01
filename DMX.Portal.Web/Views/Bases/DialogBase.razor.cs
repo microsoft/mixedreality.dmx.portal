@@ -20,6 +20,9 @@ namespace DMX.Portal.Web.Views.Bases
         public string Height { get; set; }
 
         [Parameter]
+        public string MinHeight { get; set; }
+
+        [Parameter]
         public string Width { get; set; }
 
         [Parameter]
