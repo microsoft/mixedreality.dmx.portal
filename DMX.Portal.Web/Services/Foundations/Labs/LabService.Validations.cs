@@ -35,7 +35,6 @@ namespace DMX.Portal.Web.Services.Foundations.Labs
             Message = "Id is required"
         };
 
-
         private static dynamic IsInvalid(Guid id) => new
         {
             Condition = id == Guid.Empty,
