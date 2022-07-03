@@ -74,6 +74,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
                 values: "Id is required");
 
             invalidLabViewException.AddData(
+                key: nameof(LabView.ExternalId),
+                values: "Id is required");
+
+            invalidLabViewException.AddData(
                 key: nameof(LabView.Name),
                 values: "Text is required");
 

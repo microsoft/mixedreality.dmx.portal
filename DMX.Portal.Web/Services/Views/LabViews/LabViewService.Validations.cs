@@ -16,6 +16,7 @@ namespace DMX.Portal.Web.Services.Views.LabViews
 
             Validate(
                 (Rule: IsInvalid(labView.Id), Parameter: nameof(LabView.Id)),
+                (Rule: IsInvalidId(labView.ExternalId), Parameter: nameof(LabView.ExternalId)),
                 (Rule: IsInvalid(labView.Name), Parameter: nameof(LabView.Name)),
                 (Rule: IsInvalid(labView.Description), Parameter: nameof(LabView.Description)),
                 (Rule: IsInvalid(labView.DmxVersion), Parameter: nameof(LabView.DmxVersion)));
@@ -33,6 +34,12 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         {
             Condition = String.IsNullOrWhiteSpace(text),
             Message = "Text is required"
+        };
+
+        private static dynamic IsInvalidId(string text) => new
+        {
+            Condition = String.IsNullOrWhiteSpace(text),
+            Message = "Id is required"
         };
 
         private static dynamic IsInvalid(Guid id) => new

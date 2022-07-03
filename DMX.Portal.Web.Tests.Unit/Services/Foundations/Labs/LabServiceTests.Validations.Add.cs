@@ -59,6 +59,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
             // given
             var invalidLab = new Lab()
             {
+                ExternalId = invalidString,
                 Name = invalidString,
                 Description = invalidString,
             };
@@ -67,6 +68,10 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
 
             invalidLabException.AddData(
                 key: nameof(Lab.Id),
+                values: "Id is required");
+
+            invalidLabException.AddData(
+                key: nameof(Lab.ExternalId),
                 values: "Id is required");
 
             invalidLabException.AddData(
