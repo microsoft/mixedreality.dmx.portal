@@ -8,6 +8,7 @@ namespace DMX.Portal.Web.Models.Labs
     {
         Available,
         Reserved,
-        Offline
+        Offline,
+        Unregistered
     }
 }
