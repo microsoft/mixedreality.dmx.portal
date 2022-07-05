@@ -7,6 +7,7 @@ namespace DMX.Portal.Web.Models.Labs
     public enum LabDeviceStatus
     {
         Online,
-        Offline
+        Offline,
+        Unregistered
     }
 }
