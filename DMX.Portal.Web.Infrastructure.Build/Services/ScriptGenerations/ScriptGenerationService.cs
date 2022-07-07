@@ -133,7 +133,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
 
                                 TargetDotNetVersion = new TargetDotNetVersion
                                 {
-                                    DotNetVersion = "7.0.100-preview.4.22252.9",
+                                    DotNetVersion = "6.0.6",
                                     IncludePrerelease = true,
                                 }
                             },
