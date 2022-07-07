@@ -28,6 +28,7 @@ namespace DMX.Portal.Web.Views.Components.LabTitles
             {
                 LabStatusView.Reserved => StatusView.Reserved,
                 LabStatusView.Offline => StatusView.Offline,
+                LabStatusView.Unregistered => StatusView.Unregistered,
                 _ => StatusView.Available
             };
         }
