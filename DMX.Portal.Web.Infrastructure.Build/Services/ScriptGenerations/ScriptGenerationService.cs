@@ -114,11 +114,10 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
                         {
                             { "AzureClientId", "${{ secrets.AZURECLIENTID }}" },
                             { "AzureTenantId", "${{ secrets.AZURETENANTID }}" },
+                            { "AzureSubscriptionId", "${{ secrets.AZURESUBSCRIPTIONID }}"},
                             { "AzureClientSecret", "${{ secrets.AZURECLIENTSECRET }}" },
-                            { "AzureAdminName", "${{ secrets.AZUREADMINNAME }}" },
-                            { "AzureAdminAccess", "${{ secrets.AZUREADMINACCESS }}" },
-                            { "ExternalLabApiUrl", "${{ secrets.EXTERNALLABAPIURL }}" },
-                            { "ExternalLabApiAccessKey", "${{ secrets.EXTERNALLABAPIACCESSKEY }}" }
+                            { "DmxCoreApiUrl", "${{ secrets.DMXCOREAPIURL }}" },
+                            { "DmxCoreApiAccessKey", "${{ secrets.DMXCOREAPIACCESSKEY }}" }
                         },
 
                         Steps = new List<GithubTask>
