@@ -1,0 +1,33 @@
+name: Provision DMX Portal
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      AzureClientId: ${{ secrets.AZURECLIENTID }}
+      AzureTenantId: ${{ secrets.AZURETENANTID }}
+      AzureClientSecret: ${{ secrets.AZURECLIENTSECRET }}
+      AzureAdminName: ${{ secrets.AZUREADMINNAME }}
+      AzureAdminAccess: ${{ secrets.AZUREADMINACCESS }}
+      ExternalLabApiUrl: ${{ secrets.EXTERNALLABAPIURL }}
+      ExternalLabApiAccessKey: ${{ secrets.EXTERNALLABAPIACCESSKEY }}
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+    - name: Setup Dot Net Version
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.100-preview.4.22252.9
+        include-prerelease: true
+    - name: Restore
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Provision
+      run: dotnet run --project .\DMX.Portal.Web.Infrastructure.Provision\DMX.Web.Infrastructure.Provision.csproj
