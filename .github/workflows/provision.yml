@@ -12,11 +12,10 @@ jobs:
     env:
       AzureClientId: ${{ secrets.AZURECLIENTID }}
       AzureTenantId: ${{ secrets.AZURETENANTID }}
+      AzureSubscriptionId: ${{ secrets.AZURESUBSCRIPTIONID }}
       AzureClientSecret: ${{ secrets.AZURECLIENTSECRET }}
-      AzureAdminName: ${{ secrets.AZUREADMINNAME }}
-      AzureAdminAccess: ${{ secrets.AZUREADMINACCESS }}
-      ExternalLabApiUrl: ${{ secrets.EXTERNALLABAPIURL }}
-      ExternalLabApiAccessKey: ${{ secrets.EXTERNALLABAPIACCESSKEY }}
+      DmxCoreApiUrl: ${{ secrets.DMXCOREAPIURL }}
+      DmxCoreApiAccessKey: ${{ secrets.DMXCOREAPIACCESSKEY }}
     steps:
     - name: Check out
       uses: actions/checkout@v2
@@ -30,4 +29,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Provision
-      run: dotnet run --project .\DMX.Portal.Web.Infrastructure.Provision\DMX.Web.Infrastructure.Provision.csproj
+      run: dotnet run --project .\DMX.Portal.Web.Infrastructure.Provision\DMX.Portal.Web.Infrastructure.Provision.csproj
