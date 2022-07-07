@@ -14,4 +14,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-preview.5.22301.12" />
   </ItemGroup>
 
+    <ItemGroup>
+        <None Update="appSettings.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
 </Project>
