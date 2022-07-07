@@ -15,6 +15,9 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         private readonly string clientId;
         private readonly string clientSecret;
         private readonly string tenantId;
+        private readonly string subscriptionId;
+        private readonly string dmxCoreApiUrl;
+        private readonly string dmxCoreApiAccessKey;
         private readonly IAzure azure;
 
         public CloudBroker()
@@ -22,6 +25,9 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
             this.clientId = Environment.GetEnvironmentVariable("AzureClientId");
             this.clientSecret = Environment.GetEnvironmentVariable("AzureClientSecret");
             this.tenantId = Environment.GetEnvironmentVariable("AzureTenantId");
+            this.subscriptionId = Environment.GetEnvironmentVariable("AzureSubscriptionId");
+            this.dmxCoreApiUrl = Environment.GetEnvironmentVariable("DmxCoreApiUrl");
+            this.dmxCoreApiAccessKey = Environment.GetEnvironmentVariable("DmxCoreApiAccessKey");
             this.azure = AuthenticateAzure();
         }
 
@@ -35,7 +41,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
 
             return Azure.Configure().WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
                 .Authenticate(azureCredentials: credentials)
-                .WithDefaultSubscription();
+                    .WithSubscription(this.subscriptionId);
         }
     }
 }
