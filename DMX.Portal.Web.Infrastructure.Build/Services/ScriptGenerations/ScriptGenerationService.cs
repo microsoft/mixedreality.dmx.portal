@@ -1,4 +1,8 @@
-﻿using ADotNet.Clients;
+﻿// --------------------------------------------------------------- 
+// Copyright (c) Microsoft Corporation. All rights reserved. 
+// ---------------------------------------------------------------
+
+using ADotNet.Clients;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks;
 using ADotNet.Models.Pipelines.GithubPipelines.DotNets.Tasks.SetupDotNetTaskV1s;
@@ -148,7 +152,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
                             new RunTask
                             {
                                 Name = "Provision",
-                                Run = "dotnet run --project .\\DMX.Portal.Web.Infrastructure.Provision\\DMX.Web.Infrastructure.Provision.csproj"
+                                Run = "dotnet run --project .\\DMX.Portal.Web.Infrastructure.Provision\\DMX.Portal.Web.Infrastructure.Provision.csproj"
                             }
                         }
                     }
