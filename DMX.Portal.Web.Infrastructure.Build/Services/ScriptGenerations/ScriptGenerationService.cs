@@ -43,38 +43,38 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
                         RunsOn = BuildMachines.WindowsLatest,
 
                         Steps = new List<GithubTask>
-            {
-                new CheckoutTaskV2
-                {
-                    Name = "Checking out code"
-                },
+                        {
+                            new CheckoutTaskV2
+                            {
+                                Name = "Checking out code"
+                            },
 
-                new SetupDotNetTaskV1
-                {
-                    Name = "Installing .Net",
+                            new SetupDotNetTaskV1
+                            {
+                                Name = "Installing .Net",
 
-                    TargetDotNetVersion = new TargetDotNetVersion
-                    {
-                        DotNetVersion = "7.0.100-preview.4.22252.9",
-                        IncludePrerelease = true
-                    }
-                },
+                                TargetDotNetVersion = new TargetDotNetVersion
+                                {
+                                    DotNetVersion = "7.0.100-preview.4.22252.9",
+                                    IncludePrerelease = true
+                                }
+                            },
 
-                new RestoreTask
-                {
-                    Name = "Restoring packages"
-                },
+                            new RestoreTask
+                            {
+                                Name = "Restoring packages"
+                            },
 
-                new DotNetBuildTask
-                {
-                    Name = "Building Project(s)"
-                },
+                            new DotNetBuildTask
+                            {
+                                Name = "Building Project(s)"
+                            },
 
-                new TestTask
-                {
-                    Name = "Running Tests"
-                }
-            }
+                            new TestTask
+                            {
+                                Name = "Running Tests"
+                            }
+                        }
                     }
                 }
             };
