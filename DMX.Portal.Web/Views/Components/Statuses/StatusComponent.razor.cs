@@ -25,7 +25,7 @@ namespace DMX.Portal.Web.Views.Components.Statuses
             {
                 StatusView.Available => "imgs/AvailableStatus.gif",
                 StatusView.Offline => "imgs/OfflineStatus.gif",
-                StatusView.Unregistered => "imgs/UnregisteredStatus.gif",
+                StatusView.Unregistered => "imgs/UnregisteredStatus.png",
                 _ => "imgs/ReservedStatus.gif"
             };
         }
