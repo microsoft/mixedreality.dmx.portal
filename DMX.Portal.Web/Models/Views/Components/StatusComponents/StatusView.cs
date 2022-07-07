@@ -9,5 +9,6 @@ namespace DMX.Portal.Web.Models.Views.Components.StatusComponents
         Available,
         Offline,
         Reserved,
+        Unregistered
     }
 }

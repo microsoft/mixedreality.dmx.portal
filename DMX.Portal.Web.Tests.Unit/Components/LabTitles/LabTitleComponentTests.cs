@@ -26,7 +26,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabTitles
             return new TheoryData<LabStatusView, StatusView> {
                 { LabStatusView.Available, StatusView.Available },
                 { LabStatusView.Offline, StatusView.Offline },
-                { LabStatusView.Reserved, StatusView.Reserved }
+                { LabStatusView.Reserved, StatusView.Reserved },
+                { LabStatusView.Unregistered, StatusView.Unregistered }
             };
         }
     }
