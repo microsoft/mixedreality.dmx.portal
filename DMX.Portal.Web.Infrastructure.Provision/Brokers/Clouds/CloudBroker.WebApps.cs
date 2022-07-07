@@ -19,7 +19,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
                 .Define(name: webAppName)
                 .WithExistingWindowsPlan(appServicePlan: appServicePlan)
                 .WithExistingResourceGroup(group: resourceGroup)
-                .WithNetFrameworkVersion(version: NetFrameworkVersion.Parse("v7.0"))
+                .WithNetFrameworkVersion(version: NetFrameworkVersion.Parse("v6.0"))
                 .CreateAsync();
         }
     }
