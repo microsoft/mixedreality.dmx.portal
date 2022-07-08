@@ -8,6 +8,6 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Models.Configurations
 {
     public class CloudAction
     {
-        public List<string> Environments;
+        public List<string> Environments { get; set; }
     }
 }
