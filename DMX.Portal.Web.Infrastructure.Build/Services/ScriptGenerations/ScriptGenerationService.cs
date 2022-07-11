@@ -116,8 +116,13 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
                             { "AzureTenantId", "${{ secrets.AZURETENANTID }}" },
                             { "AzureSubscriptionId", "${{ secrets.AZURESUBSCRIPTIONID }}"},
                             { "AzureClientSecret", "${{ secrets.AZURECLIENTSECRET }}" },
-                            { "DmxCoreApiUrl", "${{ secrets.DMXCOREAPIURL }}" },
-                            { "DmxCoreApiAccessKey", "${{ secrets.DMXCOREAPIACCESSKEY }}" }
+                            { "AzureAdInstance", "${{ secrets.AZUREADINSTANCE }}" },
+                            { "AzureAdDomain", "${{ secrets.AZUREADDOMAIN }}" },
+                            { "AzureAdCallbackPath", "${{ secrets.AZUREADCALLBACKPATH }}" },
+                            { "DmxGatekeeperApiUrl", "${{ secrets.DMXGATEKEEPERAPIURL }}" },
+                            { "DmxGatekeeperApiAccessKey", "${{ secrets.DMXGATEKEEPERAPIACCESSKEY }}" },
+                            { "DmxGatekeeperAppIdUri", "${{ secrets.DMXGATEKEEPERAPPIDURI }}" },
+                            { "DmxGatekeeperAppScopes", "${{ secrets.DMXGATEKEEPERAPPSCOPES }}" }
                         },
 
                         Steps = new List<GithubTask>
