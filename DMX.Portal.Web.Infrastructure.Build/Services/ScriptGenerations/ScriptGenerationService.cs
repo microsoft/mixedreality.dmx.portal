@@ -121,10 +121,10 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
                             { "AzureAdDmxPortalInstance", "${{ secrets.AZURE_AD_DMX_PORTAL_INSTANCE }}" },
                             { "AzureAdDmxPortalDomain", "${{ secrets.AZURE_AD_DMX_PORTAL_DOMAIN }}" },
                             { "AzureAdDmxPortalCallbackPath", "${{ secrets.AZURE_AD_DMX_PORTAL_CALLBACKPATH }}" },
-                            { "DmxGatekeeperApiUrl", "${{ secrets.DMX_GATEKEEPER_API_URL }}" },
-                            { "DmxGatekeeperApiAccessKey", "${{ secrets.DMX_GATEKEEPER_API_ACCESS_KEY }}" },
-                            { "DmxGatekeeperAppIdUri", "${{ secrets.DMX_GATEKEEPER_APP_ID_URI }}" },
-                            { "DmxGatekeeperAppScopes", "${{ secrets.DMX_GATEKEEPER_APP_SCOPES }}" }
+                            { "AzureAdDmxGatekeeperAppIdUri", "${{ secrets.AZURE_AD_DMX_GATEKEEPER_APP_ID_URI }}" },
+                            { "AzureAdDmxGatekeeperAppScopes", "${{ secrets.AZURE_AD_DMX_GATEKEEPER_APP_SCOPES }}" },
+                            { "AzureAppServiceDmxGatekeeperApiUrl", "${{ secrets.AZURE_APP_SERVICE_DMX_GATEKEEPER_API_URL }}" },
+                            { "AzureAppServiceDmxGatekeeperApiAccessKey", "${{ secrets.AZURE_APP_SERVICE_DMX_GATEKEEPER_API_ACCESS_KEY }}" }
                         },
 
                         Steps = new List<GithubTask>
