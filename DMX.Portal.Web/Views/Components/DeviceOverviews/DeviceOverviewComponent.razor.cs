@@ -41,9 +41,11 @@ namespace DMX.Portal.Web.Views.Components.DeviceOverviews
         {
             return powerLevelView switch
             {
+                PowerLevelView.Full => "imgs/FullPowerLevel.png",
                 PowerLevelView.High => "imgs/HighPowerLevel.png",
                 PowerLevelView.Medium => "imgs/MediumPowerLevel.png",
                 PowerLevelView.Low => "imgs/LowPowerLevel.png",
+                PowerLevelView.Empty => "imgs/EmptyPowerLevel.png",
                 _ => ""
             };
         }
