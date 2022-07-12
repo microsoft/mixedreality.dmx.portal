@@ -6,9 +6,11 @@ namespace DMX.Portal.Web.Models.Views.LabViews
 {
     public enum PowerLevelView
     {
+        Empty,
         Low,
         Medium,
         High,
+        Full,
         Unknown
     }
 }
