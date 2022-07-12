@@ -96,9 +96,11 @@ namespace DMX.Portal.Web.Services.Views.LabViews
         {
             return powerLevelInt switch
             {
-                >= 0 and < 33 => PowerLevelView.Low,
+                0 => PowerLevelView.Empty,
+                > 0 and < 33 => PowerLevelView.Low,
                 >= 33 and < 66 => PowerLevelView.Medium,
-                >= 66 and < 101 => PowerLevelView.High,
+                >= 66 and < 100 => PowerLevelView.High,
+                100 => PowerLevelView.Full,
                 _ => PowerLevelView.Unknown
             };
         }
