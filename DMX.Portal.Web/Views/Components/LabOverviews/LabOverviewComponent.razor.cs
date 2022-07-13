@@ -37,7 +37,8 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
                     Border = "1px solid lightgrey",
                     Display = "flex",
                     Width = "100%",
-                    BoxShadow = "1px 1px lightgrey"
+                    BoxShadow = "1px 1px lightgrey",
+                    MarginBottom = "5px"
                 },
 
                 DeviceOverviews = new SharpStyle
