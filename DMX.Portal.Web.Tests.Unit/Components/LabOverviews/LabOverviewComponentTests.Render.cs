@@ -30,6 +30,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             initialLabOverviewComponent.LabOverviewDetailsContainer.Should().BeNull();
             initialLabOverviewComponent.LabTitleStatusContainer.Should().BeNull();
             initialLabOverviewComponent.LabTitleComponent.Should().BeNull();
+            initialLabOverviewComponent.Style.Should().BeNull();
+            initialLabOverviewComponent.LabOverviewStyle.Should().BeNull();
         }
 
         [Fact]

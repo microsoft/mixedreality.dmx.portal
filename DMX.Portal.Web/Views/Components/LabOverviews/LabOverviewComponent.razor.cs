@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using DMX.Portal.Web.Models.Views.Components.LabOverviews;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviewDetails;
@@ -21,5 +22,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public ContainerBase LabTitleStatusContainer { get; set; }
         public LabTitleComponent LabTitleComponent { get; set; }
         public LabOverviewDetailsComponent Details { get; set; }
+        public StyleBase Style { get; set; }
+        public LabOverviewStyle LabOverviewStyle { get; set; }
     }
 }
