@@ -8,6 +8,7 @@ using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviewDetails;
 using DMX.Portal.Web.Views.Components.LabTitles;
 using Microsoft.AspNetCore.Components;
+using SharpStyles.Models;
 
 namespace DMX.Portal.Web.Views.Components.LabOverviews
 {
@@ -24,5 +25,38 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public LabOverviewDetailsComponent Details { get; set; }
         public StyleBase StyleElement { get; set; }
         public LabOverviewStyle LabOverviewStyle { get; set; }
+
+        protected override void OnInitialized() => SetupStyles();
+
+        public void SetupStyles()
+        {
+            this.LabOverviewStyle = new LabOverviewStyle
+            {
+                LabOverview = new SharpStyle
+                {
+                    Border = "1px solid black",
+                    Display = "flex",
+                    Width = "100%"
+                },
+
+                DeviceOverviews = new SharpStyle
+                {
+                    Display = "flex",
+                    Width = "100%",
+                    Padding = "11px"
+                },
+
+                LabOverviewDetails = new SharpStyle
+                {
+                    Width = "100%",
+                    Padding = "25px"
+                },
+
+                LabOverviewTitle = new SharpStyle
+                {
+                    Display = "flex"
+                }
+            };
+        }
     }
 }
