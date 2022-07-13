@@ -22,7 +22,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public ContainerBase LabTitleStatusContainer { get; set; }
         public LabTitleComponent LabTitleComponent { get; set; }
         public LabOverviewDetailsComponent Details { get; set; }
-        public StyleBase Style { get; set; }
+        public StyleBase StyleElement { get; set; }
         public LabOverviewStyle LabOverviewStyle { get; set; }
     }
 }

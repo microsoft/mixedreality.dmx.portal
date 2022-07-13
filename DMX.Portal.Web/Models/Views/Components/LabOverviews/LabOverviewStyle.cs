@@ -4,13 +4,21 @@
 
 using SharpStyles.Models;
 using SharpStyles.Models.Attributes;
-using Syncfusion.Blazor.Diagram;
 
 namespace DMX.Portal.Web.Models.Views.Components.LabOverviews
 {
     public class LabOverviewStyle : SharpStyle
     {
         [CssClass]
-        public ShapeStyle LabOverview { get; set; }
+        public SharpStyle LabOverview { get; set; }
+
+        [CssClass]
+        public SharpStyle DeviceOverviews { get; set; }
+
+        [CssClass]
+        public SharpStyle LabOverviewDetails { get; set; }
+
+        [CssClass]
+        public SharpStyle LabOverviewTitle { get; set; }
     }
 }

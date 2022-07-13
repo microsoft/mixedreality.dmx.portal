@@ -5,10 +5,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
+using DMX.Portal.Web.Models.Views.Components.LabOverviews;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
 using DMX.Portal.Web.Views.Components.LabOverviews;
 using FluentAssertions;
+using SharpStyles.Models;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
@@ -30,7 +32,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             initialLabOverviewComponent.LabOverviewDetailsContainer.Should().BeNull();
             initialLabOverviewComponent.LabTitleStatusContainer.Should().BeNull();
             initialLabOverviewComponent.LabTitleComponent.Should().BeNull();
-            initialLabOverviewComponent.Style.Should().BeNull();
+            initialLabOverviewComponent.StyleElement.Should().BeNull();
             initialLabOverviewComponent.LabOverviewStyle.Should().BeNull();
         }
 
@@ -72,6 +74,34 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             string expectedCssClass = "lab-overview";
             LabView someLabView = CreateRandomLabView();
 
+            var expectedStyle = new LabOverviewStyle
+            {
+                LabOverview = new SharpStyle
+                {
+                    Border = "1px solid black",
+                    Display = "flex",
+                    Width = "100%"
+                },
+
+                DeviceOverviews = new SharpStyle
+                {
+                    Display = "flex",
+                    Width = "100%",
+                    Padding = "11px"
+                },
+
+                LabOverviewDetails = new SharpStyle
+                {
+                    Width = "100%",
+                    Padding = "25px"
+                },
+
+                LabOverviewTitle = new SharpStyle
+                {
+                    Display = "flex"
+                }
+            };
+
             ComponentParameter inputComponentParameters =
                 ComponentParameter.CreateParameter(
                     name: nameof(LabOverviewComponent.Lab),
@@ -85,6 +115,12 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
             // then
             this.renderedLabOverviewComponent.Instance.Container.CssClass
                 .Should().Be(expectedCssClass);
+
+            this.renderedLabOverviewComponent.Instance.LabOverviewStyle
+                .Should().BeEquivalentTo(expectedStyle);
+
+            this.renderedLabOverviewComponent.Instance.StyleElement.Style
+                .Should().BeEquivalentTo(expectedStyle);
         }
 
         [Fact]
