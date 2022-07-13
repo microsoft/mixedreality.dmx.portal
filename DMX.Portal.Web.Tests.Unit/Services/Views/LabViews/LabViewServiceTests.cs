@@ -141,15 +141,19 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Views.LabViews
 
         private static (PowerLevelView, int?) GetRandomPowerLevelRange()
         {
-            int lowRange = GetRandomNumber(0, 33);
+            int empty = 0;
+            int lowRange = GetRandomNumber(1, 33);
             int midRange = GetRandomNumber(33, 66);
-            int highRange = GetRandomNumber(66, 101);
+            int highRange = GetRandomNumber(66, 100);
+            int full = 100;
 
             var allPowerLevelViews = new List<(PowerLevelView, int?)>
             {
+                new (PowerLevelView.Empty, empty),
                 new (PowerLevelView.Low, lowRange),
                 new (PowerLevelView.Medium, midRange),
                 new (PowerLevelView.High, highRange),
+                new (PowerLevelView.Full, full),
                 new (PowerLevelView.Unknown, null)
             };
 
