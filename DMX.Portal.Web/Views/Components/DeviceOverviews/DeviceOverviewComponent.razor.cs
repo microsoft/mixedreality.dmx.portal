@@ -33,7 +33,7 @@ namespace DMX.Portal.Web.Views.Components.DeviceOverviews
                 LabDeviceTypeView.PC => "imgs/NUC.png",
                 LabDeviceTypeView.HeadMountedDisplay => "imgs/HoloLens.png",
                 LabDeviceTypeView.Phone => "imgs/Phone.png",
-                _ => ""
+                _ => "imgs/OtherDevice.png"
             };
         }
 
