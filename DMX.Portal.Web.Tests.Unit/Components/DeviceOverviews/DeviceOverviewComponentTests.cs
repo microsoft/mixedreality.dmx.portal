@@ -29,9 +29,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
         {
             return new TheoryData<(PowerLevelView, string)>
             {
+                (PowerLevelView.Empty, "imgs/EmptyPowerLevel.png"),
                 (PowerLevelView.Low, "imgs/LowPowerLevel.png"),
                 (PowerLevelView.Medium, "imgs/MediumPowerLevel.png"),
                 (PowerLevelView.High, "imgs/HighPowerLevel.png"),
+                (PowerLevelView.Full, "imgs/FullPowerLevel.png"),
             };
         }
 
