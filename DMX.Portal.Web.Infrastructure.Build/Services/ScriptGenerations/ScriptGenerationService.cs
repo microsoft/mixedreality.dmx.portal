@@ -112,12 +112,19 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
 
                         EnvironmentVariables = new Dictionary<string, string>
                         {
-                            { "AzureClientId", "${{ secrets.AZURECLIENTID }}" },
-                            { "AzureTenantId", "${{ secrets.AZURETENANTID }}" },
-                            { "AzureSubscriptionId", "${{ secrets.AZURESUBSCRIPTIONID }}"},
-                            { "AzureClientSecret", "${{ secrets.AZURECLIENTSECRET }}" },
-                            { "DmxCoreApiUrl", "${{ secrets.DMXCOREAPIURL }}" },
-                            { "DmxCoreApiAccessKey", "${{ secrets.DMXCOREAPIACCESSKEY }}" }
+                            { "AzureSubscriptionId", "${{ secrets.AZURE_SUBSCRIPTION_ID }}"},
+                            { "AzureTenantId", "${{ secrets.AZURE_TENANT_ID }}" },
+                            { "AzureClientId", "${{ secrets.AZURE_CLIENT_ID }}"},
+                            { "AzureClientSecret", "${{ secrets.AZURE_CLIENT_SECRET }}" },
+                            { "AzureAdAppProvisionClientId", "${{ secrets.AZURE_AD_APP_PROVISION_CLIENT_ID }}" },
+                            { "AzureAdAppProvisionClientSecret", "${{ secrets.AZURE_AD_APP_PROVISION_CLIENT_SECRET }}" },
+                            { "AzureAdDmxPortalInstance", "${{ secrets.AZURE_AD_DMX_PORTAL_INSTANCE }}" },
+                            { "AzureAdDmxPortalDomain", "${{ secrets.AZURE_AD_DMX_PORTAL_DOMAIN }}" },
+                            { "AzureAdDmxPortalCallbackPath", "${{ secrets.AZURE_AD_DMX_PORTAL_CALLBACKPATH }}" },
+                            { "AzureAdDmxGatekeeperAppIdUri", "${{ secrets.AZURE_AD_DMX_GATEKEEPER_APP_ID_URI }}" },
+                            { "AzureAdDmxGatekeeperAppScopes", "${{ secrets.AZURE_AD_DMX_GATEKEEPER_APP_SCOPES }}" },
+                            { "AzureAppServiceDmxGatekeeperApiUrl", "${{ secrets.AZURE_APP_SERVICE_DMX_GATEKEEPER_API_URL }}" },
+                            { "AzureAppServiceDmxGatekeeperApiAccessKey", "${{ secrets.AZURE_APP_SERVICE_DMX_GATEKEEPER_API_ACCESS_KEY }}" }
                         },
 
                         Steps = new List<GithubTask>
