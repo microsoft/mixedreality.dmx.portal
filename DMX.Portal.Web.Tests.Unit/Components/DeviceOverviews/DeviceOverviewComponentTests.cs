@@ -21,7 +21,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.DeviceOverviews
                 (LabDeviceTypeView.HeadMountedDisplay, "imgs/HoloLens.png"),
                 (LabDeviceTypeView.Phone, "imgs/Phone.png"),
                 (LabDeviceTypeView.PC, "imgs/NUC.png"),
-                (LabDeviceTypeView.Other, "")
+                (LabDeviceTypeView.Other, "imgs/OtherDevice.png")
             };
         }
 
