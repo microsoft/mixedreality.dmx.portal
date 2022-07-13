@@ -68,7 +68,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
         }
 
         [Fact]
-        public void ShouldRenderContainer()
+        public void ShouldRenderContainerWithStyles()
         {
             // given
             string expectedCssClass = "lab-overview";
@@ -81,7 +81,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviews
                     Border = "1px solid lightgrey",
                     Display = "flex",
                     Width = "100%",
-                    BoxShadow = "1px 1px lightgrey"
+                    BoxShadow = "1px 1px lightgrey",
+                    MarginBottom = "5px"
                 },
 
                 DeviceOverviews = new SharpStyle

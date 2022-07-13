@@ -27,6 +27,19 @@ namespace DMX.Portal.Web.Brokers.DmxApis
                             Name = "Some Device"
                         }
                     }
+                },
+
+                new Lab
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "My Lab 2",
+                    Devices = new List<LabDevice>
+                    {
+                        new LabDevice
+                        {
+                            Name = "Some Device 2"
+                        }
+                    }
                 }
             });
 
