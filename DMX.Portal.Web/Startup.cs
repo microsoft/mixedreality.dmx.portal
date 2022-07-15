@@ -36,6 +36,7 @@ namespace DMX.Portal.Web
             services.AddSyncfusionBlazor();
             AddBrokers(services);
             AddServices(services);
+            AddSecurity(services);
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
@@ -81,7 +82,8 @@ namespace DMX.Portal.Web
 
         private void AddSecurity(IServiceCollection services)
         {
-            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ') ?? Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
+            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ')??
+                Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
 
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
@@ -91,12 +93,11 @@ namespace DMX.Portal.Web
 
             services.AddControllersWithViews()
                 .AddMicrosoftIdentityUI();
-            services.AddAuthorization(options =>
 
+            services.AddAuthorization(options =>
             {
                 options.FallbackPolicy = options.DefaultPolicy;
             });
-
         }
     }
 }
