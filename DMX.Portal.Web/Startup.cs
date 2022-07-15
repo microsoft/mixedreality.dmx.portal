@@ -12,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Syncfusion.Blazor;
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Identity.Web.UI;
 
 namespace DMX.Portal.Web
 {
@@ -24,7 +27,10 @@ namespace DMX.Portal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+
+            services.AddServerSideBlazor()
+                .AddMicrosoftIdentityConsentHandler();
+
             services.AddSyncfusionBlazor();
             services.AddHttpClient();
             services.AddSyncfusionBlazor();
@@ -51,6 +57,8 @@ namespace DMX.Portal.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -69,6 +77,26 @@ namespace DMX.Portal.Web
         {
             services.AddTransient<ILabService, LabService>();
             services.AddTransient<ILabViewService, LabViewService>();
+        }
+
+        private void AddSecurity(IServiceCollection services)
+        {
+            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ') ?? Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
+
+            services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
+                    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                    .AddDownstreamWebApi("DownstreamApi", Configuration.GetSection("DownstreamApi"))
+                    .AddInMemoryTokenCaches();
+
+            services.AddControllersWithViews()
+                .AddMicrosoftIdentityUI();
+            services.AddAuthorization(options =>
+
+            {
+                options.FallbackPolicy = options.DefaultPolicy;
+            });
+
         }
     }
 }
