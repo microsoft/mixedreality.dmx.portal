@@ -20,5 +20,15 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
             initialSideMenuComponent.Container
                 .Should().BeNull();
         }
+
+        [Fact]
+        public void ShouldRenderSideMenu()
+        {
+            // given . when
+            this.renderedSideMenuComponent = RenderComponent<SideMenuComponent>();
+
+            // then
+            this.renderedSideMenuComponent.Instance.Container.Should().NotBeNull();
+        }
     }
 }
