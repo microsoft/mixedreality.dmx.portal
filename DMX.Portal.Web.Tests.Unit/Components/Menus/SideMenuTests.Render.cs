@@ -19,6 +19,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
             // then
             initialSideMenuComponent.Container
                 .Should().BeNull();
+
+            initialSideMenuComponent.TitleContainer
+                .Should().BeNull();
         }
 
         [Fact]
