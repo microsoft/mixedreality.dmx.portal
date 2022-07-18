@@ -20,6 +20,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Headers
 
             // then
             renderedHeaderComponent.Header.Should().BeNull();
+            renderedHeaderComponent.Style.Should().BeNull();
+            renderedHeaderComponent.StyleElement.Should().BeNull();
         }
 
         [Fact]
