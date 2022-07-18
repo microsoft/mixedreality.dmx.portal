@@ -4,7 +4,7 @@
 
 namespace DMX.Portal.Web.Views.Bases
 {
-    public class LinkBase
+    public partial class LinkBase
     {
         public string ClassName { get; set; }
         public string Uri { get; set; }
