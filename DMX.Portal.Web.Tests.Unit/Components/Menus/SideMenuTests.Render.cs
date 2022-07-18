@@ -32,6 +32,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
 
             // then
             this.renderedSideMenuComponent.Instance.Container.Should().NotBeNull();
+            this.renderedSideMenuComponent.Instance.TitleContainer.Should().NotBeNull();
         }
     }
 }
