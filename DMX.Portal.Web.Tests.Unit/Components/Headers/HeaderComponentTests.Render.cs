@@ -28,6 +28,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Headers
         public void ShouldRenderHeaderWithStyle()
         {
             // given
+            string expectedClassName = "top-row";
+
             var expectedHeaderStyle = new HeaderStyle
             {
                 TopRow = new SharpStyle
@@ -45,7 +47,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Headers
             this.renderedHeaderComponent = RenderComponent<HeaderComponent>();
 
             // then
-            this.renderedHeaderComponent.Instance.Header.Should().NotBeNull();
+            this.renderedHeaderComponent.Instance.Header
+                .Should().NotBeNull();
+
+            this.renderedHeaderComponent.Instance.Header.ClassName
+                .Should().Be(expectedClassName);
 
             this.renderedHeaderComponent.Instance.Style
                 .Should().BeEquivalentTo(expectedHeaderStyle);
