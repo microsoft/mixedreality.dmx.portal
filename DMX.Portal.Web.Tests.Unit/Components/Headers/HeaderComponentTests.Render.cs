@@ -19,5 +19,15 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Headers
             // then
             renderedHeaderComponent.Header.Should().BeNull();
         }
+
+        [Fact]
+        public void ShouldRenderHeader()
+        {
+            // given . when
+            this.renderedHeaderComponent = RenderComponent<HeaderComponent>();
+
+            // then
+            this.renderedHeaderComponent.Instance.Header.Should().NotBeNull();
+        }
     }
 }
