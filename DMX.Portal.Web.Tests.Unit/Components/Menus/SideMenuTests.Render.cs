@@ -2,8 +2,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using DMX.Portal.Web.Models.Views.Components.Menus;
 using DMX.Portal.Web.Views.Components.Menus;
 using FluentAssertions;
+using SharpStyles.Models;
 using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Components.Menus
@@ -22,17 +24,41 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
 
             initialSideMenuComponent.TitleContainer
                 .Should().BeNull();
+
+            initialSideMenuComponent.Style
+                .Should().BeNull();
+
+            initialSideMenuComponent.StyleElement
+                .Should().BeNull();
         }
 
         [Fact]
-        public void ShouldRenderSideMenu()
+        public void ShouldRenderSideMenuWithStyles()
         {
-            // given . when
+            // given
+            var expectedSideMenuStyle = new SideMenuComponentStyle
+            {
+                SideMenuContainer = new SharpStyle
+                {
+                    BackgroundColor = "#FAF9F4",
+                }
+            };
+
+
+            // when
             this.renderedSideMenuComponent = RenderComponent<SideMenuComponent>();
 
             // then
             this.renderedSideMenuComponent.Instance.Container.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.TitleContainer.Should().NotBeNull();
+            this.renderedSideMenuComponent.Instance.Style.Should().NotBeNull();
+            this.renderedSideMenuComponent.Instance.StyleElement.Should().NotBeNull();
+
+            this.renderedSideMenuComponent.Instance.Style
+                .Should().BeEquivalentTo(expectedSideMenuStyle);
+
+            this.renderedSideMenuComponent.Instance.StyleElement.Style
+                .Should().BeEquivalentTo(expectedSideMenuStyle);
         }
     }
 }
