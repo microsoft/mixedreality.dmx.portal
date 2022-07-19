@@ -41,6 +41,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
                 SideMenuContainer = new SharpStyle
                 {
                     BackgroundColor = "#faf9f8",
+                    Height = "100%"
                 }
             };
 
