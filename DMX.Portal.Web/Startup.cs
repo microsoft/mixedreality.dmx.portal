@@ -60,12 +60,7 @@ namespace DMX.Portal.Web
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/_Host");
-            });
+            MapControllersForEnvironments(app, env);
         }
 
         private static void AddBrokers(IServiceCollection services)
@@ -82,21 +77,39 @@ namespace DMX.Portal.Web
 
         private void AddSecurity(IServiceCollection services)
         {
-            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ')??
+            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ') ??
                 Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
 
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
                     .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
-                    .AddDownstreamWebApi("DownstreamApi", Configuration.GetSection("DownstreamApi"))
-                    .AddInMemoryTokenCaches();
+                        .AddDownstreamWebApi(
+                            "DownstreamApi", Configuration.GetSection("DownstreamApi"))
+                                .AddInMemoryTokenCaches();
 
             services.AddControllersWithViews()
                 .AddMicrosoftIdentityUI();
 
             services.AddAuthorization(options =>
+                options.FallbackPolicy = options.DefaultPolicy);
+        }
+
+        private static void MapControllersForEnvironments(
+            IApplicationBuilder app,
+            IWebHostEnvironment env)
+        {
+            app.UseEndpoints(endpoints =>
             {
-                options.FallbackPolicy = options.DefaultPolicy;
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapBlazorHub().AllowAnonymous();
+                    endpoints.MapFallbackToPage("/_Host").AllowAnonymous();
+                }
+                else
+                {
+                    endpoints.MapBlazorHub();
+                    endpoints.MapFallbackToPage("/_Host");
+                }
             });
         }
     }
