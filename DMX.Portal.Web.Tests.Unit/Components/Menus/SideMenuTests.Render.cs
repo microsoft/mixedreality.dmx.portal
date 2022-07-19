@@ -42,6 +42,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
                 {
                     BackgroundColor = "#faf9f8",
                     Height = "100%"
+                },
+
+                AllMenuOptions = new SharpStyle
+                {
+                    MarginTop = "23px"
                 }
             };
 

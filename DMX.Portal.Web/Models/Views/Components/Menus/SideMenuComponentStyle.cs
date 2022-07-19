@@ -11,5 +11,8 @@ namespace DMX.Portal.Web.Models.Views.Components.Menus
     {
         [CssClass]
         public SharpStyle SideMenuContainer { get; set; }
+
+        [CssClass]
+        public SharpStyle AllMenuOptions { get; set; }
     }
 }
