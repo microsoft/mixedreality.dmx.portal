@@ -60,6 +60,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
             this.renderedSideMenuComponent.Instance.TitleContainer.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.Style.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.StyleElement.Should().NotBeNull();
+            this.renderedSideMenuComponent.Instance.TitleContainer.Title.Should().Be("DMX STUDIO");
             this.renderedSideMenuComponent.Instance.Container.CssClass.Should().Be("side-menu-container");
             this.renderedSideMenuComponent.Instance.SideMenu.ClassName.Should().Be("all-menu-options");
 
