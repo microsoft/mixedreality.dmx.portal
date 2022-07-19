@@ -16,8 +16,15 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         private readonly string provisionClientSecret;
         private readonly string tenantId;
         private readonly string subscriptionId;
+        private readonly string dmxPortalClientId;
+        private readonly string dmxPortalInstance;
+        private readonly string dmxPortalCallbackPath;
+        private readonly string dmxPortalDomain;
         private readonly string dmxGatekeeperApiUrl;
         private readonly string dmxGatekeeperApiAccessKey;
+        private readonly string dmxGatekeeperApiScopesGetAllLabs;
+        private readonly string dmxGatekeeperApiScopesPostLab;
+        private readonly string dmxGatekeeperApiUri;
         private readonly IAzure azure;
 
         public CloudBroker()
@@ -26,8 +33,15 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
             this.provisionClientSecret = Environment.GetEnvironmentVariable("AzureAdAppProvisionClientSecret");
             this.tenantId = Environment.GetEnvironmentVariable("AzureTenantId");
             this.subscriptionId = Environment.GetEnvironmentVariable("AzureSubscriptionId");
+            this.dmxPortalClientId = Environment.GetEnvironmentVariable("AzureAdAppDmxPortalClientId");
+            this.dmxPortalInstance = Environment.GetEnvironmentVariable("AzureAdDmxPortalInstance");
+            this.dmxPortalCallbackPath = Environment.GetEnvironmentVariable("AzureAdDmxPortalCallbackPath");
+            this.dmxPortalDomain = Environment.GetEnvironmentVariable("AzureAdDmxPortalDomain");
             this.dmxGatekeeperApiUrl = Environment.GetEnvironmentVariable("AzureAppServiceDmxGatekeeperApiUrl");
             this.dmxGatekeeperApiAccessKey = Environment.GetEnvironmentVariable("AzureAppServiceDmxGatekeeperApiAccessKey");
+            this.dmxGatekeeperApiScopesGetAllLabs = Environment.GetEnvironmentVariable("AzureAdAppDmxGatekeeperScopesGetAllLabs");
+            this.dmxGatekeeperApiScopesPostLab = Environment.GetEnvironmentVariable("AzureAdAppDmxGatekeeperScopesPostLab");
+            this.dmxGatekeeperApiUri = Environment.GetEnvironmentVariable("AzureAdDmxGatekeeperAppIdUri");
             this.azure = AuthenticateAzure();
         }
 
