@@ -19,7 +19,7 @@ namespace DMX.Portal.Web.Views.Components.Menus
             {
                 SideMenuContainer = new SharpStyle
                 {
-                    BackgroundColor = "#FAF9F8"
+                    BackgroundColor = "#faf9f8"
                 }
             };
         }

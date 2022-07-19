@@ -40,16 +40,15 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
             {
                 SideMenuContainer = new SharpStyle
                 {
-                    BackgroundColor = "#FAF9F8",
+                    BackgroundColor = "#faf9f8",
                 }
             };
-
 
             // when
             this.renderedSideMenuComponent = RenderComponent<SideMenuComponent>();
 
             // then
-            this.renderedSideMenuComponent.Instance.Container.Should().NotBeNull();
+            this.renderedSideMenuComponent.Instance.Container.CssClass.Should().Be("side-menu-container");
             this.renderedSideMenuComponent.Instance.TitleContainer.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.Style.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.StyleElement.Should().NotBeNull();
