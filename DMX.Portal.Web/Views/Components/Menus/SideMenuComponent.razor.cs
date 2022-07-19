@@ -11,6 +11,7 @@ namespace DMX.Portal.Web.Views.Components.Menus
     {
         public ContainerBase Container { get; set; }
         public LeftSideMenuHeaderBase TitleContainer { get; set; }
+        public SideMenuBase SideMenu { get; set; }
 
         protected override void OnInitialized()
         {

@@ -25,6 +25,9 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
             initialSideMenuComponent.TitleContainer
                 .Should().BeNull();
 
+            initialSideMenuComponent.SideMenu
+                .Should().BeNull();
+
             initialSideMenuComponent.Style
                 .Should().BeNull();
 
@@ -54,10 +57,11 @@ namespace DMX.Portal.Web.Tests.Unit.Components.Menus
             this.renderedSideMenuComponent = RenderComponent<SideMenuComponent>();
 
             // then
-            this.renderedSideMenuComponent.Instance.Container.CssClass.Should().Be("side-menu-container");
             this.renderedSideMenuComponent.Instance.TitleContainer.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.Style.Should().NotBeNull();
             this.renderedSideMenuComponent.Instance.StyleElement.Should().NotBeNull();
+            this.renderedSideMenuComponent.Instance.Container.CssClass.Should().Be("side-menu-container");
+            this.renderedSideMenuComponent.Instance.SideMenu.ClassName.Should().Be("all-menu-options");
 
             this.renderedSideMenuComponent.Instance.Style
                 .Should().BeEquivalentTo(expectedSideMenuStyle);
