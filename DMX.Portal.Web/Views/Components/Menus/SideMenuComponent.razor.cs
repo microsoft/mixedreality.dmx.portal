@@ -9,6 +9,6 @@ namespace DMX.Portal.Web.Views.Components.Menus
     public partial class SideMenuComponent
     {
         public ContainerBase Container { get; set; }
-        public ContainerBase TitleContainer { get; set; }
+        public LeftSideMenuHeaderBase TitleContainer { get; set; }
     }
 }
