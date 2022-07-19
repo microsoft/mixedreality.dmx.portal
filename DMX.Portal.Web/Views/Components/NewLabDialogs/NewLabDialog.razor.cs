@@ -17,7 +17,7 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         [Inject]
         public ILabViewService LabViewService { get; set; }
 
-        public NewLabDialogComponentState State { get; set; }
+        public NewLabDialogState State { get; set; }
         public DialogBase Dialog { get; set; }
         public TextBoxBase LabId { get; set; }
         public TextBoxBase LabDmxVersion { get; set; }
@@ -52,7 +52,7 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
         {
             SetupStyle();
             this.LabView = new LabView();
-            this.State = NewLabDialogComponentState.Content;
+            this.State = NewLabDialogState.Content;
         }
 
         public void OpenDialog()

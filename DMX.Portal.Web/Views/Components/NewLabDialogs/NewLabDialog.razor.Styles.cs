@@ -11,11 +11,11 @@ namespace DMX.Portal.Web.Views.Components.NewLabDialogs
     public partial class NewLabDialog
     {
         public StyleBase StyleElement { get; set; }
-        public NewLabDialogComponentStyle Style { get; set; }
+        public NewLabDialogStyle Style { get; set; }
 
         private void SetupStyle()
         {
-            this.Style = new NewLabDialogComponentStyle
+            this.Style = new NewLabDialogStyle
             {
                 NewLabTextbox = new SharpStyle
                 {

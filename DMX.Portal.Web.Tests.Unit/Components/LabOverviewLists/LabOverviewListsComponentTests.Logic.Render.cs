@@ -35,7 +35,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
                 .Should().BeNull();
 
             initialRenderedLabOverviewListsComponent.State
-                .Should().Be(LabOverviewListComponentState.Loading);
+                .Should().Be(LabOverviewListState.Loading);
         }
 
         [Fact]
@@ -44,8 +44,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
             // given
             string expectedLoadingLabel = "Loading...";
 
-            LabOverviewListComponentState expectedState =
-                LabOverviewListComponentState.Loading;
+            LabOverviewListState expectedState =
+                LabOverviewListState.Loading;
 
             this.labViewServiceMock.Setup(service =>
                 service.RetrieveAllLabViewsAsync())
@@ -98,8 +98,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
                 service.RetrieveAllLabViewsAsync())
                     .ReturnsAsync(retrievedLabViews);
 
-            LabOverviewListComponentState expectedState =
-                LabOverviewListComponentState.Content;
+            LabOverviewListState expectedState =
+                LabOverviewListState.Content;
 
             // when
             this.renderedLabOverviewListsComponent =
@@ -136,8 +136,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.LabOverviewLists
                 service.RetrieveAllLabViewsAsync())
                     .Throws(exception);
 
-            LabOverviewListComponentState expectedState =
-                LabOverviewListComponentState.Error;
+            LabOverviewListState expectedState =
+                LabOverviewListState.Error;
 
             string expectedErrorMessage = "An error has occured, contact support.";
 

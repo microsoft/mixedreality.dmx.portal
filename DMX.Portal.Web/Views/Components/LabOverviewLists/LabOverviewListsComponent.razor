@@ -3,13 +3,13 @@
 @using Models.Views.Components.LabOverviewListComponents
 @using PrettyBlazor
 
-<Condition Evaluation=@(State is LabOverviewListComponentState.Loading)>
+<Condition Evaluation=@(State is LabOverviewListState.Loading)>
     <Match>
         <LabelBase Text="Loading..." />
     </Match>
 </Condition>
 
-<Condition Evaluation=@(State is LabOverviewListComponentState.Content)>
+<Condition Evaluation=@(State is LabOverviewListState.Content)>
     <Match>
         <Iterations Items=Labs 
                     Context="Lab">
@@ -20,7 +20,7 @@
     </Match>
 </Condition>
 
-<Condition Evaluation=@(State is LabOverviewListComponentState.Error)>
+<Condition Evaluation=@(State is LabOverviewListState.Error)>
     <Match>
         <LabelBase Text="An error has occured, contact support." />
     </Match>
