@@ -16,5 +16,8 @@ namespace DMX.Portal.Web.Views.Bases
 
         [Parameter]
         public string Color { get; set; }
+
+        [Parameter]
+        public string ClassName { get; set; }
     }
 }
