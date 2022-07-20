@@ -12,6 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Syncfusion.Blazor;
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Identity.Web.UI;
 
 namespace DMX.Portal.Web
 {
@@ -24,12 +27,16 @@ namespace DMX.Portal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddServerSideBlazor();
+
+            services.AddServerSideBlazor()
+                .AddMicrosoftIdentityConsentHandler();
+
             services.AddSyncfusionBlazor();
             services.AddHttpClient();
             services.AddSyncfusionBlazor();
             AddBrokers(services);
             AddServices(services);
+            AddSecurity(services);
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
@@ -51,12 +58,9 @@ namespace DMX.Portal.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/_Host");
-            });
+            app.UseAuthentication();
+            app.UseAuthorization();
+            MapControllersForEnvironments(app, env);
         }
 
         private static void AddBrokers(IServiceCollection services)
@@ -69,6 +73,44 @@ namespace DMX.Portal.Web
         {
             services.AddTransient<ILabService, LabService>();
             services.AddTransient<ILabViewService, LabViewService>();
+        }
+
+        private void AddSecurity(IServiceCollection services)
+        {
+            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ') ??
+                Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
+
+            services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
+                .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
+                    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                        .AddDownstreamWebApi(
+                            "DownstreamApi", Configuration.GetSection("DownstreamApi"))
+                                .AddInMemoryTokenCaches();
+
+            services.AddControllersWithViews()
+                .AddMicrosoftIdentityUI();
+
+            services.AddAuthorization(options =>
+                options.FallbackPolicy = options.DefaultPolicy);
+        }
+
+        private static void MapControllersForEnvironments(
+            IApplicationBuilder app,
+            IWebHostEnvironment env)
+        {
+            app.UseEndpoints(endpoints =>
+            {
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapBlazorHub().AllowAnonymous();
+                    endpoints.MapFallbackToPage("/_Host").AllowAnonymous();
+                }
+                else
+                {
+                    endpoints.MapBlazorHub();
+                    endpoints.MapFallbackToPage("/_Host");
+                }
+            });
         }
     }
 }
