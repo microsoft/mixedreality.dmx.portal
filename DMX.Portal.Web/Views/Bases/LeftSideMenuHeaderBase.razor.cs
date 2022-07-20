@@ -6,18 +6,9 @@ using Microsoft.AspNetCore.Components;
 
 namespace DMX.Portal.Web.Views.Bases
 {
-    public partial class MenuOptionBase : ComponentBase
+    public partial class LeftSideMenuHeaderBase
     {
         [Parameter]
-        public string Label { get; set; }
-
-        [Parameter]
-        public string IconClass { get; set; }
-
-        [Parameter]
-        public string Color { get; set; }
-
-        [Parameter]
-        public string ClassName { get; set; }
+        public string Title { get; set; }
     }
 }

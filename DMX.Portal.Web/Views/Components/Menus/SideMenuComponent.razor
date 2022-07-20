@@ -1,8 +1,17 @@
 ﻿@using DMX.Portal.Web.Views.Bases
 
-<SideMenuBase Title="Main Menu">
-    <MenuOptionBase Label="LABS" IconClass="oi oi-home"> </MenuOptionBase>
-    <MenuOptionBase Label="DEVICES" IconClass="oi oi-plus" Color="color:black;"> </MenuOptionBase>
-    <MenuOptionBase Label="WORKFLOWS" IconClass="oi oi-list-rich" Color="color:black;"> </MenuOptionBase>
-    <MenuOptionBase Label="SUPPORT" IconClass="oi oi-list-rich" Color="color:black;"> </MenuOptionBase>
-</SideMenuBase>
+<ContainerBase @ref=Container CssClass="side-menu-container">
+
+    <LeftSideMenuHeaderBase @ref=TitleContainer Title="DMX STUDIO" />
+
+    <SideMenuBase @ref=SideMenu Title="Main Menu" ClassName="all-menu-options">
+        <MenuOptionBase Label="LABS" IconClass="oi oi-home" ClassName="nav-item px-3"> </MenuOptionBase>
+        <MenuOptionBase Label="DEVICES" IconClass="oi oi-plus" Color="color:black;" ClassName="nav-item px-3"> </MenuOptionBase>
+        <MenuOptionBase Label="WORKFLOWS" IconClass="oi oi-list-rich" Color="color:black;" ClassName="nav-item px-3"> </MenuOptionBase>
+        <MenuOptionBase Label="SUPPORT" IconClass="oi oi-list-rich" Color="color:black;" ClassName="nav-item px-3"> </MenuOptionBase>
+    </SideMenuBase>
+
+</ContainerBase>
+
+<StyleBase @ref=StyleElement
+            Style=Style/>

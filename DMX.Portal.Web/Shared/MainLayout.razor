@@ -1,3 +1,15 @@
-﻿@inherits LayoutComponentBase
+﻿@using DMX.Portal.Web.Views.Components.Headers
+@using DMX.Portal.Web.Views.Components.Menus
+@inherits LayoutComponentBase
 
-@Body
+<div class="page">
+    <div class="sidebar">
+        <SideMenuComponent />
+    </div>
+    <main>
+        <HeaderComponent />
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
