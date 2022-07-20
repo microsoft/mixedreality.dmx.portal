@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Identity.Web" Version="1.25.1" />
     <PackageReference Include="PrettyBlazor" Version="1.2.0" />
     <PackageReference Include="RESTFulSense" Version="2.5.0" />
     <PackageReference Include="SharpStyles" Version="0.3.0" />
