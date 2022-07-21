@@ -19,12 +19,14 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
             var webAppSettings = new Dictionary<string, string>
             {
                 { "ASPNETCORE_ENVIRONMENT", ProjectEnvironment },
+                { "AzureAd:ClientSecret", this.provisionClientSecret },
                 { "ApiConfigurations:Url", this.dmxGatekeeperApiUrl},
                 { "ApiConfiguration:AccessKey", this.dmxGatekeeperApiAccessKey},
                 { "AzureAd:TenantId", this.tenantId},
                 { "AzureAd:Instance", this.dmxPortalInstance},
                 { "AzureAd:Domain", this.dmxPortalDomain},
                 { "AzureAd:ClientId", this.dmxPortalClientId },
+                { "AzureAd:ClientSecret", this.dmxPortalClientSecret },
                 { "AzureAd:CallbackPath", this.dmxPortalCallbackPath},
                 { "DownstreamApi:BaseUrl", this.dmxGatekeeperApiUri},
                 { "DownstreamApi:Scopes:GetAllLabs", this.dmxGatekeeperApiScopesGetAllLabs},
