@@ -12,6 +12,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
 {
     public partial class CloudBroker : ICloudBroker
     {
+        private const string ProjectEnvironment = "Production";
         private readonly string provisionClientId;
         private readonly string provisionClientSecret;
         private readonly string tenantId;
