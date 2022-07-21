@@ -77,12 +77,9 @@ namespace DMX.Portal.Web
 
         private void AddSecurity(IServiceCollection services)
         {
-            var initialScopes = Configuration["DownstreamApi:Scopes"]?.Split(' ') ??
-                Configuration["MicrosoftGraph:Scopes"]?.Split(' ');
-
             services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddMicrosoftIdentityWebApp(Configuration.GetSection("AzureAd"))
-                    .EnableTokenAcquisitionToCallDownstreamApi(initialScopes)
+                    .EnableTokenAcquisitionToCallDownstreamApi()
                         .AddDownstreamWebApi(
                             "DownstreamApi", Configuration.GetSection("DownstreamApi"))
                                 .AddInMemoryTokenCaches();

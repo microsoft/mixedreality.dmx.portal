@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Labs;
 
@@ -12,10 +13,18 @@ namespace DMX.Portal.Web.Brokers.DmxApis
     {
         private const string LabsRelativeUrl = "api/labs";
 
-        public async ValueTask<List<Lab>> GetAllLabsAsync() =>
-            await GetAsync<List<Lab>>(LabsRelativeUrl);
+        public async ValueTask<List<Lab>> GetAllLabsAsync()
+        {
+            await GetAccessTokenForScope("GetAllLabs");
 
-        public async ValueTask<Lab> PostLabAsync(Lab lab) =>
-            await PostAsync<Lab>(LabsRelativeUrl, lab);
+            return await GetAsync<List<Lab>>(LabsRelativeUrl);
+        }
+
+        public async ValueTask<Lab> PostLabAsync(Lab lab)
+        {
+            await GetAccessTokenForScope("PostLab");
+
+            return await PostAsync<Lab>(LabsRelativeUrl, lab);
+        }
     }
 }
