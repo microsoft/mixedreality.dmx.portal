@@ -4,6 +4,7 @@
 
 using System;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Configurations;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +35,17 @@ namespace DMX.Portal.Web.Brokers.DmxApis
 
         private async ValueTask<T> PostAsync<T>(string relativeUrl, T content) =>
             await this.apiClient.PostContentAsync<T>(relativeUrl, content);
+
+        private async Task GetAccessTokenForScope(string scope)
+        {
+            string[] scopes = GetScopesFromConfiguration(scope);
+
+            string accessToken =
+                await this.tokenAcquisition.GetAccessTokenForUserAsync(scopes);
+
+            this.httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", accessToken);
+        }
 
         private IRESTFulApiFactoryClient GetApiClient(IConfiguration configuration)
         {

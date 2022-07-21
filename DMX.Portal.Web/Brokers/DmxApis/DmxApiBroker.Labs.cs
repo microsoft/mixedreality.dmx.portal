@@ -15,18 +15,16 @@ namespace DMX.Portal.Web.Brokers.DmxApis
 
         public async ValueTask<List<Lab>> GetAllLabsAsync()
         {
-            string[] scopes = GetScopesFromConfiguration("GetAllLabs");
-
-            string accessToken =
-                await this.tokenAcquisition.GetAccessTokenForUserAsync(scopes);
-
-            this.httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", accessToken);
+            await GetAccessTokenForScope("GetAllLabs");
 
             return await GetAsync<List<Lab>>(LabsRelativeUrl);
         }
 
-        public async ValueTask<Lab> PostLabAsync(Lab lab) =>
-            await PostAsync<Lab>(LabsRelativeUrl, lab);
+        public async ValueTask<Lab> PostLabAsync(Lab lab)
+        {
+            await GetAccessTokenForScope("PostLab");
+
+            return await PostAsync<Lab>(LabsRelativeUrl, lab);
+        }
     }
 }
