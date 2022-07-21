@@ -2,11 +2,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace DMX.Portal.Web.Models.Configurations
 {
-    public class LocalConfiguration
+    public class DownstreamApiConfiguration
     {
-        public ApiConfiguration ApiConfiguration { get; set; }
-        public DownstreamApiConfiguration DownstreamApi { get; set; }
+        public string BaseUrl { get; set; }
+        public IDictionary<string, string> Scopes { get; set; }
     }
 }
