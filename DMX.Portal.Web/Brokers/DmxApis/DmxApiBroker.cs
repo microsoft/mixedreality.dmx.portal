@@ -48,7 +48,7 @@ namespace DMX.Portal.Web.Brokers.DmxApis
 
         private async Task RefreshUserTokenAsync()
         {
-            string[] requiredScopes = new string[] { "api://c96ab39d-6247-4ef2-b33c-6dcd7d561f81/AllAccess" };
+            string[] requiredScopes = new string[] { "api://YOUR_APP_ID/AllAccess" };
 
             string accessToken =
                 await this.tokenAcquisition.GetAccessTokenForUserAsync(requiredScopes);
