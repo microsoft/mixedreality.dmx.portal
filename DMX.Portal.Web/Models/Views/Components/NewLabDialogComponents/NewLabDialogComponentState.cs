@@ -2,9 +2,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-namespace DMX.Portal.Web.Models.Views.Components.LabOverviewListComponents
+namespace DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents
 {
-    public enum LabOverviewListState
+    public enum NewLabDialogComponentState
     {
         Loading,
         Content,

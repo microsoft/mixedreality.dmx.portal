@@ -24,7 +24,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
 
             // then
             initialNewLabDialogComponent.LabViewService.Should().BeNull();
-            initialNewLabDialogComponent.State.Should().Be(NewLabDialogState.Loading);
+            initialNewLabDialogComponent.State.Should().Be(NewLabDialogComponentState.Loading);
             initialNewLabDialogComponent.Dialog.Should().BeNull();
             initialNewLabDialogComponent.LabId.Should().BeNull();
             initialNewLabDialogComponent.LabDmxVersion.Should().BeNull();
@@ -50,7 +50,7 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
         public void ShouldSetupComponentStyles()
         {
             // given
-            var expectedStyle = new NewLabDialogStyle
+            var expectedStyle = new NewLabDialogComponentStyle
             {
                 NewLabTextbox = new SharpStyle
                 {
@@ -80,8 +80,8 @@ namespace DMX.Portal.Web.Tests.Unit.Components.NewLabDialogs
         public void ShouldDisplayDialogIfOpenDialogIsClicked()
         {
             // given
-            NewLabDialogState expectedState =
-                NewLabDialogState.Content;
+            NewLabDialogComponentState expectedState =
+                NewLabDialogComponentState.Content;
 
             string expectedTextBoxCssClass = "new-lab-textbox";
             string expectedTextBoxBottomCssClass = "new-lab-textbox-bottom";

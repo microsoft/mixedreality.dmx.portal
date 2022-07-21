@@ -17,7 +17,7 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
         [Inject]
         public ILabViewService LabViewService { get; set; }
 
-        public LabOverviewListState State { get; set; }
+        public LabOverviewListComponentState State { get; set; }
         public List<LabView> Labs { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -25,11 +25,11 @@ namespace DMX.Portal.Web.Views.Components.LabOverviewLists
             try
             {
                 this.Labs = await LabViewService.RetrieveAllLabViewsAsync();
-                this.State = LabOverviewListState.Content;
+                this.State = LabOverviewListComponentState.Content;
             }
             catch (Exception exception)
             {
-                this.State = LabOverviewListState.Error;
+                this.State = LabOverviewListComponentState.Error;
             }
 
             StateHasChanged();
