@@ -2,11 +2,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-namespace DMX.Portal.Web.Models.Labs
+namespace DMX.Portal.Web.Models.Services.Foundations.Labs
 {
-    public enum LabDeviceCategory
+    public enum LabStatus
     {
-        Host,
-        Attachment
+        Available,
+        Reserved,
+        Offline,
+        Unregistered
     }
 }

@@ -4,7 +4,7 @@
 
 using Xeptions;
 
-namespace DMX.Portal.Web.Models.Labs.Exceptions
+namespace DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions
 {
     public class LabValidationException : Xeption
     {

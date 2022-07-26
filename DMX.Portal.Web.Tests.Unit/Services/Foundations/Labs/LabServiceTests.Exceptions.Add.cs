@@ -5,8 +5,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Labs;
-using DMX.Portal.Web.Models.Labs.Exceptions;
+using DMX.Portal.Web.Models.Services.Foundations.Labs;
+using DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions;
 using FluentAssertions;
 using Moq;
 using RESTFulSense.Exceptions;

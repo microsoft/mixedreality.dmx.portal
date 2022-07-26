@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Labs;
+using DMX.Portal.Web.Models.Services.Foundations.Labs;
 
 namespace DMX.Portal.Web.Brokers.DmxApis
 {

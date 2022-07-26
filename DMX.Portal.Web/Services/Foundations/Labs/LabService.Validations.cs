@@ -3,8 +3,8 @@
 // ---------------------------------------------------------------
 
 using System;
-using DMX.Portal.Web.Models.Labs;
-using DMX.Portal.Web.Models.Labs.Exceptions;
+using DMX.Portal.Web.Models.Services.Foundations.Labs;
+using DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions;
 
 namespace DMX.Portal.Web.Services.Foundations.Labs
 {
