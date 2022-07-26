@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DMX.Portal.Web.Models.Labs
+namespace DMX.Portal.Web.Models.Services.Foundations.Labs
 {
     public class Lab
     {

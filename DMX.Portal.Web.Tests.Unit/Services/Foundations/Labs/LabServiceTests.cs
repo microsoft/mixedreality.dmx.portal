@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Net.Http;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
-using DMX.Portal.Web.Models.Labs;
+using DMX.Portal.Web.Models.Services.Foundations.Labs;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using Moq;
 using RESTFulSense.Exceptions;

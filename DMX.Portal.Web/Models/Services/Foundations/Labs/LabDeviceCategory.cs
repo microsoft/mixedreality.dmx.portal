@@ -2,14 +2,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-using Xeptions;
-
-namespace DMX.Portal.Web.Models.Labs.Exceptions
+namespace DMX.Portal.Web.Models.Services.Foundations.Labs
 {
-    public class NullLabException : Xeption
+    public enum LabDeviceCategory
     {
-        public NullLabException()
-            : base(message: "Lab is null.")
-        { }
+        Host,
+        Attachment
     }
 }
