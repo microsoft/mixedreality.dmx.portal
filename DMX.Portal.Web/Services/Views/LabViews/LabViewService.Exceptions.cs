@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Labs.Exceptions;
+using DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions;
 using DMX.Portal.Web.Models.Views.LabViews;
 using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
 using Xeptions;

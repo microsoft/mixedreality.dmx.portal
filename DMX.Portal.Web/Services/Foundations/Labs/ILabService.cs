@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Labs;
+using DMX.Portal.Web.Models.Services.Foundations.Labs;
 
 namespace DMX.Portal.Web.Services.Foundations.Labs
 {

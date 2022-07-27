@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using Xeptions;
 
-namespace DMX.Portal.Web.Models.Labs.Exceptions
+namespace DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions
 {
     public class AlreadyExistsLabException : Xeption
     {

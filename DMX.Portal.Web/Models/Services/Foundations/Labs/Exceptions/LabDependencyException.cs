@@ -4,12 +4,12 @@
 
 using Xeptions;
 
-namespace DMX.Portal.Web.Models.Labs.Exceptions
+namespace DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions
 {
-    public class LabServiceException : Xeption
+    public class LabDependencyException : Xeption
     {
-        public LabServiceException(Xeption innerException)
-            : base(message: "Lab service error occurred, contact support.",
+        public LabDependencyException(Xeption innerException)
+            : base(message: "Lab dependency error occurred, contact support.",
                   innerException)
         {
         }

@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Labs;
+using DMX.Portal.Web.Models.Services.Foundations.Labs;
 using DMX.Portal.Web.Models.Views.LabViews;
 using FluentAssertions;
 using Force.DeepCloner;
