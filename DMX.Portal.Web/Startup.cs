@@ -6,15 +6,15 @@ using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using DMX.Portal.Web.Services.Views.LabViews;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Syncfusion.Blazor;
 using Microsoft.Identity.Web;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.Identity.Web.UI;
+using Syncfusion.Blazor;
 
 namespace DMX.Portal.Web
 {
