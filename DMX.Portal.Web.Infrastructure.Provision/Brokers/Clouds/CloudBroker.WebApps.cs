@@ -25,6 +25,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
                 { "AzureAd:Instance", this.dmxPortalInstance},
                 { "AzureAd:Domain", this.dmxPortalDomain},
                 { "AzureAd:ClientId", this.dmxPortalClientId },
+                { "AzureAd:ClientSecret", this.dmxPortalClientSecret },
                 { "AzureAd:CallbackPath", this.dmxPortalCallbackPath},
                 { "DownstreamApi:BaseUrl", this.dmxGatekeeperApiUri},
                 { "DownstreamApi:Scopes:GetAllLabs", this.dmxGatekeeperApiScopesGetAllLabs},

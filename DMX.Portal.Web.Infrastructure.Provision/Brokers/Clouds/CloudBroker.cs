@@ -18,6 +18,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
         private readonly string tenantId;
         private readonly string subscriptionId;
         private readonly string dmxPortalClientId;
+        private readonly string dmxPortalClientSecret;
         private readonly string dmxPortalInstance;
         private readonly string dmxPortalCallbackPath;
         private readonly string dmxPortalDomain;
@@ -35,6 +36,7 @@ namespace DMX.Portal.Web.Infrastructure.Provision.Brokers.Clouds
             this.tenantId = Environment.GetEnvironmentVariable("AzureTenantId");
             this.subscriptionId = Environment.GetEnvironmentVariable("AzureSubscriptionId");
             this.dmxPortalClientId = Environment.GetEnvironmentVariable("AzureAdAppDmxPortalClientId");
+            this.dmxPortalClientSecret = Environment.GetEnvironmentVariable("AzureAdAppDmxPortalClientSecret");
             this.dmxPortalInstance = Environment.GetEnvironmentVariable("AzureAdDmxPortalInstance");
             this.dmxPortalCallbackPath = Environment.GetEnvironmentVariable("AzureAdDmxPortalCallbackPath");
             this.dmxPortalDomain = Environment.GetEnvironmentVariable("AzureAdDmxPortalDomain");
