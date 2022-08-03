@@ -10,7 +10,7 @@ using DMX.Portal.Web.Models.Services.Foundations.LabCommands;
 
 namespace DMX.Portal.Web.Services.Foundations.LabCommands
 {
-    public class LabCommandService : ILabCommandService
+    public partial class LabCommandService : ILabCommandService
     {
         public readonly IDmxApiBroker dmxApiBroker;
         public readonly ILoggingBroker loggingBroker;
@@ -23,9 +23,12 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<LabCommand> AddLabCommandAsync(LabCommand labCommand)
+        public ValueTask<LabCommand> AddLabCommandAsync(LabCommand labCommand) =>
+        TryCatch (async () =>
         {
+            ValidateLabCommandOnAdd(labCommand);
+
             return await this.dmxApiBroker.PostLabCommandAsync(labCommand);
-        }
+        });
     }
 }
