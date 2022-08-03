@@ -3,12 +3,14 @@
 // ---------------------------------------------------------------
 
 using System;
+using System.Linq.Expressions;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands;
 using DMX.Portal.Web.Services.Foundations.LabCommands;
 using Moq;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
 {
@@ -27,6 +29,9 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
                 this.dmxApiBrokerMock.Object,
                 this.loggingBrokerMock.Object);
         }
+
+        private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
+            actualException => actualException.SameExceptionAs(expectedException);
 
         private LabCommand CreateRandomLabCommand() =>
             CreateLabCommandFiller().Create();
