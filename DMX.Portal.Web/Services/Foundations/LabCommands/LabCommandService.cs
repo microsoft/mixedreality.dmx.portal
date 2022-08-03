@@ -25,7 +25,7 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
 
         public async ValueTask<LabCommand> AddLabCommandAsync(LabCommand labCommand)
         {
-            throw new NotImplementedException();
+            return await this.dmxApiBroker.PostLabCommandAsync(labCommand);
         }
     }
 }
