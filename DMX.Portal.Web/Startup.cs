@@ -4,6 +4,7 @@
 
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
+using DMX.Portal.Web.Services.Foundations.LabCommands;
 using DMX.Portal.Web.Services.Foundations.Labs;
 using DMX.Portal.Web.Services.Views.LabViews;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -72,6 +73,7 @@ namespace DMX.Portal.Web
         private static void AddServices(IServiceCollection services)
         {
             services.AddTransient<ILabService, LabService>();
+            services.AddTransient<ILabCommandService, LabCommandService>();
             services.AddTransient<ILabViewService, LabViewService>();
         }
 
