@@ -2,11 +2,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands.Exceptions;
-using DMX.Portal.Web.Models.Services.Foundations.Labs.Exceptions;
-using Syncfusion.Blazor.Charts.Chart.Internal;
-using System;
 
 namespace DMX.Portal.Web.Services.Foundations.LabCommands
 {
@@ -23,13 +21,13 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
                 (Rule: IsInvalidDate(labCommand.UpdatedDate), Parameter: nameof(LabCommand.UpdatedDate)));
         }
 
-        private static bool IsInvalidDate(DateTimeOffset createdDate) => new
+        private static dynamic IsInvalidDate(DateTimeOffset date) => new
         {
-            Condition = id == default,
-            Message = "Id is required"
+            Condition = date == default,
+            Message = "Date is required"
         };
 
-        private static bool IsInvalidId(Guid id) => new
+        private static dynamic IsInvalidId(Guid id) => new
         {
             Condition = id == Guid.Empty,
             Message = "Id is required"
@@ -53,7 +51,7 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
                 {
                     invalidLabCommandException.UpsertDataList(
                         key: parameter,
-                        value: rule.message);
+                        value: rule.Message);
                 }
             }
 

@@ -2,12 +2,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using System;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands.Exceptions;
-using Xeptions;
 using RESTFulSense.Exceptions;
-using System;
+using Xeptions;
 
 namespace DMX.Portal.Web.Services.Foundations.LabCommands
 {
@@ -24,6 +24,10 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
             catch (NullLabCommandException nullLabCommandException)
             {
                 throw CreateAndLogValidationException(nullLabCommandException);
+            }
+            catch (InvalidLabCommandException invalidLabCommandException)
+            {
+                throw CreateAndLogValidationException(invalidLabCommandException);
             }
             catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
             {
