@@ -4,13 +4,16 @@
 
 using System;
 using System.Linq.Expressions;
+using System.Net.Http;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands;
 using DMX.Portal.Web.Services.Foundations.LabCommands;
 using Moq;
+using RESTFulSense.Exceptions;
 using Tynamix.ObjectFiller;
 using Xeptions;
+using Xunit;
 
 namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
 {
@@ -30,11 +33,30 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
                 this.loggingBrokerMock.Object);
         }
 
+        public static TheoryData CriticalDependencyExceptions()
+        {
+            string someMessage = GetRandomString();
+            var someResponseMessage = new HttpResponseMessage();
+
+            return new TheoryData<Xeption>()
+            {
+                new HttpResponseUrlNotFoundException(someResponseMessage, someMessage),
+                new HttpResponseUnauthorizedException(someResponseMessage, someMessage),
+                new HttpResponseForbiddenException(someResponseMessage, someMessage),
+            };
+        }
+
         private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
             actualException => actualException.SameExceptionAs(expectedException);
 
         private LabCommand CreateRandomLabCommand() =>
             CreateLabCommandFiller().Create();
+
+        private static string GetRandomString() =>
+            new MnemonicString().GetValue();
+
+        private DateTimeOffset GetRandomDateTimeOffset() =>
+            new DateTimeRange(earliestDate: new DateTime()).GetValue();
 
         private Filler<LabCommand> CreateLabCommandFiller()
         {
@@ -45,9 +67,5 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
 
             return filler;
         }
-
-        private DateTimeOffset GetRandomDateTimeOffset() =>
-            new DateTimeRange(earliestDate: new DateTime()).GetValue();
-
     }
 }
