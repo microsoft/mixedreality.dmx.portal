@@ -110,7 +110,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
         }
 
         [Fact]
-        public async Task ShouldThrowServiceExceptionOnAddIfErrorOccursAndLogItAsync()
+        public async Task ShouldThrowServiceExceptionOnAddIfServiceErrorOccursAndLogItAsync()
         {
             // given
             LabCommand someCommand = CreateRandomLabCommand();
