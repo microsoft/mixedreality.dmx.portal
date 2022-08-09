@@ -45,6 +45,12 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
                     new FailedLabCommandDependencyException(httpResponseForbiddenException);
 
                 throw CreateAndLogCriticalDependencyException(failedLabCommandDependencyException);
+            } catch (HttpResponseException httpResponseException)
+            {
+                var failedLabDependencyException =
+                    new FailedLabCommandDependencyException(httpResponseException);
+
+                throw CreateAndLogDependencyException(failedLabDependencyException);
             }
         }
 
@@ -66,6 +72,16 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
             this.loggingBroker.LogError(labCommandValidationException);
 
             return labCommandValidationException;
+        }
+
+        private LabCommandDependencyException CreateAndLogDependencyException(Xeption exception)
+        {
+            var labCommandDependencyException =
+                new LabCommandDependencyException(exception);
+
+            this.loggingBroker.LogError(labCommandDependencyException);
+
+            return labCommandDependencyException;
         }
     }
 }
