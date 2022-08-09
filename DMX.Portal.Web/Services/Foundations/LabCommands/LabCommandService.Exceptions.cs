@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands;
 using DMX.Portal.Web.Models.Services.Foundations.LabCommands.Exceptions;
 using Xeptions;
+using RESTFulSense.Exceptions;
+using System;
 
 namespace DMX.Portal.Web.Services.Foundations.LabCommands
 {
@@ -23,6 +25,37 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
             {
                 throw CreateAndLogValidationException(nullLabCommandException);
             }
+            catch (HttpResponseUrlNotFoundException httpResponseUrlNotFoundException)
+            {
+                var failedLabCommandDependencyException =
+                    new FailedLabCommandDependencyException(httpResponseUrlNotFoundException);
+
+                throw CreateAndLogCriticalDependencyException(failedLabCommandDependencyException);
+            }
+            catch (HttpResponseUnauthorizedException httpResponseUnauthorizedException)
+            {
+                var failedLabCommandDependencyException =
+                    new FailedLabCommandDependencyException(httpResponseUnauthorizedException);
+
+                throw CreateAndLogCriticalDependencyException(failedLabCommandDependencyException);
+            }
+            catch (HttpResponseForbiddenException httpResponseForbiddenException)
+            {
+                var failedLabCommandDependencyException =
+                    new FailedLabCommandDependencyException(httpResponseForbiddenException);
+
+                throw CreateAndLogCriticalDependencyException(failedLabCommandDependencyException);
+            }
+        }
+
+        private LabCommandDependencyException CreateAndLogCriticalDependencyException(Xeption exception)
+        {
+            var labCommandDependencyException =
+                new LabCommandDependencyException(exception);
+
+            this.loggingBroker.LogCritical(labCommandDependencyException);
+
+            throw labCommandDependencyException;
         }
 
         private LabCommandValidationException CreateAndLogValidationException(Xeption exception)
