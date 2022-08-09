@@ -2,7 +2,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-using System;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
@@ -24,7 +23,7 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
         }
 
         public ValueTask<LabCommand> AddLabCommandAsync(LabCommand labCommand) =>
-        TryCatch (async () =>
+        TryCatch(async () =>
         {
             ValidateLabCommandOnAdd(labCommand);
 

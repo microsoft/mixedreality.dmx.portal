@@ -33,7 +33,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
             // then
             actualLabCommand.Should().BeEquivalentTo(expectedLabCommand);
 
-            this.dmxApiBrokerMock.Verify(broker=>
+            this.dmxApiBrokerMock.Verify(broker =>
                 broker.PostLabCommandAsync(inputLabCommand),
                     Times.Once());
 
