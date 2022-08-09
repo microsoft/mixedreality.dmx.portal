@@ -25,10 +25,10 @@ namespace DMX.Portal.Web.Services.Foundations.LabCommands
             }
         }
 
-        private LabCommandValidationException CreateAndLogValidationException(Xeption nullLabCommandException)
+        private LabCommandValidationException CreateAndLogValidationException(Xeption exception)
         {
             var labCommandValidationException =
-                new LabCommandValidationException(nullLabCommandException);
+                new LabCommandValidationException(exception);
 
             this.loggingBroker.LogError(labCommandValidationException);
 
