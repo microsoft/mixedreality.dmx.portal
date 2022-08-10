@@ -2,6 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
+using DMX.Portal.Web.Brokers.DateTimes;
 using DMX.Portal.Web.Brokers.DmxApis;
 using DMX.Portal.Web.Brokers.Loggings;
 using DMX.Portal.Web.Services.Foundations.LabCommands;
@@ -68,6 +69,7 @@ namespace DMX.Portal.Web
         {
             services.AddTransient<ILoggingBroker, LoggingBroker>();
             services.AddTransient<IDmxApiBroker, DmxApiBroker>();
+            services.AddTransient<IDateTimeBroker, DateTimeBroker>();
         }
 
         private static void AddServices(IServiceCollection services)
