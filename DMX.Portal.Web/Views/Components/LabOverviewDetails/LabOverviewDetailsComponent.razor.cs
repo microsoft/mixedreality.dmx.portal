@@ -2,7 +2,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using Microsoft.AspNetCore.Components;
 

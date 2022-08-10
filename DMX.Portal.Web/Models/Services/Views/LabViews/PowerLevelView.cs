@@ -2,13 +2,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. 
 // ---------------------------------------------------------------
 
-namespace DMX.Portal.Web.Models.Views.LabViews
+namespace DMX.Portal.Web.Models.Services.Views.LabViews
 {
-    public enum LabStatusView
+    public enum PowerLevelView
     {
-        Available,
-        Reserved,
-        Offline,
-        Unregistered
+        Empty,
+        Low,
+        Medium,
+        High,
+        Full,
+        Unknown
     }
 }

@@ -4,7 +4,7 @@
 
 using Bunit;
 using DMX.Portal.Web.Models.Views.Components.StatusComponents;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Components.LabTitles;
 using FluentAssertions;
 using Xunit;

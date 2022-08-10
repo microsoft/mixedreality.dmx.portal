@@ -4,7 +4,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 
 namespace DMX.Portal.Web.Services.Views.LabViews
 {

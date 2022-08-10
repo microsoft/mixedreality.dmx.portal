@@ -4,8 +4,8 @@
 
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Services.Foundations.Labs;
-using DMX.Portal.Web.Models.Views.LabViews;
-using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews.Exceptions;
 using FluentAssertions;
 using Moq;
 using Xunit;
