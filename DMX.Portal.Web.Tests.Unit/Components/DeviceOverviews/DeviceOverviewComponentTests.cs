@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 using Bunit;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Components.DeviceOverviews;
 using Tynamix.ObjectFiller;
 using Xunit;

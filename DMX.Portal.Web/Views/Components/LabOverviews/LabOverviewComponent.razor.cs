@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 using DMX.Portal.Web.Models.Views.Components.LabOverviews;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviewDetails;
 using DMX.Portal.Web.Views.Components.LabTitles;

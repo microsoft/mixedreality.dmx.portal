@@ -4,7 +4,7 @@
 
 using Xeptions;
 
-namespace DMX.Portal.Web.Models.Views.LabViews.Exceptions
+namespace DMX.Portal.Web.Models.Services.Views.LabViews.Exceptions
 {
     public class NullLabViewException : Xeption
     {

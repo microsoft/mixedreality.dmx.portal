@@ -6,7 +6,7 @@ using System;
 using System.Collections;
 using Xeptions;
 
-namespace DMX.Portal.Web.Models.Views.LabViews.Exceptions
+namespace DMX.Portal.Web.Models.Services.Views.LabViews.Exceptions
 {
     public class InvalidLabViewException : Xeption
     {

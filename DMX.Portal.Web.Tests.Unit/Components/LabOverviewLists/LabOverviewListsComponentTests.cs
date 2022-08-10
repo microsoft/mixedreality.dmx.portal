@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Bunit;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Components.LabOverviewLists;
 using Microsoft.Extensions.DependencyInjection;

@@ -5,7 +5,7 @@
 using System;
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Views.Components.NewLabDialogComponents;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using Microsoft.AspNetCore.Components;

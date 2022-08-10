@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DMX.Portal.Web.Models.Views.LabViews
+namespace DMX.Portal.Web.Models.Services.Views.LabViews
 {
     public class LabView
     {

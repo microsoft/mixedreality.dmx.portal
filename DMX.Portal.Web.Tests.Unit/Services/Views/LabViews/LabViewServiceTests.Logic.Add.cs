@@ -4,7 +4,7 @@
 
 using System.Threading.Tasks;
 using DMX.Portal.Web.Models.Services.Foundations.Labs;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using FluentAssertions;
 using Force.DeepCloner;
 using Moq;

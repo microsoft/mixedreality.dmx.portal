@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Bunit;
 using DMX.Portal.Web.Models.Views.Components.LabOverviewListComponents;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Bases;
 using DMX.Portal.Web.Views.Components.LabOverviewLists;
 using DMX.Portal.Web.Views.Components.LabOverviews;

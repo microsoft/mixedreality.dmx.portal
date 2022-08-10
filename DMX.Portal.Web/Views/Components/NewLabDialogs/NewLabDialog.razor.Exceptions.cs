@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 using System.Threading.Tasks;
-using DMX.Portal.Web.Models.Views.LabViews.Exceptions;
+using DMX.Portal.Web.Models.Services.Views.LabViews.Exceptions;
 using Xeptions;
 
 namespace DMX.Portal.Web.Views.Components.NewLabDialogs

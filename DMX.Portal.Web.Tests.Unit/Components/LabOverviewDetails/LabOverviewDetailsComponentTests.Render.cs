@@ -3,7 +3,7 @@
 // ---------------------------------------------------------------
 
 using Bunit;
-using DMX.Portal.Web.Models.Views.LabViews;
+using DMX.Portal.Web.Models.Services.Views.LabViews;
 using DMX.Portal.Web.Views.Components.LabOverviewDetails;
 using FluentAssertions;
 using Xunit;
