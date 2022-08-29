@@ -64,7 +64,6 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         {
             // given
             var inputLab = CreateRandomLab();
-
             var randomDictionary = CreateRandomDictionary();
 
             var httpResponseBadRequestException =
@@ -110,11 +109,8 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         {
             // given
             var inputLab = CreateRandomLab();
-
             var randomDictionary = CreateRandomDictionary();
-
             var httpResponseConflictException = new HttpResponseConflictException();
-
             httpResponseConflictException.AddData(randomDictionary);
 
             var invalidLabException =
@@ -158,7 +154,6 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         {
             // given
             Lab inputLab = CreateRandomLab();
-
             var httpResponseException = new HttpResponseException();
 
             var failedLabDependencyException =
