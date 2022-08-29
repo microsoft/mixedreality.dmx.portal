@@ -63,11 +63,7 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.Labs
         public async Task ShouldThrowDependencyExceptionOnRetrievalIfErrorOccursAndLogItAsync()
         {
             // given
-            string someMessage = GetRandomString();
-            var someResponseMessage = new HttpResponseMessage();
-
-            var httpResponseException =
-                new HttpResponseException(someResponseMessage, someMessage);
+            var httpResponseException = new HttpResponseException();
 
             var failedLabDependencyException =
                 new FailedLabDependencyException(httpResponseException);
