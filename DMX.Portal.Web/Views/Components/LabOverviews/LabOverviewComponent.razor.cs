@@ -17,6 +17,9 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         [Parameter]
         public LabView Lab { get; set; }
 
+        [Inject]
+        public NavigationManager NavigationManager { get; set; }
+
         public ContainerBase Container { get; set; }
         public ContainerBase DevicesContainer { get; set; }
         public ContainerBase LabOverviewDetailsContainer { get; set; }
@@ -27,6 +30,11 @@ namespace DMX.Portal.Web.Views.Components.LabOverviews
         public LabOverviewStyle LabOverviewStyle { get; set; }
 
         protected override void OnInitialized() => SetupStyles();
+
+        public void NavigateToLabCommands()
+        {
+            this.NavigationManager.NavigateTo($"/labcommands/{Lab.Id}");
+        }
 
         public void SetupStyles()
         {

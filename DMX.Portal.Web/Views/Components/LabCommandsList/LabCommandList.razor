@@ -1,0 +1,134 @@
+﻿@page "/labcommands/{LabId}"
+@using DMX.Portal.Web.Models.Services.Foundations.Labs
+@using DMX.Portal.Web.Models.Views.Components.LabOverviewListComponents
+@using DMX.Portal.Web.Models.Views.Components.StatusComponents
+@using PrettyBlazor;
+@using DMX.Portal.Web.Views.Bases;
+@using DMX.Portal.Web.Views.Components.Statuses;
+
+<style>
+/*    body {
+        min-width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #eee;
+    }*/
+
+    .console {
+        font-family: 'Fira Mono';
+        height: 450px;
+        box-sizing: border-box;
+        width: 801px;
+        margin: auto;
+    }
+
+        .console header {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            background-color: #555;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            color: #DDD;
+        }
+
+        .console .consolebody {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-sizing: border-box;
+            padding: 20px;
+            height: calc(100% - 40px);
+            overflow: scroll;
+            background-color: #000;
+            color: #63de00;
+        }
+
+            .console .consolebody p {
+                line-height: 1.5rem;
+            }
+</style>
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Loading)>
+    <Match>
+        <LabelBase Text="Loading..." />
+    </Match>
+</Condition>
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Content)>
+    <Match>
+        <Iterations Items=LabCommands Context="LabCommand">
+
+            <StyleBase @ref=StyleElement Style=LabOverviewStyle />
+
+            <div>
+                <ContainerBase CssClass="lab-overview">
+
+                    <ContainerBase CssClass="lab-overview-details">
+
+                        <ContainerBase CssClass="lab-overview-title">
+
+                            <StatusComponent Status=@((StatusView)LabCommand.Status) />
+
+                            <LargeTitleBase Text=@LabCommand.CreatedDate.ToString()
+                                            ClassName="lab-title" />
+
+                        </ContainerBase>
+
+                        <div>
+                            <ContainerBase CssClass="lab-overview-details">
+
+                                <TableBase >
+                                    <TableRowBase>
+                                        <TableCellBase Value="Started By" />
+                                        <TableCellBase Value="ADO Pipeline" />
+                                    </TableRowBase>
+
+                                    <TableRowBase>
+                                        <TableCellBase Value="Agent Version" />
+                                        <TableCellBase Value="1.2" />
+                                    </TableRowBase>
+
+                                    <TableRowBase>
+                                        <TableCellBase Value="Status" />
+                                        <TableCellBase Value=@LabCommand.Status.ToString() />
+                                    </TableRowBase>
+
+                                    <TableRowBase>
+                                        <TableCellBase Value="Notes" />
+                                        <TableCellBase Value=@LabCommand.Notes />
+                                    </TableRowBase>
+                                </TableBase>
+
+                            </ContainerBase>
+                        </div>
+
+                    </ContainerBase>
+
+                    <div>
+
+                        <ContainerBase CssClass="device-overviews">
+
+                            <div class="console">
+                                <div class="consolebody">
+                                    <p>> @LabCommand.Arguments</p>
+                                    <p>> @LabCommand.Results</p>
+                                </div>
+                            </div>
+
+                        </ContainerBase>
+
+                    </div>
+                </ContainerBase>
+            </div>
+
+        </Iterations>
+    </Match>
+</Condition>
+
+<Condition Evaluation=@(State is LabOverviewListComponentState.Error)>
+    <Match>
+        <LabelBase Text="An error has occured, contact support." />
+    </Match>
+</Condition>

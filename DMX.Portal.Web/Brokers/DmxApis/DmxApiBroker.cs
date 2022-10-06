@@ -16,16 +16,13 @@ namespace DMX.Portal.Web.Brokers.DmxApis
     public partial class DmxApiBroker : IDmxApiBroker
     {
         private HttpClient httpClient;
-        private readonly ITokenAcquisition tokenAcquisition;
         private readonly IConfiguration conifguration;
         private readonly IRESTFulApiFactoryClient apiClient;
 
         public DmxApiBroker(HttpClient httpClient,
-            IConfiguration configuration,
-            ITokenAcquisition tokenAcquisition)
+            IConfiguration configuration)
         {
             this.httpClient = httpClient;
-            this.tokenAcquisition = tokenAcquisition;
             this.conifguration = configuration;
             this.apiClient = GetApiClient(configuration);
         }
@@ -40,11 +37,11 @@ namespace DMX.Portal.Web.Brokers.DmxApis
         {
             string[] scopes = GetScopesFromConfiguration(scope);
 
-            string accessToken =
-                await this.tokenAcquisition.GetAccessTokenForUserAsync(scopes);
+            //string accessToken =
+            //    await this.tokenAcquisition.GetAccessTokenForUserAsync(scopes);
 
-            this.httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", accessToken);
+            //this.httpClient.DefaultRequestHeaders.Authorization =
+            //    new AuthenticationHeaderValue("Bearer", accessToken);
         }
 
         private IRESTFulApiFactoryClient GetApiClient(IConfiguration configuration)

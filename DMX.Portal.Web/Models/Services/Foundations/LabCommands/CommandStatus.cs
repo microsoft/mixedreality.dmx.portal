@@ -6,10 +6,10 @@ namespace DMX.Portal.Web.Models.Services.Foundations.LabCommands
 {
     public enum CommandStatus
     {
-        Pending,
-        Running,
-        Aborted,
         Completed,
-        Error
+        Error,
+        Running,
+        Pending,
+        Aborted,
     }
 }

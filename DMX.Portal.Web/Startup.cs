@@ -30,15 +30,15 @@ namespace DMX.Portal.Web
         {
             services.AddRazorPages();
 
-            services.AddServerSideBlazor()
-                .AddMicrosoftIdentityConsentHandler();
+            services.AddServerSideBlazor();
+                //.AddMicrosoftIdentityConsentHandler();
 
             services.AddSyncfusionBlazor();
             services.AddHttpClient();
-            services.AddSyncfusionBlazor();
+            //services.AddSyncfusionBlazor();
             AddBrokers(services);
             AddServices(services);
-            AddSecurity(services);
+            //AddSecurity(services);
 
             services.AddRazorPages(options =>
                 options.RootDirectory = "/Views/Pages"
