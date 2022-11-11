@@ -68,7 +68,6 @@ namespace DMX.Portal.Web.Tests.Unit.Services.Foundations.LabCommands
         {
             // given
             LabCommand inputLabCommand = CreateRandomLabCommand();
-
             var httpResponseException = new HttpResponseException();
 
             var failedLabDependencyException =
