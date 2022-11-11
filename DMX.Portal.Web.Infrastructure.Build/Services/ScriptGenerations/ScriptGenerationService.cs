@@ -20,7 +20,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
         {
             var githubPipeline = new GithubPipeline
             {
-                Name = "DMX portal build",
+                Name = "Build DMX Portal",
 
                 OnEvents = new Events
                 {
@@ -54,7 +54,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
 
                                 TargetDotNetVersion = new TargetDotNetVersion
                                 {
-                                    DotNetVersion = "7.0.100-preview.4.22252.9",
+                                    DotNetVersion = "7.0.100",
                                     IncludePrerelease = true
                                 }
                             },
@@ -141,7 +141,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
 
                                 TargetDotNetVersion = new TargetDotNetVersion
                                 {
-                                    DotNetVersion = "7.0.100-preview.4.22252.9",
+                                    DotNetVersion = "7.0.100",
                                     IncludePrerelease = true,
                                 }
                             },
