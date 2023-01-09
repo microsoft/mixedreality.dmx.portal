@@ -54,8 +54,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
 
                                 TargetDotNetVersion = new TargetDotNetVersion
                                 {
-                                    DotNetVersion = "7.0.100",
-                                    IncludePrerelease = true
+                                    DotNetVersion = "7.0.101"
                                 }
                             },
 
@@ -141,8 +140,7 @@ namespace DMX.Portal.Web.Infrastructure.Build.Services.ScriptGenerations
 
                                 TargetDotNetVersion = new TargetDotNetVersion
                                 {
-                                    DotNetVersion = "7.0.100",
-                                    IncludePrerelease = true,
+                                    DotNetVersion = "7.0.101"
                                 }
                             },
 
